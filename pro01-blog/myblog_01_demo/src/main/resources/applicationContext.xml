@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--这是spring的配置文件-->
+    <!-- 引入XML配置的一些约束等头部引用，
+         为了使用 IOC ，同时开启注解扫描，我们将 Service 和 Dao 全部交给 Spring 来管理，-->
+    <!-- 但是 Controller 我们要使用 Spring MVC 进行管理，所以要配置扫描略过 Controller-->
+    <!-- 开启注解扫描，处理service和dao，但是不需要处理 controller -->
+    <context:component-scan base-package="com.michael">
+        <!-- 配置controller注解不扫描 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--扫描Resources中的相关properties文件-->
+    <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
+
+<!--    这一步就是将 SqlMapConﬁg.xml 配置文件中的内容配置到 applicationContext.xml 配置文件中去，MyBatis 就不再独立了，被整合到了 Spring中去-->
+<!--    有一点区别就是，我们在 resources 文件夹下创建了 config 的文件夹，然后创建了druid.properties文件吗，也就是将数据库例如用户名密码配置到了 properties 中，-->
+<!--    后期维护等就更加方便了，当然使用前需要像下面一样开始扫描 properties文件-->
+    <!--Spring 整合 MyBatis-->
+    <!--配置数据库连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!-- 数据库基本信息配置 -->
+        <property name="url" value="${druid.jdbc.url}" />
+        <property name="username" value="${druid.jdbc.username}" />
+        <property name="password" value="${druid.jdbc.password}" />
+        <property name="driverClassName" value="${druid.jdbc.driver}" />
+    </bean>
+    <!--配置SqlSessionFactory工厂-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--指定mybatis全局配置文件的位置-->
+        <property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+        <property name="mapperLocations" value="classpath:mapper/com/michael/mapper/*.xml"></property>
+    </bean>
+    <!--配置扫描Dao接口所在包-->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.michael.mapper"/>
+    </bean>
+
+    <!--配置Spring框架声明式事务管理-->
+    <!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!--使用xml配置形式的事务管理-->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.michael.service.Impl.*ServiceImpl.*(..))"/>
+    </aop:config>
+    <!--配置事务增强，事务如何切入-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!--以find开头的所有方法-->
+            <tx:method name="find*" read-only="true"/>
+            <!--所有方法-->
+<!--            <tx:method name="*" isolation="DEFAULT"/>-->
+        </tx:attributes>
+    </tx:advice>
+
+
+
+
+</beans>
