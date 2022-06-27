@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeIndexController {
 
-    @RequestMapping("/testIndex")
+    @RequestMapping("/index")
     public String index(){
         System.out.println("indexing......");
         return "index";

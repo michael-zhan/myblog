@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <!--上面报红不管-->
+<!--逆向工程的配置文件-->
 <generatorConfiguration>
     <!--
     targetRuntime: 执行生成的逆向工程的版本
@@ -35,5 +36,6 @@
         <!-- tableName设置为*号，可以对应所有表，此时不写domainObjectName -->
         <!-- domainObjectName属性指定生成出来的实体类的类名 -->
         <table tableName="t_blog" domainObjectName="Blog"/>
+        <table tableName="t_user" domainObjectName="User"/>
     </context>
 </generatorConfiguration>

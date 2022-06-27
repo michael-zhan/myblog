@@ -25,8 +25,9 @@
     </environments>
 
     <!--引入映射文件-->
-    <mappers>
-        <mapper resource="mapper/BlogMapper.xml"/>
-    </mappers>
+<!--    <mappers>-->
+<!--&lt;!&ndash;        <mapper resource="mapper/com/michael/mapper/BlogMapper.xml"/>&ndash;&gt;-->
+<!--        <mapper resource="mapper/com/michael/mapper/UserMapper.xml"/>-->
+<!--    </mappers>-->
 
 </configuration>
