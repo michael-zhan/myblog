@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,5 +35,10 @@ public class UserServiceImpl implements UserService {
     public User selectByIdAndPassword(String id, String password) throws NoSuchAlgorithmException {
         User user = usermapper.selectByIdAndPassword(id, MD5Util.getMd5(password));
         return user;
+    }
+
+    @Override
+    public List<User> selectFriendListById(String id) {
+        return null;
     }
 }

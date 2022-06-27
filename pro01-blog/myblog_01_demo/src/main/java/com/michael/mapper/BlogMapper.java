@@ -1,6 +1,8 @@
 package com.michael.mapper;
 
 import com.michael.pojo.Blog;
+import com.michael.pojo.User;
+
 import java.util.List;
 
 public interface BlogMapper {
@@ -43,4 +45,10 @@ public interface BlogMapper {
      * @mbggenerated Mon Jun 27 00:09:24 CST 2022
      */
     int updateByPrimaryKey(Blog record);
+
+    List<Blog> selectByAuthor(String author);
+
+    List<String> findGroupYear(String author);
+
+    List<Blog> findByYear(String year,String author);
 }
