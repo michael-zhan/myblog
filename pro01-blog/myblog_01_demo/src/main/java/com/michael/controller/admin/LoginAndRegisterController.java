@@ -38,7 +38,7 @@ public class LoginAndRegisterController {
             user=userService.selectByIdAndPassword(id,password);
             if (user != null) {
                 session.setAttribute("user",user);
-                return "index";
+                return "redirect:index";
             }
         }
         return "login";

@@ -1,5 +1,6 @@
 package com.michael.controller.home;
 
+import com.michael.pojo.Blog;
 import com.michael.pojo.User;
 import com.michael.service.BlogService;
 import com.michael.service.UserService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -20,8 +22,11 @@ public class HomeIndexController {
 
     @RequestMapping("/index")
     public String index(HttpSession session){
-        User user = (User)session.getAttribute("User");
-        user.setBlogList(blogService.selectByAuthor(user.getId()));
-        return "redirect:index";
+        System.out.println("index() is running");
+        User user = (User)session.getAttribute("user");
+        List<Blog> blogList = blogService.selectByAuthor(user.getId());
+        user.setBlogList(blogList);
+        session.setAttribute("blogList",blogList);
+        return "index";
     }
 }

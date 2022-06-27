@@ -81,5 +81,12 @@
     from t_blog
     where author=#{author}
   </select>
+  <select id="findGroupYear" resultType="String">
+    select DATE_FORMAT(b.updateTime,'%Y') as year from t_blog b group by DATE_FORMAT(b.updateTime,'%Y') order by year desc
+  </select>
+
+  <select id="findByYear" parameterType="String" resultType="com.michael.pojo.Blog">
+    select b.id, b.title,b.content,b.desrciption,b.updatetime,b.author from t_blog b where DATE_FORMAT(b.updateTime,'%Y') = #{arg0} and b.author=#{arg1}
+  </select>
 
 </mapper>
