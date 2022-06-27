@@ -15,11 +15,11 @@ public class HomeArchiveController {
     @Autowired
     private BlogService blogService;
 
-    @RequestMapping("/archives")
+    @RequestMapping("/archive")
     public String archives(Model model, HttpSession session){
         User user=(User)session.getAttribute("user");
         model.addAttribute("archiveMap" ,blogService.archiveBlog(user.getId()));
-        return "redirect:archives";
+        return "archive";
     }
 
 }
