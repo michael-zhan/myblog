@@ -11,4 +11,5 @@ public interface BlogService {
     void addBlog(Blog blog);
     List<Blog> selectByAuthor(String author);
     LinkedHashMap<String,List<Blog>> archiveBlog(String author);
+    Blog selectById(Long id);
 }

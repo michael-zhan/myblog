@@ -34,4 +34,8 @@ public class BlogServiceImpl implements BlogService {
         }
         return map;
     }
+
+    public Blog selectById(Long id){
+        return blogMapper.selectByPrimaryKey(id);
+    }
 }
