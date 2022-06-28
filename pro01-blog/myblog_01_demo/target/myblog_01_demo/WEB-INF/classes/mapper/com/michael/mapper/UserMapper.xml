@@ -39,9 +39,9 @@
     -->
     update t_user
     set nickname = #{nickname,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=BIT},
-      description = #{description,jdbcType=VARCHAR}
+    password = #{password,jdbcType=VARCHAR},
+    sex = #{sex,jdbcType=BIT},
+    description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

@@ -37,5 +37,7 @@
         <!-- domainObjectName属性指定生成出来的实体类的类名 -->
         <table tableName="t_blog" domainObjectName="Blog"/>
         <table tableName="t_user" domainObjectName="User"/>
+        <table tableName="t_notice" domainObjectName="Notice"/>
+        <table tableName="t_friendship" domainObjectName="Friendship"/>
     </context>
 </generatorConfiguration>

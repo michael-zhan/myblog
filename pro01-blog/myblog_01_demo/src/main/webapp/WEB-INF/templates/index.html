@@ -26,6 +26,13 @@ welcome to myblog
         <td th:text="${blog.updatetime}">updatetime</td>
     </tr>
 
+    <form th:action="@{/friend/add}" method=RequestMethod.GET>
+        <input type="text" name="friendId">
+        <input type="submit">
+    </form>
 </table>
 </body>
 </html>
+
+
+
