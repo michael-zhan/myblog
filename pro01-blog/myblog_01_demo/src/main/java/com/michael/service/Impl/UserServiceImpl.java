@@ -1,5 +1,6 @@
 package com.michael.service.Impl;
 
+import com.michael.mapper.FriendshipMapper;
 import com.michael.mapper.UserMapper;
 import com.michael.pojo.User;
 import com.michael.service.UserService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,7 +17,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper usermapper;
-
+    @Autowired
+    private FriendshipMapper friendshipMapper;
 
 
 
@@ -39,6 +42,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> selectFriendListById(String id) {
-        return null;
+        List<String> strings = friendshipMapper.selectByUser(id);
+        List<User> friendList=new ArrayList<>();
+        for(String friendId:strings){
+            User user=usermapper.selectByPrimaryKey(friendId);
+            if(user!=null){
+                friendList.add(user);
+            }
+        }
+        return friendList;
     }
 }

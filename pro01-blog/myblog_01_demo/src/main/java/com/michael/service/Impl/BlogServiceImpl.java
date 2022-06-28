@@ -17,7 +17,7 @@ public class BlogServiceImpl implements BlogService {
     private BlogMapper blogMapper;
 
     public void addBlog(Blog blog){
-        System.out.println("文章已添加");
+        blogMapper.insert(blog);
     }
 
     @Override
@@ -37,5 +37,11 @@ public class BlogServiceImpl implements BlogService {
 
     public Blog selectById(Long id){
         return blogMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public boolean delectById(Integer id) {
+        blogMapper.deleteByPrimaryKey(id.longValue());
+        return blogMapper.selectByPrimaryKey(id.longValue())==null;
     }
 }

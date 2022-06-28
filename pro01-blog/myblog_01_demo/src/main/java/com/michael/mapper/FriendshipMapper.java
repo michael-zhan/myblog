@@ -43,4 +43,10 @@ public interface FriendshipMapper {
      * @mbggenerated Tue Jun 28 09:10:37 CST 2022
      */
     int updateByPrimaryKey(Friendship record);
+
+    /**
+     * @param id
+     * @return
+     */
+    List<String> selectByUser(String id);
 }
