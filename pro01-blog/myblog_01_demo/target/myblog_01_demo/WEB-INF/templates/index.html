@@ -21,7 +21,7 @@ welcome to myblog
     </tr>
     <tr th:unless="${#lists.isEmpty(session.blogList)}" th:each="blog : ${session.blogList}">
         <td><a th:text="${blog.title}" th:href="@{'/article/'+${blog.id}}"/>title</a></td>
-        <td th:text="${blog.desrciption}">desrciption</td>
+        <td th:text="${blog.description}">desrciption</td>
         <td th:text="${blog.content}">content</td>
         <td th:text="${blog.updatetime}">updatetime</td>
     </tr>
