@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/")
@@ -21,9 +22,11 @@ public class LoginAndRegisterController {
 
 
     @RequestMapping("/register")
-    public String register(User user) throws NoSuchAlgorithmException {
-       String id=user.getId();
-       if(userService.selectById(id)==null) {
+    public String register(User user,String code,HttpSession session) throws NoSuchAlgorithmException {
+       String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+       if(isLeaglStr(user.getId(),user.getPassword(),user.getNickname(),code)
+               &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())
+               &&userService.selectById(user.getId())==null) {
            userService.insert(user);
            return "login";
        }else{
@@ -32,9 +35,11 @@ public class LoginAndRegisterController {
     }
 
     @RequestMapping("/login")
-    public String login(String id, String password, HttpSession session) throws NoSuchAlgorithmException {
+    public String login(String id, String password, String code,HttpSession session) throws NoSuchAlgorithmException {
+        String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
         User user;
-        if(id!=null&&password!=null) {
+        if(id!=null&&password!=null
+                &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())) {
             user=userService.selectByIdAndPassword(id,password);
             if (user != null) {
                 session.setAttribute("user",user);
@@ -52,5 +57,14 @@ public class LoginAndRegisterController {
     @RequestMapping("toregister")
     public String toRegister(){
         return "register";
+    }
+
+    public boolean isLeaglStr(String... args){
+        for(String str:args){
+            if(str==null||str.equals("")) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -26,6 +26,7 @@
     <!--扫描Resources中的相关properties文件-->
     <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
 
+
 <!--    这一步就是将 SqlMapConﬁg.xml 配置文件中的内容配置到 applicationContext.xml 配置文件中去，MyBatis 就不再独立了，被整合到了 Spring中去-->
 <!--    有一点区别就是，我们在 resources 文件夹下创建了 config 的文件夹，然后创建了druid.properties文件吗，也就是将数据库例如用户名密码配置到了 properties 中，-->
 <!--    后期维护等就更加方便了，当然使用前需要像下面一样开始扫描 properties文件-->

@@ -22,6 +22,7 @@
     </context:component-scan>
 
     <context:component-scan base-package="com.michael.controller.home"/>
+    <context:component-scan base-package="com.michael.controller.admin"/>
 
     <!--配置视图解析器-->
 <!--    <bean id="org" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
