@@ -6,6 +6,7 @@ import com.michael.service.BlogService;
 import com.michael.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,7 @@ public class HomeIndexController {
     private BlogService blogService;
 
     @RequestMapping(value={"/index/{pageIndex}","/index"},method={RequestMethod.GET,RequestMethod.POST})
-    public String index(HttpSession session, @PathVariable(required = false)String pageIndex){
+    public String index(HttpSession session, @PathVariable(required = false)String pageIndex, Model model){
 
         if(pageIndex==null||pageIndex.equals("")){
             pageIndex="1";
@@ -36,14 +37,18 @@ public class HomeIndexController {
         user.setBlogList(blogList);
 
         Blog blog1=blogList.get(0);
-        session.setAttribute("blog1",blog1);
+//        session.setAttribute("blog1",blog1);
+        model.addAttribute("blog1",blog1);
         if(blogList.size()>1) {
             Blog blog2 = blogList.get(1);
-            session.setAttribute("blog2",blog2);
+//            session.setAttribute("blog2",blog2);
+            model.addAttribute("blog2",blog2);
+
         }
         if(blogList.size()>2) {
             Blog blog3 = blogList.get(2);
-            session.setAttribute("blog3",blog3);
+//            session.setAttribute("blog3",blog3);
+            model.addAttribute("blog3",blog3);
         }
 
         session.setAttribute("blogList",blogList);

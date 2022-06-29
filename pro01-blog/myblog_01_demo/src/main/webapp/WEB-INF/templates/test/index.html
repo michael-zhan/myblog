@@ -95,7 +95,7 @@
   
     <div class="blog-body">
       <div class="blog-title">
-        <h1><a href="#">带封面图博客</a></h1>
+        <h1><a th:text="${blog1.title}" th:href="@{'/article/'+${blog1.id}}"/></a></h1>
       </div>
       <div class="blog-summary">
         <p>带封面博客效果如下<br> ipsum dolor sit amet consectetur adipisicing elit. Porro ipsam quam rem adipisci in, doloribus quia minus nobis quidem ut reiciendis, tempora tenetur veniam labore doloremque eum quod animi nihil!</p>
