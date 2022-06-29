@@ -37,11 +37,19 @@ public class BlogServiceImpl implements BlogService {
 
     public Blog selectById(Long id){
         return blogMapper.selectByPrimaryKey(id);
+
     }
 
     @Override
     public boolean delectById(Integer id) {
         blogMapper.deleteByPrimaryKey(id.longValue());
         return blogMapper.selectByPrimaryKey(id.longValue())==null;
+    }
+
+    @Override
+    public Blog viewBlog(Long id) {
+        Blog blog=blogMapper.selectByPrimaryKey(id);
+        blogMapper.updateViewById(id);
+        return blog;
     }
 }

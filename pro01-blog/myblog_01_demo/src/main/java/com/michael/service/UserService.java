@@ -22,7 +22,7 @@ public interface UserService {
     User selectById(String id);
 
     /**
-     * 核实用户
+     * 核实用户身份
      * @param id
      * @param password
      * @return
@@ -36,4 +36,14 @@ public interface UserService {
      * @return
      */
     List<User> selectFriendListById(String id);
+
+    /**
+     * 发送添加好友的请求
+     * 返回1说明已经是好友
+     * @param sender
+     * @param receiver
+     */
+    Integer sendMakeFriendRequest(String sender,String receiver);
+
+    void dealWithFriendRequest(Integer noticeId,Integer sign);
 }

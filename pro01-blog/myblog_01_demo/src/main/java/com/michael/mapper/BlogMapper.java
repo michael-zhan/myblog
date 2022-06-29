@@ -51,4 +51,10 @@ public interface BlogMapper {
     List<String> findGroupYear(String author);
 
     List<Blog> findByYear(String year,String author);
+
+    /**
+     * 设置浏览次数+1
+     * @param id
+     */
+    void updateViewById(Long id);
 }

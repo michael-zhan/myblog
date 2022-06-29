@@ -39,4 +39,11 @@ public interface BlogService {
      * @param id
      */
     boolean delectById(Integer id);
+
+    /**
+     * 浏览文章
+     * @param id
+     * @return
+     */
+    Blog viewBlog(Long id);
 }

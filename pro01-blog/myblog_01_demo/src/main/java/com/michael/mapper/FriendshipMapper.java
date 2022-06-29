@@ -45,8 +45,11 @@ public interface FriendshipMapper {
     int updateByPrimaryKey(Friendship record);
 
     /**
+     * 根据user_id返回friend_id列表
      * @param id
      * @return
      */
     List<String> selectByUser(String id);
+
+    int selectByUserAndFriend(String user_id,String friend_id);
 }
