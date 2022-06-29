@@ -57,4 +57,19 @@ public interface BlogMapper {
      * @param id
      */
     void updateViewById(Long id);
+
+    /**
+     * limit限制查询文章
+     * @param author
+     * @param limit
+     * @return
+     */
+    List<Blog> selectWithLimit(String author,Integer limit);
+
+    /**
+     * 根据作者返回文章总数
+     * @param author
+     * @return
+     */
+    Integer selectCountByAuthor(String author);
 }

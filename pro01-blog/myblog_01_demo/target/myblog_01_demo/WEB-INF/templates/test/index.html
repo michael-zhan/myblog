@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog entry layouts</title>
+  <script src="https://cdn.staticfile.org/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<link rel="stylesheet" href="./navbar.css">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-bubble" viewBox="0 0 1024 1024">
+	<title>bubble</title>
+  <img src="./like.svg">
+	<!-- <path class="path1" d="M512 224c8.832 0 16 7.168 16 16s-7.2 16-16 16c-170.464 0-320 89.728-320 192 0 8.832-7.168 16-16 16s-16-7.168-16-16c0-121.408 161.184-224 352-224zM512 64c-282.784 0-512 171.936-512 384 0 132.064 88.928 248.512 224.256 317.632 0 0.864-0.256 1.44-0.256 2.368 0 57.376-42.848 119.136-61.696 151.552 0.032 0 0.064 0 0.064 0-1.504 3.52-2.368 7.392-2.3 68 11.456 0 16 12.96 28.992 28.992 28.992 3.008 0 8.288-0.8 8.16-0.448 100-16.384 194.208-108.256 216.096-134.88 31.968 4.704 64.928 7.328 98.752 7.328 282.72 0 512-171.936 512-384s-229.248-384-512-384zM512 768c-29.344 0-59.456-2.24-89.472-6.624-3.104-0.512-6.208-0.672-9.28-0.672-19.008 0-37.216 8.448-49.472 23.36-13.696 16.672-52.672 53.888-98.72 81.248 12.48-28.64 22.24-60.736 22.912-93.824 0.192-2.048 0.288-4.128 0.288-5.888 0-24.064-13.472-46.048-34.88-56.992-118.592-60.544-189.376-157.984-189.376-260.608 0-176.448 200.96-320 448-320 246.976 0 448 143.552 448 320s-200.992 320-448 320z"></path> -->
+</symbol>
+<symbol id="icon-star" viewBox="0 0 1024 1024">
+	<title>star</title>
+  <img src="./browse.svg" alt="">
+	<!-- <path class="path1" d="M1020.192 401.824c-8.864-25.568-31.616-44.288-59.008-48.352l-266.432-39.616-115.808-240.448c-12.192-25.248-38.272-41.408-66.944-41.408s-54.752 16.16-66.944 41.408l-115.808 240.448-266.464 39.616c-27.36 4.064-50.112 22.784-58.944 48.352-8.8 25.632-2.144 53.856 17.184 73.12l195.264 194.944-45.28 270.432c-4.608 27.232 7.2 54.56 30.336 70.496 12.704 8.736 27.648 13.184 42.592 13.184 12.288 0 24.608-3.008 35.776-8.992l232.288-125.056 232.32 125.056c11.168 5.984 23.488 8.992 35.744 8.992 14.944 0 29.888-4.448 42.624-13.184 23.136-15.936 34.88-43.264 30.304-70.496l-45.312-270.432 195.328-194.944c19.296-19.296 25.92-47.52 17.184-73.12zM754.816 619.616c-16.384 16.32-23.808 39.328-20.064 61.888l45.312 270.432-232.32-124.992c-11.136-6.016-23.424-8.992-35.776-8.992-12.288 0-24.608 3.008-35.744 8.992l-232.32 124.992 45.312-270.432c3.776-22.56-3.648-45.568-20.032-61.888l-195.264-194.944 266.432-39.68c24.352-3.616 45.312-18.848 55.776-40.576l115.872-240.384 115.84 240.416c10.496 21.728 31.424 36.928 55.744 40.576l266.496 39.68-195.264 194.912z"></path> -->
+</symbol>
+</defs>
+</svg>
+
+<div class="navigation-wrap bg-light start-header start-style">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-md navbar-light">
+        
+          <a class="navbar-brand" href="void(0)" target="_blank">hyzzz_blog</a>	
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto py-4 py-md-0">
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                <a class="nav-link" href="#">主页</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="#">分类</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="#">归档</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">好友</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">李国徽</a>
+                  <a class="dropdown-item" href="#">区士颀</a>
+                  <a class="dropdown-item" href="#">刘小峰</a>
+                  <a class="dropdown-item" href="#">胡雯蔷</a>
+                </div>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="#">关于</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">个人</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">主页</a>
+                  <a class="dropdown-item" href="#">个性化</a>
+                  <a class="dropdown-item" href="#">...</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+        </nav>		
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="blog-box">
+
+  <div class="blog-container">
+  
+    <div class="blog-header">
+      <div class="blog-cover">
+        <div class="blog-author">
+          <h3>huster</h3>
+        </div>
+      </div>
+    </div>
+  
+    <div class="blog-body">
+      <div class="blog-title">
+        <h1><a href="#">带封面图博客</a></h1>
+      </div>
+      <div class="blog-summary">
+        <p>带封面博客效果如下<br> ipsum dolor sit amet consectetur adipisicing elit. Porro ipsam quam rem adipisci in, doloribus quia minus nobis quidem ut reiciendis, tempora tenetur veniam labore doloremque eum quod animi nihil!</p>
+      </div>
+      <div class="blog-tags">
+        <ul>
+          <li><a href="#">css</a></li>
+          <li><a href="#">前端</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="blog-footer">
+      <ul>
+        <li class="published-date">2天前</li>
+        <li class="comments"><a href="#"><img src="./browse.svg"><span>&nbsp4</span></a></li>
+        <li class="shares"><a href="#"><img src="./like.svg"><span>&nbsp1</span></a></li>
+      </ul>
+    </div>
+  
+  </div>
+  
+  <div class="blog-container">
+    
+    <div class="blog-header">
+      <div class="blog-author--no-cover">
+          <h3>huster</h3>
+      </div>
+    </div>
+  
+    <div class="blog-body">
+      <div class="blog-title">
+        <h1><a href="#">这篇博客没有封面图</a></h1>
+      </div>
+      <div class="blog-summary">
+        <p>这是无封面图博客的效果图<br>ipsum dolor sit amet consectetur adipisicing elit. Officiis culpa fugiat similique consequatur nobis! Nisi molestiae ut quidem consequuntur assumenda! Itaque explicabo omnis doloribus saepe recusandae. A pariatur aspernatur architecto.</p>
+      </div>
+      <div class="blog-tags">
+        <ul>
+          <li><a href="#">后端</a></li>
+          <li><a href="#">软件工程</a></li>
+          <li><a href="#">java</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="blog-footer">
+      <ul>
+        <li class="published-date">12天前</li>
+        <li class="comments"><a href="#"><img src="./browse.svg"><span>&nbsp4</span></a></li>
+        <li class="shares"><a href="#"><img src="./like.svg"><span>&nbsp1</span></a></li>
+      </ul>
+    </div>
+  
+  </div>
+  
+  <div class="blog-container">
+    
+    <div class="blog-header">
+      <div class="blog-author--no-cover">
+          <h3>beez</h3>
+      </div>
+    </div>
+  
+    <div class="blog-body">
+        <video class="video-body" controls poster="http://artbees.net/themes/jupiter-demo/wp-content/uploads/2013/10/home-vid-img.jpg" id="bgvid">
+          <source src="http://artbees.net/themes/jupiter-demo/wp-content/uploads/2013/10/homepage.webm" type="video/webm">
+          <source src="http://artbees.net/themes/jupiter-demo/wp-content/uploads/2013/10/shutterstock_v3702740_4.m4v" type="video/mp4">
+        </video>
+      <div class="blog-title">
+        <h1><a href="#">视频博客(可删)</a></h1>
+      </div>
+      <div class="blog-tags">
+        <ul>
+          <li><a href="#">视频</a></li>
+          <li><a href="#">教学</a></li>
+          <li><a href="#">华科</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="blog-footer">
+      <ul>
+        <li class="published-date">20天前</li>
+        <li class="comments"><a href="#"><img src="./browse.svg"><span>&nbsp4</span></a></li>
+        <li class="shares"><a href="#"><img src="./like.svg"><span>&nbsp1</span></a></li>
+      </ul>
+    </div>
+
+
+  </div>
+  
+<div class="switch-page">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+  </ul>
+</div>
+
+</div>
+
+
+
+
+<script type="text/javascript" src="//use.typekit.net/wtt0gtr.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<!-- partial -->
+  <!-- <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
+  <script  src="./script.js"></script>
+  <script src="./navbar.js"></script>
+
+</body>
+</html>

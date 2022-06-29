@@ -21,7 +21,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> selectByAuthor(String author) {
+    public List<Blog> getByAuthor(String author) {
         return blogMapper.selectByAuthor(author);
     }
 
@@ -35,13 +35,13 @@ public class BlogServiceImpl implements BlogService {
         return map;
     }
 
-    public Blog selectById(Long id){
+    public Blog getById(Long id){
         return blogMapper.selectByPrimaryKey(id);
 
     }
 
     @Override
-    public boolean delectById(Integer id) {
+    public boolean removeById(Integer id) {
         blogMapper.deleteByPrimaryKey(id.longValue());
         return blogMapper.selectByPrimaryKey(id.longValue())==null;
     }
@@ -52,4 +52,16 @@ public class BlogServiceImpl implements BlogService {
         blogMapper.updateViewById(id);
         return blog;
     }
+
+    @Override
+    public List<Blog> getByPage(String author, Integer page) {
+        return blogMapper.selectWithLimit(author,(page-1)*3);
+    }
+
+    @Override
+    public Integer getCount(String author) {
+        return blogMapper.selectCountByAuthor(author);
+    }
+
+
 }
