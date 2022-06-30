@@ -15,6 +15,9 @@
     <result column="author" jdbcType="VARCHAR" property="author" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
     <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="count_comment" jdbcType="INTEGER" property="countComment" />
+    <result column="count_Like" jdbcType="INTEGER" property="countLike"/>
+    <result column="firstPicture" jdbcType="LONGVARCHAR" property="firstPicture"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_blog
@@ -22,20 +25,16 @@
   </delete>
 
   <insert id="insert" parameterType="com.michael.pojo.Blog">
-    insert into t_blog (id, title, description,
-    updateTime, view, author,
-    content)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
-    #{updatetime,jdbcType=TIMESTAMP}, #{view,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR},
-    #{content,jdbcType=LONGVARCHAR})
+    insert into t_blog
+    values (null, #{title,jdbcType=VARCHAR},#{content,jdbcType=LONGVARCHAR},#{description,jdbcType=VARCHAR},
+    #{updatetime,jdbcType=TIMESTAMP}, #{view,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR},#{typeId}
+    ,#{countComment},#{firstPicture},#{countLike})
   </insert>
 
   <update id="updateByPrimaryKey" parameterType="com.michael.pojo.Blog">
     update t_blog
     set title = #{title,jdbcType=VARCHAR},
     description = #{description,jdbcType=VARCHAR},
-    updateTime = #{updatetime,jdbcType=TIMESTAMP},
-    view = #{view,jdbcType=INTEGER},
     author = #{author,jdbcType=VARCHAR},
     content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
@@ -76,7 +75,7 @@
     select *
     from t_blog
     where author=#{arg0}
-    limit #{arg1},3
+    limit #{arg1},#{arg2}
   </select>
 
   <select id="selectCountByAuthor" resultType="java.lang.Integer">

@@ -58,13 +58,19 @@ public interface BlogMapper {
      */
     void updateViewById(Long id);
 
+
+    /**
+     * 更新点赞数，未实现
+     */
+//    void updateLikeById(Long id);
+
     /**
      * limit限制查询文章
      * @param author
      * @param limit
      * @return
      */
-    List<Blog> selectWithLimit(String author,Integer limit);
+    List<Blog> selectWithLimit(String author,Integer limit,Integer eachPageCount);
 
     /**
      * 根据作者返回文章总数

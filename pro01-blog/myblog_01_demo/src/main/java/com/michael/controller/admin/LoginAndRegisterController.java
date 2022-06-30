@@ -26,7 +26,7 @@ public class LoginAndRegisterController {
        String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
        if(isLeaglStr(user.getId(),user.getPassword(),user.getNickname(),code)
                &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())
-               &&userService.selectById(user.getId())==null) {
+               &&userService.getById(user.getId())==null) {
            userService.insert(user);
            return "login";
        }else{

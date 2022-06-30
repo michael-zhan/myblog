@@ -13,7 +13,7 @@
     <context id="DB2Tables" targetRuntime="MyBatis3Simple">
         <!-- 数据库的连接信息 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/myblog"
+                        connectionURL="jdbc:mysql://localhost:3306/myblog01"
                         userId="root"
                         password="zmx004200412">
         </jdbcConnection>

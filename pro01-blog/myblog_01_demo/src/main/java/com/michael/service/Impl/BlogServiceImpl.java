@@ -35,9 +35,8 @@ public class BlogServiceImpl implements BlogService {
         return map;
     }
 
-    public Blog getById(Long id){
-        return blogMapper.selectByPrimaryKey(id);
-
+    public Blog getById(Integer id){
+        return blogMapper.selectByPrimaryKey(id.longValue());
     }
 
     @Override
@@ -47,20 +46,26 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog viewBlog(Long id) {
-        Blog blog=blogMapper.selectByPrimaryKey(id);
-        blogMapper.updateViewById(id);
+    public Blog viewBlog(Integer id) {
+        Blog blog=blogMapper.selectByPrimaryKey(id.longValue());
+        blogMapper.updateViewById(id.longValue());
         return blog;
     }
 
     @Override
-    public List<Blog> getByPage(String author, Integer page) {
-        return blogMapper.selectWithLimit(author,(page-1)*3);
+    public List<Blog> getByPage(String author, Integer page,Integer eachPageCount) {
+
+        return blogMapper.selectWithLimit(author,(page-1)*eachPageCount,eachPageCount);
     }
 
     @Override
     public Integer getCount(String author) {
         return blogMapper.selectCountByAuthor(author);
+    }
+
+    @Override
+    public void likeBlog(Integer blogId) {
+//        blogMapper.updateLikeById(blogId.longValue());
     }
 
 

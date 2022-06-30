@@ -19,24 +19,45 @@ public class HomeArticleController {
     private BlogService blogService;
 
     /**
-     * 查看blog
-     * @param id
+     * 浏览blog
+     * @param blogId
      * @param model
      * @return
      */
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public String getBlog(@PathVariable("id") Integer id,Model model){
-        Long i=id.longValue();
-        Blog blog = blogService.viewBlog(id.longValue());
+    @RequestMapping(value="/{blogId}", method=RequestMethod.GET)
+    public String browse(@PathVariable("blogId") Integer blogId,Model model){
+        Blog blog = blogService.viewBlog(blogId);
         model.addAttribute("blog",blog);
         return "blog";
     }
 
-
+    /**
+     * 添加文章
+     * @param blog
+     * @return
+     */
     @RequestMapping(value = "/add",method=RequestMethod.POST)
     @ResponseBody
-    public ResultVo addBlog(Blog blog){
+    public ResultVo add(Blog blog){
         blogService.addBlog(blog);
         return new ResultVo("success to add article");
     }
+
+    /**
+     * 给文章点赞
+     * @param blogId
+     * @return
+     */
+    @RequestMapping("/like/{blogId}")
+    public ResultVo like(@PathVariable Integer blogId){
+
+        blogService.getById(blogId);
+        blogService.likeBlog(blogId);
+        return new ResultVo("点赞成功");
+    }
+
+    /**
+     * 评论文章
+     */
+
 }

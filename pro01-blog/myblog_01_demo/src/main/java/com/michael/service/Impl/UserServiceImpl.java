@@ -15,6 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,7 +28,6 @@ public class UserServiceImpl implements UserService {
     private NoticeMapper noticeMapper;
 
 
-
     @Override
     public void insert(User user) throws NoSuchAlgorithmException {
         String passowrd=MD5Util.getMd5(user.getPassword());
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectById(String id) {
+    public User getById(String id) {
         return usermapper.selectByPrimaryKey(id);
     }
 
@@ -47,20 +47,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> selectFriendListById(String id) {
-        List<String> strings = friendshipMapper.selectByUser(id);
+    public List<User> getFriendList(String userId) {
+        List<String> strings = friendshipMapper.selectByUser(userId);
         List<User> friendList=new ArrayList<>();
+
         for(String friendId:strings){
-            User user=usermapper.selectByPrimaryKey(friendId);
-            if(user!=null){
-                friendList.add(user);
+            User friend=usermapper.selectByPrimaryKey(friendId);
+            if(friend!=null){
+                friendList.add(friend);
             }
         }
+
+
         return friendList;
     }
 
     @Override
     public Integer sendMakeFriendRequest(String sender, String receiver) {
+
         Integer i = friendshipMapper.selectByUserAndFriend(sender, receiver);
         if(i==0) {
             Date d = new Date();
@@ -68,7 +72,13 @@ public class UserServiceImpl implements UserService {
             noticeMapper.insert(notice);
             return 1;
         }
+
         return 0;
+    }
+
+    @Override
+    public List<Notice> getNoticeList(String userId) {
+         return noticeMapper.selectByUserId(userId);
     }
 
     @Override
@@ -83,5 +93,15 @@ public class UserServiceImpl implements UserService {
         }
 
         noticeMapper.deleteByPrimaryKey(noticeId.longValue());
+    }
+
+    @Override
+    public void modifyInfo(User user) {
+        usermapper.updateByPrimaryKey(user);
+    }
+
+    @Override
+    public void removeFriend(String friendId) {
+        friendshipMapper.delectByUserIdOrFriendId(friendId);
     }
 }

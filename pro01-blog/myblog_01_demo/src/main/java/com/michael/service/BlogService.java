@@ -32,7 +32,7 @@ public interface BlogService {
      * @param id
      * @return
      */
-    Blog getById(Long id);
+    Blog getById(Integer id);
 
     /**
      * 根据Id删除文章
@@ -41,19 +41,19 @@ public interface BlogService {
     boolean removeById(Integer id);
 
     /**
-     * 浏览文章
+     * 浏览文章,每次浏览则浏览数加1
      * @param id
      * @return
      */
-    Blog viewBlog(Long id);
+    Blog viewBlog(Integer id);
 
     /**
-     * 根据页码查询文章,一页三篇
+     * 根据页码查询文章
      * @param author
      * @param page
      * @return
      */
-    List<Blog> getByPage(String author,Integer page);
+    List<Blog> getByPage(String author,Integer page,Integer eachPageCount);
 
     /**
      * 返回文章列表页数
@@ -61,4 +61,9 @@ public interface BlogService {
      * @return
      */
     Integer getCount(String author);
+
+    /**
+     *增加文章点赞数
+     */
+    void likeBlog(Integer bloghId);
 }

@@ -22,6 +22,13 @@ public class HomeIndexController {
     @Autowired
     private BlogService blogService;
 
+    /**
+     * 显示首页
+     * @param session
+     * @param pageIndex
+     * @param model
+     * @return
+     */
     @RequestMapping(value={"/index/{pageIndex}","/index"},method={RequestMethod.GET,RequestMethod.POST})
     public String index(HttpSession session, @PathVariable(required = false)String pageIndex, Model model){
 
@@ -30,7 +37,7 @@ public class HomeIndexController {
         }
         Integer p=Integer.parseInt(pageIndex);
         User user = (User)session.getAttribute("user");
-        List<Blog> blogList = blogService.getByPage(user.getId(),p);
+        List<Blog> blogList = blogService.getByPage(user.getId(),p,3);
 
         Integer pageCount = blogService.getCount(user.getId())/3+1;
 
@@ -52,7 +59,7 @@ public class HomeIndexController {
         }
 
         session.setAttribute("blogList",blogList);
-        session.setAttribute("pageIndex",Integer.parseInt(pageIndex));
+        session.setAttribute("pageIndex",p);
         session.setAttribute("pageCount",pageCount);
         return "index";
     }

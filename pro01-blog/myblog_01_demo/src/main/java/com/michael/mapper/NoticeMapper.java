@@ -43,4 +43,11 @@ public interface NoticeMapper {
      * @mbggenerated Tue Jun 28 09:10:37 CST 2022
      */
     int updateByPrimaryKey(Notice record);
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+    List<Notice> selectByUserId(String userId);
 }

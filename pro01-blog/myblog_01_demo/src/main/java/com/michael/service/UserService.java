@@ -1,5 +1,6 @@
 package com.michael.service;
 
+import com.michael.pojo.Notice;
 import com.michael.pojo.User;
 
 import java.security.NoSuchAlgorithmException;
@@ -19,7 +20,7 @@ public interface UserService {
      * @param id
      * @return
      */
-    User selectById(String id);
+    User getById(String id);
 
     /**
      * 核实用户身份
@@ -32,10 +33,10 @@ public interface UserService {
 
     /**
      * 查询好友列表
-     * @param id
+     * @param user
      * @return
      */
-    List<User> selectFriendListById(String id);
+    List<User> getFriendList(String user);
 
     /**
      * 发送添加好友的请求
@@ -45,5 +46,20 @@ public interface UserService {
      */
     Integer sendMakeFriendRequest(String sender,String receiver);
 
+    /**
+     * 获取通知列表
+     * @param userId
+     * @return
+     */
+    List<Notice> getNoticeList(String userId);
+    /**
+     * 处理好友请求
+     * @param noticeId
+     * @param sign
+     */
     void dealWithFriendRequest(Integer noticeId,Integer sign);
+
+    void modifyInfo(User user);
+
+    void removeFriend(String friendId);
 }

@@ -15,6 +15,13 @@ public class HomeArchiveController {
     @Autowired
     private BlogService blogService;
 
+
+
+    /**归档模块
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping("/archive")
     public String archives(Model model, HttpSession session){
         User user=(User)session.getAttribute("user");
