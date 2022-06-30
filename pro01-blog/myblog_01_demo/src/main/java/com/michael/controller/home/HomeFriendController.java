@@ -62,6 +62,7 @@ public class HomeFriendController {
         return new ResultVo("没想好是什么情况");
     }
 
+
     /**
      * 处理好友请求
      * @param noticeId
@@ -69,13 +70,17 @@ public class HomeFriendController {
      * @return
      */
     @RequestMapping(value="/deal/{noticeId}/",method= RequestMethod.PUT)
-    public ResultVo dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign){
+    public ResultVo dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign,Model model,HttpSession session){
         userService.dealWithFriendRequest(noticeId,sign);
+
+        User user=(User)session.getAttribute("user");
+        List<Notice> noticeList = userService.getNoticeList(user.getId());
+        model.addAttribute("noticeList",noticeList);
         return new ResultVo("已处理");
     }
 
     /**
-     * 处理进入好友空间
+     * 进入好友空间
      * @param friendId
      * @param model
      * @return
@@ -87,6 +92,13 @@ public class HomeFriendController {
         return "friendHomeIndex";
     }
 
+    /**
+     * 删除好友
+     * @param friendId
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("/remove/{friendId}")
     public String removeFriend(@PathVariable Integer friendId,HttpSession session,Model model){
 
@@ -100,7 +112,5 @@ public class HomeFriendController {
 
         return "friendIndex";
     }
-
-
 
 }

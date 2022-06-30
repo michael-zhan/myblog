@@ -255,4 +255,11 @@ public interface BlogMapper {
      * @return
      */
     Integer selectCountByAuthor(Integer author);
+
+    /**
+     * 根据id返回作者
+     * @param id
+     * @return
+     */
+    Integer selectAuthorById(Integer id);
 }

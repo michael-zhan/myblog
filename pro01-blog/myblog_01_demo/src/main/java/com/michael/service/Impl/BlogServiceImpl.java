@@ -348,4 +348,9 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.selectCountByAuthor(author);
     }
 
+    @Override
+    public Integer findAuthor(Integer id) {
+        return blogMapper.selectAuthorById(id);
+    }
+
 }

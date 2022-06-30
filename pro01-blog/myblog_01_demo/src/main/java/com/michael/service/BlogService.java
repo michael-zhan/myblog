@@ -276,4 +276,11 @@ public interface BlogService {
      * @return
      */
     Integer getCount(Integer author);
+
+    /**
+     * 查询作者
+     * @param id
+     * @return
+     */
+    Integer findAuthor(Integer id);
 }
