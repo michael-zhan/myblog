@@ -7,6 +7,7 @@ import com.michael.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -16,8 +17,20 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogMapper blogMapper;
 
-    public void addBlog(Blog blog){
-        blogMapper.insert(blog);
+    public void addBlog(Blog blog) {
+        Date date=new Date();
+        if (blog.getId() != null && blogMapper.selectByPrimaryKey(blog.getId().longValue()) != null) {
+            blog.setUpdatetime(date);
+            blogMapper.updateByPrimaryKey(blog);
+        } else {
+            blog.setId(null);
+            blog.setView(0);
+            blog.setCountComment(0);
+            blog.setCountLike(0);
+            blog.setUpdatetime(date);
+            blogMapper.insert(blog);
+        }
+
     }
 
     @Override
@@ -65,7 +78,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void likeBlog(Integer blogId) {
-//        blogMapper.updateLikeById(blogId.longValue());
+        blogMapper.updateLikeById(blogId.longValue());
+    }
+
+    @Override
+    public String findAuthor(Integer id) {
+        return blogMapper.selectAuthorById(id.longValue());
     }
 
 

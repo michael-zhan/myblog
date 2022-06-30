@@ -19,6 +19,8 @@ public class HomeFriendController {
 
     @Autowired
     private UserService userService;
+
+
     /**
      * 显示好友模块首页
      * @return
@@ -29,12 +31,10 @@ public class HomeFriendController {
 
         List<Notice> noticeList = userService.getNoticeList(user.getId());
         List<User> userList=userService.getFriendList(user.getId());
-
         model.addAttribute("userList",userList);
         model.addAttribute("noticeList",noticeList);
 
         return "friendIndex";
-
     }
     /**
      * 发送添加好友请求
@@ -69,13 +69,17 @@ public class HomeFriendController {
      * @return
      */
     @RequestMapping(value="/deal/{noticeId}/",method= RequestMethod.PUT)
-    public ResultVo dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign){
+    public ResultVo dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign,Model model,HttpSession session){
         userService.dealWithFriendRequest(noticeId,sign);
+
+        User user=(User)session.getAttribute("user");
+        List<Notice> noticeList = userService.getNoticeList(user.getId());
+        model.addAttribute("noticeList",noticeList);
         return new ResultVo("已处理");
     }
 
     /**
-     * 处理进入好友空间
+     * 进入好友空间
      * @param friendId
      * @param model
      * @return
@@ -87,8 +91,15 @@ public class HomeFriendController {
         return "friendHomeIndex";
     }
 
+    /**
+     * 删除好友
+     * @param friendId
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("/remove/{friendId}")
-    public String removeFriend(@PathVariable String friendId,HttpSession session,Model model){
+    public String remove(@PathVariable String friendId,HttpSession session,Model model){
 
         userService.removeFriend(friendId);
 

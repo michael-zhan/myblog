@@ -62,7 +62,7 @@ public interface BlogMapper {
     /**
      * 更新点赞数，未实现
      */
-//    void updateLikeById(Long id);
+    void updateLikeById(Long id);
 
     /**
      * limit限制查询文章
@@ -78,4 +78,6 @@ public interface BlogMapper {
      * @return
      */
     Integer selectCountByAuthor(String author);
+
+    String selectAuthorById(Long id);
 }

@@ -59,7 +59,15 @@ public interface UserService {
      */
     void dealWithFriendRequest(Integer noticeId,Integer sign);
 
+    /**
+     * 更新个人信息
+     * @param user
+     */
     void modifyInfo(User user);
 
+    /**
+     * 删除好友
+     * @param friendId
+     */
     void removeFriend(String friendId);
 }

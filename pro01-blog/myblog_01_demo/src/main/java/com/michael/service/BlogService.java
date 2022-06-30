@@ -66,4 +66,11 @@ public interface BlogService {
      *增加文章点赞数
      */
     void likeBlog(Integer bloghId);
+
+    /**
+     * 查询作者
+     * @param id
+     * @return
+     */
+    String findAuthor(Integer id);
 }
