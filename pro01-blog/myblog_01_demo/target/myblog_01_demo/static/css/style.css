@@ -27,7 +27,7 @@ body {
 }
 
 .blog-cover {
-  background: url("./img_1.jpg");
+  background: url("../images/img_1.jpg");
   background-size: cover;
   border-radius: 5px 5px 0 0;
   height: 15rem;
