@@ -1,13 +1,44 @@
 package com.michael.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Comment {
-    private Long id;
+public class Comment implements Serializable {
+
+    private static final long serialVersionUID = -1160612910766266139L;
+    private Integer id;
+
+    private String nickname;
+
+    private String email;
+
     private String content;
+
+    private String avatar;
+
+    private Date createTime;
+
+    private Integer blogId;
+
+    private Integer parentCommentId;
+
+    private boolean adminComment;
+
+    private String ip;
+
+    private Integer pass;
+
+
+
+    private Blog blog;
+
+    private Comment parentComment;
+
+    private List<Comment> replyComments = new ArrayList<>();
 }

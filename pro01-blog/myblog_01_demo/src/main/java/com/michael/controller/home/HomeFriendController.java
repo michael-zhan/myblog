@@ -19,8 +19,6 @@ public class HomeFriendController {
 
     @Autowired
     private UserService userService;
-
-
     /**
      * 显示好友模块首页
      * @return
@@ -31,10 +29,12 @@ public class HomeFriendController {
 
         List<Notice> noticeList = userService.getNoticeList(user.getId());
         List<User> userList=userService.getFriendList(user.getId());
+
         model.addAttribute("userList",userList);
         model.addAttribute("noticeList",noticeList);
 
         return "friendIndex";
+
     }
     /**
      * 发送添加好友请求
@@ -44,18 +44,18 @@ public class HomeFriendController {
      */
     @RequestMapping(value = "/add/{friendId}")
     @ResponseBody
-    public ResultVo makeFriend(@PathVariable String friendId, HttpSession session){
+    public ResultVo makeFriend(@PathVariable Integer friendId, HttpSession session){
         User user=(User)session.getAttribute("user");
 
-        User friend=userService.getById(friendId);
+        User friend=userService.getUserById(friendId);
         if(friend==null){//说明所查询的用户不存在
             System.out.println("查询的用户不存在");
             return new ResultVo("查询的用户不存在");
         }else{
-            Integer result = userService.sendMakeFriendRequest(user.getId(), friend.getId());
-            if(result==1) {
+            Boolean result = userService.sendMakeFriendRequest(user.getId(), friend.getId());
+            if(result==true) {
                 return new ResultVo("成功发送请求");
-            }else if(result==0){
+            }else if(result==false){
                 return new ResultVo("你们已经是好友");
             }
         }
@@ -69,37 +69,26 @@ public class HomeFriendController {
      * @return
      */
     @RequestMapping(value="/deal/{noticeId}/",method= RequestMethod.PUT)
-    public ResultVo dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign,Model model,HttpSession session){
+    public ResultVo dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign){
         userService.dealWithFriendRequest(noticeId,sign);
-
-        User user=(User)session.getAttribute("user");
-        List<Notice> noticeList = userService.getNoticeList(user.getId());
-        model.addAttribute("noticeList",noticeList);
         return new ResultVo("已处理");
     }
 
     /**
-     * 进入好友空间
+     * 处理进入好友空间
      * @param friendId
      * @param model
      * @return
      */
     @RequestMapping(value="/browseFriendRoom/{friendId}")
-    public String browseFriendRoom(@PathVariable String friendId,Model model){
-        User friend = userService.getById(friendId);
+    public String browseFriendRoom(@PathVariable Integer friendId,Model model){
+        User friend = userService.getUserById(friendId);
         model.addAttribute("friend",friend);
         return "friendHomeIndex";
     }
 
-    /**
-     * 删除好友
-     * @param friendId
-     * @param session
-     * @param model
-     * @return
-     */
     @RequestMapping("/remove/{friendId}")
-    public String remove(@PathVariable String friendId,HttpSession session,Model model){
+    public String removeFriend(@PathVariable Integer friendId,HttpSession session,Model model){
 
         userService.removeFriend(friendId);
 

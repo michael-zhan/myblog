@@ -16,24 +16,15 @@ public class HomeAboutMeController {
     private UserService userService;
 
 
-    /**
-     * 显示个人模块首页
-     * @param session
-     * @return
-     */
+
     @RequestMapping("/aboutme")
     public String index(HttpSession session){
         return "aboutme";
     }
 
-    /**
-     * 修改个人信息
-     * @param user
-     * @return
-     */
     @RequestMapping("/aboutme/modify")
     public String modifyInfo(User user){
-        userService.modifyInfo(user);
+        userService.updateUser(user);
         return null;
     }
 }

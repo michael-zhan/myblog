@@ -1,27 +1,39 @@
 package com.michael.service;
 
-
+import com.github.pagehelper.PageInfo;
 import com.michael.pojo.Comment;
 
+
+import java.util.HashMap;
 import java.util.List;
+
 
 public interface CommentService {
 
-    /**
-     * 获取评论
-     * @param blogId
-     * @return
-     */
-    List<Comment> getCommentList(Integer blogId);
+    // 对指定字段查询
+    PageInfo<Comment> pageComment(Integer pageIndex, Integer pageSize, HashMap<String, Object> criteria);
 
-    /**
-     * 添加评论
-     * @param comment
-     */
-    void addComment(Comment comment);
+    // 修改评论状态
+    Comment updateCommentPass(Integer id, Integer pass);
 
-    /**
-     * 删除评论
-     */
-    void removeComment(Integer id);
+    // 添加评论
+    Comment insertComment(Comment comment);
+
+    // 删除评论
+    void deleteComment(Integer commentId);
+
+    // 查找当前博客下的所有评论
+    PageInfo<Comment> getListCommentByBlogId(Integer blogPublished,Integer commentPublished, Integer postType,Integer pageIndex, Integer pageSize,Integer blogId);
+
+    // 根据id获取评论
+    Comment getById(Integer blogPublished,Integer commentPublished, Integer postType, Integer id);
+
+    // 查找每种状态下的评论数
+    Integer countCommentByPass(Integer pass);
+
+    // 批量查询
+    List<Comment> findByBatchIds(List<Integer> ids);
+
+    // 查询最新评论
+    List<Comment> getCommentLimit(Integer limit);
 }

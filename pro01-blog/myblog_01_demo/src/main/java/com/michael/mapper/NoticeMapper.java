@@ -49,5 +49,5 @@ public interface NoticeMapper {
      * @param userId
      * @return
      */
-    List<Notice> selectByUserId(String userId);
+    List<Notice> selectByUserId(Integer userId);
 }

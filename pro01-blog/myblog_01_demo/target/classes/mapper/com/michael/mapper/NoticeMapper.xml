@@ -8,8 +8,8 @@
       This element was generated on Tue Jun 28 09:10:37 CST 2022.
     -->
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="sender" property="sender" jdbcType="VARCHAR" />
-    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="sender" property="sender" jdbcType="INTEGER" />
+    <result column="receiver" property="receiver" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="BIT" />
     <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
   </resultMap>

@@ -41,7 +41,6 @@ public class HomeIndexController {
 
         Integer pageCount = blogService.getCount(user.getId())/3+1;
 
-        user.setBlogList(blogList);
 
         Blog blog1=blogList.get(0);
 //        session.setAttribute("blog1",blog1);

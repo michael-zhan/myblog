@@ -1,8 +1,12 @@
 package com.michael.service;
 
+import com.github.pagehelper.PageInfo;
 import com.michael.pojo.Type;
 
+
+import java.util.HashMap;
 import java.util.List;
+
 
 public interface TypeService {
     /**
@@ -74,11 +78,12 @@ public interface TypeService {
      */
     List<Type> listTypeWithCountAtHome();
 
-//    /**
-//     * 分页获取分类
-//     * @param pageIndex
-//     * @param pageSize
-//     * @return
-//     */
-//    PageInfo<Type> pageType(Integer pageIndex,Integer pageSize);
+    /**
+     * 分页获取分类
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    PageInfo<Type> pageType(Integer pageIndex,Integer pageSize);
+
 }

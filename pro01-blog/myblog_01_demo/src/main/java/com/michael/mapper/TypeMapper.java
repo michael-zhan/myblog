@@ -1,10 +1,17 @@
 package com.michael.mapper;
 
-import com.michael.pojo.Type;
 
+import com.michael.pojo.Type;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.HashMap;
 import java.util.List;
 
+
+@Mapper
 public interface TypeMapper {
+
     /**
      * 添加
      *
@@ -70,7 +77,7 @@ public interface TypeMapper {
 
 
     /**
-     * 获取该分类下所有文章总数
+     * 获取该分类下所有文章总数 其那台
      * @param id
      * @return
      */

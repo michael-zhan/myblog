@@ -24,10 +24,10 @@ public class LoginAndRegisterController {
     @RequestMapping("/register")
     public String register(User user,String code,HttpSession session) throws NoSuchAlgorithmException {
        String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
-       if(isLeaglStr(user.getId(),user.getPassword(),user.getNickname(),code)
+       if(isLeaglStr(user.getUsername(),user.getPassword(),user.getEmail(),code)
                &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())
-               &&userService.getById(user.getId())==null) {
-           userService.insert(user);
+               &&userService.getUserByEmail(user.getEmail())==null) {
+           userService.insertUser(user);
            return "login";
        }else{
            return "register";
@@ -35,13 +35,13 @@ public class LoginAndRegisterController {
     }
 
     @RequestMapping("/login")
-    public String login(String id, String password, String code,HttpSession session) throws NoSuchAlgorithmException {
+    public String login(String username, String password, String code,HttpSession session) throws NoSuchAlgorithmException {
         String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
         User user;
-        if(id!=null&&password!=null
+        if(username!=null&&password!=null
                 &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())) {
-            user=userService.selectByIdAndPassword(id,password);
-            if (user != null) {
+            user=userService.getUserByName(username);
+            if (user != null&&user.getPassword().equals(password)) {
                 session.setAttribute("user",user);
                 return "redirect:/index";
             }
