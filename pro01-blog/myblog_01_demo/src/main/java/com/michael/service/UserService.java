@@ -1,65 +1,71 @@
 package com.michael.service;
 
-import com.michael.pojo.Notice;
+
+
 import com.michael.pojo.User;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+
 public interface UserService {
+    /**
+     * 获得用户列表
+     *
+     * @return 用户列表
+     */
+    List<User> listUser();
+
+    /**
+     * 根据id查询用户信息
+     *
+     * @param id 用户ID
+     * @return 用户
+     */
+    User getUserById(Integer id);
+
+    /**
+     * 修改用户信息
+     *
+     * @param user 用户
+     */
+    void updateUser(User user);
+
+    /**
+     * 删除用户
+     *
+     * @param id 用户ID
+     */
+    void deleteUser(Integer id);
 
     /**
      * 添加用户
-     * @param user
-     * @throws NoSuchAlgorithmException
+     *
+     * @param user 用户
+     * @return 用户
      */
-    void insert(User user) throws NoSuchAlgorithmException;
+    User insertUser(User user);
 
     /**
-     * 根据ID查询用户
-     * @param id
-     * @return
+     * 根据用户名和邮箱查询用户
+     *
+     * @param str 用户名或Email
+     * @return 用户
      */
-    User getById(String id);
+    User getUserByNameOrEmail(String str);
 
     /**
-     * 核实用户身份
-     * @param id
-     * @param password
-     * @return
-     * @throws NoSuchAlgorithmException
+     * 根据用户名查询用户
+     *
+     * @param name 用户名
+     * @return 用户
      */
-    User selectByIdAndPassword(String id,String password) throws NoSuchAlgorithmException;
+    User getUserByName(String name);
 
     /**
-     * 查询好友列表
-     * @param user
-     * @return
+     * 根据邮箱查询用户
+     *
+     * @param email Email
+     * @return 用户
      */
-    List<User> getFriendList(String user);
-
-    /**
-     * 发送添加好友的请求
-     * 返回1说明已经是好友
-     * @param sender
-     * @param receiver
-     */
-    Integer sendMakeFriendRequest(String sender,String receiver);
-
-    /**
-     * 获取通知列表
-     * @param userId
-     * @return
-     */
-    List<Notice> getNoticeList(String userId);
-    /**
-     * 处理好友请求
-     * @param noticeId
-     * @param sign
-     */
-    void dealWithFriendRequest(Integer noticeId,Integer sign);
-
-    void modifyInfo(User user);
-
-    void removeFriend(String friendId);
+    User getUserByEmail(String email);
 }

@@ -1,16 +1,22 @@
 package com.michael.service.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import com.michael.mapper.TypeMapper;
 import com.michael.pojo.Type;
 import com.michael.service.TypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.HashMap;
 import java.util.List;
+
 @Service
 @Slf4j
 @Transactional(propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
@@ -131,4 +137,14 @@ public class TypeServiceImpl implements TypeService {
         return typeList;
     }
 
+    @Override
+    public PageInfo<Type> pageType(Integer pageIndex, Integer pageSize) {
+        PageHelper.startPage(pageIndex, pageSize);
+        List<Type> typeList = typeMapper.listType();
+        for (int i = 0; i < typeList.size(); i++) {
+            Integer count = typeMapper.getBlogCountWithTypeId(typeList.get(i).getId());
+            typeList.get(i).setBlogCount(count);
+        }
+        return new PageInfo<>(typeList, 5);
+    }
 }
