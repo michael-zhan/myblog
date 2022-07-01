@@ -339,9 +339,18 @@ public class BlogServiceImpl implements BlogService {
         return map;
     }
     @Override
-    public List<Blog> getByPage(Integer author, Integer page,Integer eachPageCount) {
-
-        return blogMapper.selectWithLimit(author,(page-1)*eachPageCount,eachPageCount);
+    public List<Blog> getByPage(Integer author, Integer page,Integer eachPageCount,boolean sign) {
+        Integer count=getCount(author);
+        Integer maxIndex=count/eachPageCount+1;
+        if(page<1||page>maxIndex){
+            return null;
+        }
+        if(sign==true) {
+            return blogMapper.selectWithLimit(author, (page - 1) * eachPageCount, eachPageCount);
+        }else{
+            Integer beginIndex=count-page*eachPageCount;
+            return blogMapper.selectWithLimitDesc(author,beginIndex,eachPageCount);
+        }
     }
 
     @Override

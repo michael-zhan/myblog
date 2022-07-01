@@ -14,13 +14,14 @@ import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
+@RequestMapping("/")
 @Controller
 public class LoginAndRegisterController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/login_index")
+    @RequestMapping("/tologin")
     public String index(Model model){
       return "login";
     }
@@ -65,16 +66,6 @@ public class LoginAndRegisterController {
         }
         return "login";
     }
-
-//    @RequestMapping("/tologin")
-//    public String toLogin(){
-//        return "login";
-//    }
-
-//    @RequestMapping("toregister")
-//    public String toRegister(){
-//        return "register";
-//    }
 
     public boolean isLeaglStr(String... args){
         for(String str:args){

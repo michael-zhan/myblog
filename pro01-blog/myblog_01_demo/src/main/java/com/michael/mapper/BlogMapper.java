@@ -243,11 +243,21 @@ public interface BlogMapper {
 
     /**
      * limit限制查询文章
+     * 正序
      * @param author
      * @param limit
      * @return
      */
     List<Blog> selectWithLimit(Integer author,Integer limit,Integer eachPageCount);
+
+    /**
+     * limit限制查询文章
+     * 倒序
+     * @param author
+     * @param limit
+     * @return
+     */
+    List<Blog> selectWithLimitDesc(Integer author,Integer limit,Integer eachPageCount);
 
     /**
      * 根据作者返回文章总数

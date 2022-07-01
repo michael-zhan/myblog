@@ -264,12 +264,14 @@ public interface BlogService {
 
     /**
      * 根据页码和每页的文章数查询文章
+     * sign为true则正序，为false则倒序
      * @param author
      * @param page
      * @param eachPageCount
+     * @param sign
      * @return
      */
-    List<Blog> getByPage(Integer author,Integer page,Integer eachPageCount);
+    List<Blog> getByPage(Integer author,Integer page,Integer eachPageCount,boolean sign);
 
     /**
      * 返回文章列表页数

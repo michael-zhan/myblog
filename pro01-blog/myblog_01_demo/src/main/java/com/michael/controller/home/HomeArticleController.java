@@ -8,7 +8,7 @@ import com.michael.pojo.Comment;
 import com.michael.pojo.User;
 import com.michael.service.BlogService;
 import com.michael.service.CommentService;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+//import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

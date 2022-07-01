@@ -31,33 +31,34 @@ public class HomeIndexController {
      */
     @RequestMapping(value={"/index/{pageIndex}","/index"},method={RequestMethod.GET,RequestMethod.POST})
     public String index(HttpSession session, @PathVariable(required = false)String pageIndex, Model model){
-
         if(pageIndex==null||pageIndex.equals("")){
             pageIndex="1";
         }
         Integer p=Integer.parseInt(pageIndex);
+        Integer pageCount=1;
+
         User user = (User)session.getAttribute("user");
-        List<Blog> blogList = blogService.getByPage(user.getId(),p,3);
+        if(user!=null&&user.getId()!=null) {
+            List<Blog> blogList = blogService.getByPage(user.getId(), p, 3, false);
 
-        Integer pageCount = blogService.getCount(user.getId())/3+1;
+            pageCount = blogService.getCount(user.getId()) / 3 + 1;
 
+            if (blogList != null) {
+                Blog blog1 = blogList.get(0);
+                model.addAttribute("blog1", blog1);
+                if (blogList.size() > 1) {
+                    Blog blog2 = blogList.get(1);
+                    model.addAttribute("blog2", blog2);
 
-        Blog blog1=blogList.get(0);
-//        session.setAttribute("blog1",blog1);
-        model.addAttribute("blog1",blog1);
-        if(blogList.size()>1) {
-            Blog blog2 = blogList.get(1);
-//            session.setAttribute("blog2",blog2);
-            model.addAttribute("blog2",blog2);
-
+                }
+                if (blogList.size() > 2) {
+                    Blog blog3 = blogList.get(2);
+                    model.addAttribute("blog3", blog3);
+                }
+                session.setAttribute("blogList", blogList);
+            }
         }
-        if(blogList.size()>2) {
-            Blog blog3 = blogList.get(2);
-//            session.setAttribute("blog3",blog3);
-            model.addAttribute("blog3",blog3);
-        }
 
-        session.setAttribute("blogList",blogList);
         session.setAttribute("pageIndex",p);
         session.setAttribute("pageCount",pageCount);
         return "homepage";
