@@ -16,8 +16,7 @@ public class HomeArchiveController {
     private BlogService blogService;
 
 
-
-    /**归档模块
+    /**进入归档界面
      * @param model
      * @param session
      * @return
@@ -27,7 +26,6 @@ public class HomeArchiveController {
         User user=(User)session.getAttribute("user");
         model.addAttribute("archiveMap" ,blogService.archiveBlog(user.getId()));
         return "archive";
-
     }
 
 }

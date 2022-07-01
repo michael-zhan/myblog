@@ -24,7 +24,7 @@ public class HomeArticleController {
     private CommentService commentService;
 
     /**
-     * 查看文章详情
+     * 进入查看文章界面
      * @param blogId
      * @param model
      * @return
@@ -34,16 +34,16 @@ public class HomeArticleController {
         Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
         blogService.updateBlogView(blogId,blog.getViews()+1);
         if(blog!=null) {
-            List<Comment> commentList = commentService.getCommentList(blogId);
-
-            model.addAttribute("commentList",commentList);
+//            List<Comment> commentList = commentService.getCommentList(blogId);
+//
+//            model.addAttribute("commentList",commentList);
             model.addAttribute("blog", blog);
         }
         return "blog";
     }
 
     /**
-     * 创建文章
+     * 进入创建文章界面
      * @return
      */
     @RequestMapping(value = "/toadd")
@@ -56,24 +56,15 @@ public class HomeArticleController {
      * @return
      */
     @RequestMapping("/save")
-    public String add(Blog blog){
+    public String add(Blog blog,Model model){
         if(blog!=null) {
             blogService.insertBlog(blog);
         }
-        return "index";
-    }
-
-    /**
-     * 给文章点赞
-     * @param blogId
-     * @return
-     */
-    @RequestMapping("/like/{blogId}")
-    public ResultVo like(@PathVariable Integer blogId){
-
-        blogService.getBlogByPublishedAndId(0,0,blogId);
-        blogService.incrBlogLikes(blogId);
-        return new ResultVo("点赞成功");
+        if(blog.getId()!=null) {
+            blogService.getBlogByPublishedAndId(0, 0, blog.getId());
+            model.addAttribute("blog",blog);
+        }
+        return "redirect:/acticle/"+blog.toString();
     }
 
     /**
@@ -94,31 +85,21 @@ public class HomeArticleController {
     }
 
     /**
-     * 转发到编辑页面
-     * @return
-     */
-    @RequestMapping("/toedit/{blogId}")
-    public String toEdit(@PathVariable Integer blogId,HttpSession session,Model model){
-        User user=(User)session.getAttribute("user");
-        if(blogService.findAuthor(blogId).equals(user.getId())) {
-            return "forward:/edit";
-        }else {
-            Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
-            model.addAttribute("blog",blog);
-            return "forward:/article/edit/"+blogId.toString();
-        }
-    }
-
-    /**
      * 编辑文章
-     * @param blogId
      * @return
      */
     @RequestMapping("/edit/{blogId}")
-    public String edit(@PathVariable Integer blogId,Model model){
-        Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
-        model.addAttribute("blog",blog);
-        return "edit";
+    public String edit(@PathVariable Integer blogId,HttpSession session,Model model){
+        User user=(User)session.getAttribute("user");
+        if(blogService.findAuthor(blogId).equals(user.getId())) {
+            Blog blog= blogService.getBlogByPublishedAndId(0, 0, blogId);
+            model.addAttribute("blog",blog);
+            return "edit";
+        }else {
+            Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
+            model.addAttribute("blog",blog);
+            return "redirect:/article/"+blogId.toString();
+        }
     }
 
     /**

@@ -21,6 +21,14 @@ public class LoginAndRegisterController {
     private UserService userService;
 
 
+    /**
+     * 进入注册界面
+     * @param user
+     * @param code
+     * @param session
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
     @RequestMapping("/register")
     public String register(User user,String code,HttpSession session) throws NoSuchAlgorithmException {
        String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
@@ -34,6 +42,15 @@ public class LoginAndRegisterController {
        }
     }
 
+    /**
+     * 进入登录界面
+     * @param username
+     * @param password
+     * @param code
+     * @param session
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
     @RequestMapping("/login")
     public String login(String username, String password, String code,HttpSession session) throws NoSuchAlgorithmException {
         String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);

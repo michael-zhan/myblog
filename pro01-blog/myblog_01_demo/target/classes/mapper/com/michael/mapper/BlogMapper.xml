@@ -471,4 +471,10 @@
     from t_blog
     where user_id=#{author}
   </select>
+
+  <select id="selectAuthorById" resultType="java.lang.Integer">
+    select user_id
+    from t_blog
+    where id=#{id}
+  </select>
 </mapper>

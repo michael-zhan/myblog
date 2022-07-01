@@ -19,8 +19,9 @@ public class HomeFriendController {
 
     @Autowired
     private UserService userService;
+    
     /**
-     * 显示好友模块首页
+     * 进入好友管理界面
      * @return
      */
     @RequestMapping("/index")
@@ -36,6 +37,7 @@ public class HomeFriendController {
         return "friendIndex";
 
     }
+
     /**
      * 发送添加好友请求
      * @param friendId
@@ -69,14 +71,11 @@ public class HomeFriendController {
      * @param sign
      * @return
      */
-    @RequestMapping(value="/deal/{noticeId}/",method= RequestMethod.PUT)
-    public ResultVo dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign,Model model,HttpSession session){
-        userService.dealWithFriendRequest(noticeId,sign);
 
-        User user=(User)session.getAttribute("user");
-        List<Notice> noticeList = userService.getNoticeList(user.getId());
-        model.addAttribute("noticeList",noticeList);
-        return new ResultVo("已处理");
+    @RequestMapping(value="/deal/{noticeId}/",method= RequestMethod.PUT)
+    public String dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign,Model model,HttpSession session){
+        userService.dealWithFriendRequest(noticeId,sign);
+        return "redirect:/friend/index";
     }
 
     /**
@@ -86,10 +85,12 @@ public class HomeFriendController {
      * @return
      */
     @RequestMapping(value="/browseFriendRoom/{friendId}")
-    public String browseFriendRoom(@PathVariable Integer friendId,Model model){
+    public String browseFriendRoom(@PathVariable Integer friendId,Model model) {
         User friend = userService.getUserById(friendId);
-        model.addAttribute("friend",friend);
-        return "friendHomeIndex";
+        if (friend != null) {
+            return "friendRoomIndex";
+        }
+        return "redirect:/friend/index";
     }
 
     /**
@@ -100,17 +101,9 @@ public class HomeFriendController {
      * @return
      */
     @RequestMapping("/remove/{friendId}")
-    public String removeFriend(@PathVariable Integer friendId,HttpSession session,Model model){
-
+    public String removeFriend(@PathVariable Integer friendId,HttpSession session,Model model) {
         userService.removeFriend(friendId);
-
-        User user=(User)session.getAttribute("user");
-        List<Notice> noticeList = userService.getNoticeList(user.getId());
-        List<User> friendList = userService.getFriendList(user.getId());
-        model.addAttribute("noticeList",noticeList);
-        model.addAttribute("friendList",friendList);
-
-        return "friendIndex";
+        return "redirect:/friend/index";
     }
 
 }
