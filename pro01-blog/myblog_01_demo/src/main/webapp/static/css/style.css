@@ -15,7 +15,6 @@ body {
   width: 85%;
 }
 
-
 .blog-container a {
   color: #4d4dff;
   text-decoration: none;
@@ -27,7 +26,7 @@ body {
 }
 
 .blog-cover {
-  background: url("../images/img_1.jpg");
+  background: url("../img/img_1.jpg");
   background-size: cover;
   border-radius: 5px 5px 0 0;
   height: 15rem;
@@ -43,7 +42,7 @@ body {
 
 .blog-author h3::before,
 .blog-author--no-cover h3::before {
-  background: url("./img_1.jpg");
+  background: url("../img/img_1.jpg");
   background-size: cover;
   border-radius: 50%;
   content: " ";
@@ -99,7 +98,7 @@ body {
 .blog-tags a {
   border: 1px solid #999999;
   border-radius: 3px;
-  color: #999999;
+  color: blueviolet;
   font-size: 0.75rem;
   height: 1.5rem;
   line-height: 1.5rem;
@@ -149,7 +148,7 @@ body {
   color: #999999;
 }
 
-.comments {
+.browse {
   margin-right: 1rem;
 }
 
@@ -159,18 +158,6 @@ body {
   padding: 0 0.5rem;
 }
 
-.icon-star,
-.icon-bubble {
-  fill: #999999;
-  height: 24px;
-  margin-right: 0.5rem;
-  transition: 0.25s ease;
-  width: 24px;
-}
-.icon-star:hover,
-.icon-bubble:hover {
-  fill: #ff4d4d;
-}
 
 .blog-box{
   margin: 100px auto;
@@ -183,14 +170,16 @@ body {
 
 .switch-page{
   position: relative;
-  top: 20px;
+  top: 10px;
   margin: 30px auto;
-  background-color: #ccc;
 }
 
 .pagination a,.page-item{
-  background-color: #ccc;
+  background-color:rgba(0, 0, 0, 0);
 }
+
 .pagination a:hover, .pagination .active {
-  background-color: #30a9de;
+  background-color: #bbb;
 }
+
+

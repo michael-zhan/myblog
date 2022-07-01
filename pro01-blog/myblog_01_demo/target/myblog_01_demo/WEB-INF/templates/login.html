@@ -1,62 +1,59 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Login</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<form th:action="@{/login}" method="post">-->
-<!--    ID:<input type="text" name="id"><br>-->
-<!--    密码:<input type="password" name="password"><br>-->
-<!--    <input type="submit">-->
-<!--    <a th:text="注册"  th:href="@{/toregister}">注册</a>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="js/login.js"></script>
+  <meta charset="UTF-8">
+  <title>登录/注册</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" th:href="@{/static/css/login.css}">
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container">
-        <a href="#" class="navbar-brand">hyzzz_blog</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse navmenu">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <div class="nav-link">xxx</div>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link">xxx</div>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link">xxx</div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<form th:action="@{/login}" method="post">
-    用户名:<input type="text" name="username"><br>
-    密码:<input type="password" name="password"><br>
-    <input type="submit">
-    <a th:text="注册"  th:href="@{/toregister}">注册</a>
-    <input type="text" name="code" value="" /><img src="kaptcha.jpg" id="kaptchaImage" />
-</form>
+<!-- partial:index.partial.html -->
+<div class="container right-panel-active">
+	<!-- Sign Up -->
+	<div class="container__form container--signup">
+		<form action="/index" class="form" id="form1">
+			<h2 class="form__title">注册</h2>
+			<input type="text" id="tel1" placeholder="手机号" class="input" />
+			<span id="telError" style="color: red;"></span>
+			<input type="text" placeholder="用户名" class="input" />
+			<input type="password" placeholder="密码" class="input" id="pwd1"/>
+			<span id="pwdError" style="color: red;"></span>
+			<span><input type="text" id="code" placeholder="验证码" class="input"/>&nbsp;<img src="" alt="验证码"></span>
+			<button class="btn" id="btn1">注册</button>
+		</form>
+	</div>
+
+	<!-- Sign In -->
+	<div class="container__form container--signin">
+		<form th:action="@{/login}" class="form" id="form2" method="post">
+			<h2 class="form__title">登录</h2>
+			<input name="username" type="text" id="tel2" placeholder="用户名" class="input" />
+			<input name="password" type="password" id="pwd2" placeholder="密码" class="input"/>
+			<span id="pwdWrong" style="color: red;"></span>
+			<!-- <a href="#" class="link">Forgot your password?</a> -->
+<!--			<button class="btn" id="btn2">登录</button>-->
+			<input type="submit" class="btn" id="btn2" value="登录"/>
+
+		</form>
+	</div>
 
 
 
+	<!-- Overlay -->
+	<div class="container__overlay">
+		<div class="overlay">
+			<div class="overlay__panel overlay--left">
+				<button class="btn" id="signIn">登录</button>
+			</div>
+			<div class="overlay__panel overlay--right">
+				<button class="btn" id="signUp">注册</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- partial -->
+  <script  th:src="@{/static/js/login.js}"></script>
 
 </body>
-
-
 </html>
-

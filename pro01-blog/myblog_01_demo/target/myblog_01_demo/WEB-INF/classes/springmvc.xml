@@ -69,7 +69,7 @@
 
     <mvc:resources mapping="/static/css/**" location="/static/css/" />
     <mvc:resources mapping="/static/js/**" location="/static/js/" />
-    <mvc:resources mapping="/static/images/**" location="/static/images/" />
+    <mvc:resources mapping="/static/images/**" location="/static/img/" />
 
     <!--
      处理静态资源，例如html、js、css、jpg

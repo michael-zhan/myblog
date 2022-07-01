@@ -34,7 +34,7 @@ public class HomeFriendController {
         model.addAttribute("userList",userList);
         model.addAttribute("noticeList",noticeList);
 
-        return "friendIndex";
+        return "friends";
 
     }
 
@@ -71,7 +71,6 @@ public class HomeFriendController {
      * @param sign
      * @return
      */
-
     @RequestMapping(value="/deal/{noticeId}/",method= RequestMethod.PUT)
     public String dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign,Model model,HttpSession session){
         userService.dealWithFriendRequest(noticeId,sign);

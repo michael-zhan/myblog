@@ -60,6 +60,6 @@ public class HomeIndexController {
         session.setAttribute("blogList",blogList);
         session.setAttribute("pageIndex",p);
         session.setAttribute("pageCount",pageCount);
-        return "index";
+        return "homepage";
     }
 }

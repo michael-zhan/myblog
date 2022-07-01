@@ -22,7 +22,7 @@ public class HomeAboutMeController {
      */
     @RequestMapping("/aboutme")
     public String index(HttpSession session){
-        return "aboutme";
+        return "personal";
     }
 
     /**

@@ -24,8 +24,10 @@ public class HomeArchiveController {
     @RequestMapping("/archive")
     public String archives(Model model, HttpSession session){
         User user=(User)session.getAttribute("user");
-        model.addAttribute("archiveMap" ,blogService.archiveBlog(user.getId()));
-        return "archive";
+        if(user!=null&&user.getId()!=null) {
+            model.addAttribute("archiveMap", blogService.archiveBlog(user.getId()));
+        }
+        return "timeline";
     }
 
 }

@@ -23,6 +23,19 @@ public class HomeArticleController {
     @Autowired
     private CommentService commentService;
 
+
+
+    /**
+     * 进入文章管理界面
+     * @param session
+     * @return
+     */
+    @RequestMapping("/manage")
+    public String index(HttpSession session){
+        User user=(User)session.getAttribute("user");
+        return "manage-page";
+    }
+
     /**
      * 进入查看文章界面
      * @param blogId

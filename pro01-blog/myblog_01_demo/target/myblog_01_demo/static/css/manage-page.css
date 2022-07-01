@@ -1,0 +1,15 @@
+.manage-box{
+    margin: 100px auto;
+    background-color: #ccc;
+    width: 60%;
+    border-radius: 25px;
+    padding-bottom: 10px;
+}
+  
+.t_title{
+    width: 30%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    display: inline-block;
+}
