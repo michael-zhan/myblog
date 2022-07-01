@@ -240,7 +240,7 @@ public interface BlogService {
      * 获取并转为html
      * @return
      */
-//    Blog getAndConvert(Integer published, Integer postType, Integer id);
+    Blog getAndConvert(Integer published, Integer postType, Integer id);
 
     /**
      * 修改文章浏览
