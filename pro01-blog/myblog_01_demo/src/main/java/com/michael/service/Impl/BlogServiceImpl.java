@@ -354,4 +354,22 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.selectAuthorById(id);
     }
 
+    @Override
+    public Blog getPrevOrNext(Integer blogId, boolean sign) {
+        if(getBlogByPublishedAndId(0,0,blogId)==null){
+            return null;
+        }else{
+            Integer author = blogMapper.selectAuthorById(blogId);
+            Blog blog=null;
+            if(author!=null){
+                if(sign==true){
+                    blog = blogMapper.selectNextById(author, blogId);
+                }else{
+                    blog=blogMapper.selectPrevById(author,blogId);
+                }
+            }
+            return blog;
+        }
+    }
+
 }

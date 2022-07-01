@@ -477,4 +477,18 @@
     from t_blog
     where id=#{id}
   </select>
+
+  <select id="selectPrevById" resultType="com.michael.pojo.Blog">
+    select *
+    from t_blog
+    where
+    id<=>max(select id from t_blog where user_id=#{arg0} and id<#{arg1})
+  </select>
+
+  <select id="selectNextById" resultType="com.michael.pojo.Blog">
+    select *
+    from t_blog
+    where
+    id<=>min(select id from t_blog where user_id=#{arg0} and id>#{arg1})
+  </select>
 </mapper>

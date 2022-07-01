@@ -8,6 +8,7 @@ import com.michael.pojo.Comment;
 import com.michael.pojo.User;
 import com.michael.service.BlogService;
 import com.michael.service.CommentService;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,12 +45,14 @@ public class HomeArticleController {
      * @param model
      * @return
      */
-    @RequestMapping(value="/{blogId}", method=RequestMethod.GET)
-    public String browse(@PathVariable("blogId") Integer blogId,Model model){
+    @RequestMapping(value="/{blogId}/{sign}", method=RequestMethod.GET)
+    public String browse(@PathVariable("blogId") Integer blogId,@PathVariable("sign") Integer sign,Model model){
 //        Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
 //        Blog blog = blogService.getAndConvert(BlogStatusEnum.PUBLISHED.getCode(),PostTypeEnum.POST_TYPE_POST.getCode(),postId);
         Blog blog = blogService.getAndConvert(BlogStatusEnum.PUBLISHED.getCode(), PostTypeEnum.POST_TYPE_POST.getCode(),blogId);
-        blogService.updateBlogView(blogId,blog.getViews()+1);
+        if(sign==1) {
+            blogService.updateBlogView(blogId, blog.getViews() + 1);
+        }
         if(blog!=null) {
 //            List<Comment> commentList = commentService.getCommentList(blogId);
 //
@@ -65,11 +68,12 @@ public class HomeArticleController {
      */
     @RequestMapping(value = "/toadd")
     public String toAdd(){
-        return "add";
+        return "edit";
     }
 
     /**
      * 保存文章
+     * 这里有bug
      * @return
      */
     @RequestMapping("/save")
@@ -77,11 +81,14 @@ public class HomeArticleController {
         if(blog!=null) {
             blogService.insertBlog(blog);
         }
+        Blog b=null;
         if(blog.getId()!=null) {
-            blogService.getBlogByPublishedAndId(0, 0, blog.getId());
-            model.addAttribute("blog",blog);
+            b = blogService.getBlogByPublishedAndId(0, 0, blog.getId());
+            model.addAttribute("blog",b);
+        }else{
+            return null;
         }
-        return "redirect:/acticle/"+blog.toString();
+        return "redirect:/article/"+b.getId().toString()+"/0";
     }
 
     /**
@@ -114,8 +121,7 @@ public class HomeArticleController {
             return "edit";
         }else {
             Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
-            model.addAttribute("blog",blog);
-            return "redirect:/article/"+blogId.toString();
+            return "redirect:/article/"+blog.getId().toString()+"/0";
         }
     }
 
@@ -129,6 +135,38 @@ public class HomeArticleController {
             return new ResultVo("发表成功");
         }
         return new ResultVo("发表失败");
+    }
+
+    /**
+     * 上一篇文章
+     * @param blogId
+     * @return
+     */
+    @RequestMapping("/prev/{blogId}")
+    public String prev(@PathVariable Integer blogId){
+        Blog blog=blogService.getPrevOrNext(blogId,false);
+        if(blog!=null){
+            return "redirect:/article/"+blog.getId().toString()+"/1";
+        }else {
+            System.out.println("没有上一篇");
+            return "redirect:/article/"+blogId.toString()+"/0";
+        }
+    }
+
+    /**
+     * 下一篇文章
+     * @param blogId
+     * @return
+     */
+    @RequestMapping("/next/{blogId}")
+    public String next(@PathVariable Integer blogId){
+        Blog blog=blogService.getPrevOrNext(blogId,true);
+        if(blog!=null){
+            return "redirect:/article/"+blog.getId().toString()+"/1";
+        }else {
+            System.out.println("没有下一篇");
+            return "redirect:/article/"+blogId.toString()+"/0";
+        }
     }
 
 }

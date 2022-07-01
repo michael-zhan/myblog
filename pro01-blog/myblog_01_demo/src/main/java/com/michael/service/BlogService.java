@@ -263,9 +263,10 @@ public interface BlogService {
     LinkedHashMap<String, List<Blog>> archiveBlog(Integer userId);
 
     /**
-     * 根据页码查询文章
+     * 根据页码和每页的文章数查询文章
      * @param author
      * @param page
+     * @param eachPageCount
      * @return
      */
     List<Blog> getByPage(Integer author,Integer page,Integer eachPageCount);
@@ -283,4 +284,10 @@ public interface BlogService {
      * @return
      */
     Integer findAuthor(Integer id);
+
+    /**
+     * 根据blogId查询对应作者的上一篇或下一篇
+     * sign为true则下一篇，false则上一篇
+     */
+    Blog getPrevOrNext(Integer blogId,boolean sign);
 }

@@ -262,4 +262,8 @@ public interface BlogMapper {
      * @return
      */
     Integer selectAuthorById(Integer id);
+
+    Blog selectPrevById(Integer author,Integer id);
+
+    Blog selectNextById(Integer author,Integer id);
 }
