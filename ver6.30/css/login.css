@@ -197,6 +197,9 @@ body {
 	margin: 0.5rem 0;
 	width: 100%;
 }
+#code{
+	width: 50%;
+}
 
 @-webkit-keyframes show {
 	0%,
