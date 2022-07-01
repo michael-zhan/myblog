@@ -1,52 +1,15 @@
-.blog-detail-cover{
-    margin: 20px auto;
-    width: 50%;
-    height: auto;
-  }
-  
-  .manage-box{
+.manage-box{
     margin: 100px auto;
     background-color: #ccc;
     width: 60%;
     border-radius: 25px;
     padding-bottom: 10px;
-  }
+}
   
-  .list-group-item{
-    border-width: 0px;
-    width: 80%;
-    margin: 10px auto;
-    background-color: rgba(0, 0, 0,0);
-    color: #191919;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden; 
-  }
-  
-  .list-group-item:hover{
-    background-color: #bbb;
-  }
-  
-  .list-group-item:visited{
-    background-color: rgba(0, 0, 0,0);
-  }
-
-  body {
-    background: #e5ded8;
-    box-sizing: border-box;
-  }
-
-  .btn-danger,.mybrowse,.mydate{
-    margin-right: 10px;
-  }
-
-  .myfooter{
-    float: right;
-  }
-  .mytitle{
+.t_title{
+    width: 30%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden; 
     display: inline-block;
-    max-width: 50%;
-  }
+}

@@ -22,20 +22,22 @@
 .list-group-item:visited {
     background-color: rgba(0, 0, 0, 0);
 }
+
+.num {
+  float: right;
+  width: 20%;
+}
+
 .switch-page{
-    position: relative;
-    top: 20px;
-    margin: 30px auto;
-    background-color: (145deg, #dadada, #b8b8b8);
-  }
-  
-  .pagination a,.page-item{
-    background-color: #ccc;
-  }
-  .pagination a:hover, .pagination .active {
-    background-color: #30a9de;
-  }
-  .num {
-    float: right;
-    width: 20%;
-  }
+  position: relative;
+  top: 10px;
+  margin: 30px auto;
+}
+
+.pagination a,.page-item{
+  background-color:rgba(0, 0, 0, 0);
+}
+
+.pagination a:hover, .pagination .active {
+  background-color: #bbb;
+}

@@ -60,37 +60,62 @@
 
 
     <div class="manage-box">
+        <div class="table-responsive">
+          <table class="table table-borderless">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th class="t_title">标题</th>
+                      <th>发布日期</th>
+                      <th>浏览量</th>
+                      <th>操作</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><input type="checkbox"></td>
+                      <td class="t_title"><span>博客11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</span>
+                      <td>2022-7-1</td>
+                      <td>5</td>
+                      <td>
+                          <button type="button" class="btn btn-primary">编辑</button>
+                          <button type="button" class="btn btn-danger">删除</button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><input type="checkbox"></td>
+                      <td class="t_title">博客2</td>
+                      <td>2022-6-1</td>
+                      <td>4</td>
+                      <td>
+                          <button type="button" class="btn btn-primary">编辑</button>
+                          <button type="button" class="btn btn-danger">删除</button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><input type="checkbox"></td>
+                      <td>博客3</td>
+                      <td>2022-5-1</td>
+                      <td>6</td>
+                      <td>
+                          <button type="button" class="btn btn-primary">编辑</button>
+                          <button type="button" class="btn btn-danger">删除</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
 
-        <div class="list-group">
-            <a href="#" class="list-group-item">
-                <span class="mytitle">Lorem ipsum dolor sit amet.</span>
-                <span class="myfooter">
-                  <span class="mydate">2022-6-30</span>
-                  <span class="mybrowse"><img src="../img/browse.png"> 5</span>
-                  <button type="button" class="btn btn-primary">编辑</button>
-                  <button type="button" class="btn btn-danger">删除</button>
-                </span>
-            </a>
-
-            <a href="#" class="list-group-item">
-              <span class="mytitle">博客2</span>
-              <span class="myfooter">
-                <span class="mydate">2022-5-30</span>
-                <span class="mybrowse"><img src="../img/browse.png"> 5</span>
-                <button type="button" class="btn btn-primary">编辑</button>
-                <button type="button" class="btn btn-danger">删除</button>
-              </span>
-            </a>
-            <a href="#" class="list-group-item">
-              <span class="mytitle">博客3</span>
-              <span class="myfooter">
-                <span class="mydate">2022-4-30</span>
-                <span class="mybrowse"><img src="../img/browse.png"> 5</span>
-                <button type="button" class="btn btn-primary">编辑</button>
-                <button type="button" class="btn btn-danger">删除</button>
-              </span>
-            </a>
-        </div>
+      <div class="switch-page">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+        </ul>
+    </div>
+    
     </div>
 
 
