@@ -182,4 +182,8 @@ body {
   background-color: #bbb;
 }
 
-
+.blog-info{
+  float: right;
+  margin-right: 15%;
+  margin-bottom: 20px;
+}
