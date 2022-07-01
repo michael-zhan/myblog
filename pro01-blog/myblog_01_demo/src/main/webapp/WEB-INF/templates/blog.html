@@ -6,8 +6,11 @@
 </head>
 <body>
 
+
 <p th:text="${blog.title}"></p>
-<p th:text="${blog.description}"></p>
-<p th:text="${blog.content}"></p>
+<div id="content" class="typo  typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large"
+     th:utext="${blog.content}"></div>
+<!-- blog.content 博客内容已经转成html，使用th:utext可以显示markdown效果-->
+<p th:utext="${blog.content}"></p>
 </body>
 </html>

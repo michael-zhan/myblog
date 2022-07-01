@@ -7,6 +7,7 @@ import com.michael.mapper.*;
 import com.michael.pojo.*;
 import com.michael.service.BlogService;
 //import com.michael.util.MyUtils;
+import com.michael.util.MyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -300,20 +301,20 @@ public class BlogServiceImpl implements BlogService {
 //        return countDTO;
 //    }
 
-//    @Override
-//    public Blog getAndConvert(Integer published, Integer postType, Integer id) {
-//        Blog blog = this.getBlogByPublishedAndId(published,postType, id);
-//        if (blog == null) {
-//            return null;
-//        }
-//        Blog b = new Blog();
-//        BeanUtils.copyProperties(blog,b);
-//
-//        String content = b.getContent();
-//        b.setContent(MyUtils.markdownToHtmlExtensions(content));
-//
-//        return b;
-//    }
+    @Override
+    public Blog getAndConvert(Integer published, Integer postType, Integer id) {
+        Blog blog = this.getBlogByPublishedAndId(published,postType, id);
+        if (blog == null) {
+            return null;
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+
+        String content = b.getContent();
+        b.setContent(MyUtils.markdownToHtmlExtensions(content));
+
+        return b;
+    }
 
     @Override
     @CacheEvict(value= "blog", allEntries=true)

@@ -2,6 +2,7 @@ package com.michael.controller.admin;
 
 import com.michael.pojo.User;
 import com.michael.service.UserService;
+import com.michael.util.MD5Util;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,7 @@ public class LoginAndRegisterController {
         User user;
         if(username!=null&&password!=null
                 &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())) {
+            password= MD5Util.getMd5(password);
             user=userService.getUserByName(username);
             if (user != null&&user.getPassword().equals(password)) {
                 session.setAttribute("user",user);

@@ -1,6 +1,8 @@
 package com.michael.controller.home;
 
 import com.michael.model.dto.ResultVo;
+import com.michael.model.enums.BlogStatusEnum;
+import com.michael.model.enums.PostTypeEnum;
 import com.michael.pojo.Blog;
 import com.michael.pojo.Comment;
 import com.michael.pojo.User;
@@ -31,7 +33,9 @@ public class HomeArticleController {
      */
     @RequestMapping(value="/{blogId}", method=RequestMethod.GET)
     public String browse(@PathVariable("blogId") Integer blogId,Model model){
-        Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
+//        Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
+//        Blog blog = blogService.getAndConvert(BlogStatusEnum.PUBLISHED.getCode(),PostTypeEnum.POST_TYPE_POST.getCode(),postId);
+        Blog blog = blogService.getAndConvert(BlogStatusEnum.PUBLISHED.getCode(), PostTypeEnum.POST_TYPE_POST.getCode(),blogId);
         blogService.updateBlogView(blogId,blog.getViews()+1);
         if(blog!=null) {
 //            List<Comment> commentList = commentService.getCommentList(blogId);
