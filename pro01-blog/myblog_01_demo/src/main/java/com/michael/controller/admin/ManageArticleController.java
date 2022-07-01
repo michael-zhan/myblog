@@ -17,8 +17,14 @@ public class ManageArticleController {
     private BlogService blogService;
 
 
-//    @RequestMapping("/index")
-//    public String index(HttpSession session){
-//        User user=(User)session.getAttribute("user");
-//    }
+    /**
+     * 进入文章管理界面
+     * @param session
+     * @return
+     */
+    @RequestMapping("/index")
+    public String index(HttpSession session){
+        User user=(User)session.getAttribute("user");
+        return null;
+    }
 }

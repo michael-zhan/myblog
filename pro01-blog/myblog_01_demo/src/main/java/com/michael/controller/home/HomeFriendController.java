@@ -19,7 +19,7 @@ public class HomeFriendController {
 
     @Autowired
     private UserService userService;
-    
+
     /**
      * 进入好友管理界面
      * @return
