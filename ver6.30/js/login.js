@@ -7,7 +7,7 @@ window.onload = function(){
 	var pwdRegExp = /^(\w){6,20}$/;
 	var telRegExp = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 	var pwdElt1 = document.getElementById("pwd1");
-	var telElt = document.getElementById("tel");
+	var telElt = document.getElementById("tel1");
 	var pwdError = document.getElementById("pwdError");
 	var telError = document.getElementById("telError");
 
@@ -21,7 +21,7 @@ window.onload = function(){
 
 	fistForm.addEventListener("submit", (e) => e.preventDefault());
 	secondForm.addEventListener("submit", (e) => e.preventDefault());
-	telElt1.onblur = function(){
+	telElt.onblur = function(){
 		var tel = telElt.value;
 		var ok1 = telRegExp.test(tel);
 		if(!ok1){
