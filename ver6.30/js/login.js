@@ -5,11 +5,14 @@ window.onload = function(){
 	const secondForm = document.getElementById("form2");
 	const container = document.querySelector(".container");
 	var pwdRegExp = /^(\w){6,20}$/;
-	var telRegExp = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+	var telRegExp = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/;//修改为邮箱正则表达式
 	var pwdElt1 = document.getElementById("pwd1");
 	var telElt = document.getElementById("tel1");
 	var pwdError = document.getElementById("pwdError");
 	var telError = document.getElementById("telError");
+	// 新增：获取了页面几个对象
+	var signInBtn2 = document.getElementById("btn1");
+	var userElt = document.getElementById("userName");
 
 	signInBtn.addEventListener("click", () => {
 		container.classList.remove("right-panel-active");
@@ -25,7 +28,7 @@ window.onload = function(){
 		var tel = telElt.value;
 		var ok1 = telRegExp.test(tel);
 		if(!ok1){
-			telError.innerText = "输入的号码不存在";
+			telError.innerText = "输入的邮箱格式不合法";//修改了文字提示
 		}
 	}
 	telElt.onfocus = function (){
@@ -40,7 +43,7 @@ window.onload = function(){
 		var pwd = pwdElt1.value;
 		var ok2 = pwdRegExp.test(pwd);
 		if(!ok2){
-			pwdError.innerText = "密码不合法";
+			pwdError.innerText = "密码格式不合法";
 		}
 	}
 	pwdElt1.onfocus = function (){
@@ -50,6 +53,13 @@ window.onload = function(){
 		pwdError.innerText = "";
 	}
 
-
-
+	// 新增：点登录按钮验证格式
+	signInBtn2.onclick = function(){
+		if((pwdError.innerText == telError.innerText)&&(telElt.value!="")&&(pwdElt1.value!="")&&(userElt.value!="")){
+			// 做登录成功操作
+			alert("好好好");
+		}else{
+			alert("不合法");
+		}
+	}
 }
