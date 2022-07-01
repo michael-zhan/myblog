@@ -63,6 +63,7 @@ html, body {
 }
 
 .friend-box {
+  position:fixed;
   float: left;
   margin: 100px auto;
   background-color: rgba(0,0,0,0);
@@ -70,7 +71,6 @@ html, body {
   border-radius: 25px;
   padding: 20px;
 }
-
 
 
 

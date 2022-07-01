@@ -60,7 +60,8 @@
 }
 
 .request-box{
-  float: right;
+  position:fixed;
+  right: 15px;
   margin: 100px auto;
   background-color: rgba(0, 0, 0, 0);
   width: 20%;

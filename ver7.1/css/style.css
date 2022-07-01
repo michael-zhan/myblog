@@ -183,4 +183,18 @@ body {
   background-color: #ccc;
 }
 
-
+.btn-personal{
+  background-color:#777777;
+  position: relative;
+  float:right;
+  width: 50px;
+  height: 25px;
+}
+.btn-person{
+  background-color:#777777;
+  font-size: 12px;
+  position: relative;
+  float:fixed;
+  width: 50px;
+  height: 25px;
+}
