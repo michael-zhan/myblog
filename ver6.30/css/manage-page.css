@@ -14,10 +14,13 @@
   
   .list-group-item{
     border-width: 0px;
-    margin: 10px 20% 10px 10%;
-    
+    width: 80%;
+    margin: 10px auto;
     background-color: rgba(0, 0, 0,0);
     color: #191919;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; 
   }
   
   .list-group-item:hover{
@@ -31,4 +34,19 @@
   body {
     background: #e5ded8;
     box-sizing: border-box;
+  }
+
+  .btn-danger,.mybrowse,.mydate{
+    margin-right: 10px;
+  }
+
+  .myfooter{
+    float: right;
+  }
+  .mytitle{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    display: inline-block;
+    max-width: 50%;
   }
