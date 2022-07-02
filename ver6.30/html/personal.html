@@ -66,7 +66,6 @@
     <div class="wrap-center">
         <header class="header">
             <div class="avatar">
-                <div class=""></div>
                 <img src="../img/img_1.jpg">
             </div>
 
@@ -79,13 +78,41 @@
         <div class="about" id="about">
             <div class="copy-block">
                 <h2>个人详情</h2>
-                <p>个人详情展示</p>
+                <p id="info">个人详情展示</p>
                 <h2>个性签名</h2>
-                <p>个性签名展示</p>
+                <p id="signature">个性签名展示</p>
+                <a data-toggle="modal" data-target="#myModal" class="edit">编辑</a>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+   
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="color: black;">修改信息</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+   
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <span>个人详情</span><br>
+          <input type="text" id="userInfo"><br>
+            <span>个性签名</span><br>
+            <input type="text" id="userSignature">
+        </div>
+   
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary changeBtn" data-dismiss="modal">确定</button>
+        </div>
+   
+      </div>
+    </div>
+  </div>
 
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
