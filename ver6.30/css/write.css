@@ -16,3 +16,19 @@
     top: 10px;
     margin: 20px auto 10px 30px;
 }
+
+.filebox{
+    width: 50%;
+}
+
+.chosen{
+    
+    width: 50%;
+    margin:10px 0;
+}
+
+.chosen-container-single .chosen-single {
+    padding: 8px 0 5px 8px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+}
