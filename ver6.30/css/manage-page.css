@@ -21,3 +21,15 @@
     background-color: #bbb;
     cursor: pointer;
 }
+
+.switch-page{
+    margin: 30px auto;
+  }
+  
+  .pagination a,.page-item{
+    background-color:rgba(0, 0, 0, 0);
+  }
+  
+  .pagination a:hover, .pagination .active {
+    background-color: #bbb;
+  }
