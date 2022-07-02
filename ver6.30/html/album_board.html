@@ -2,13 +2,13 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <title>博客详情页</title>
+    <title>相册/留言板</title>
     <script src="https://cdn.staticfile.org/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="../css/album_board.css">
     <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -63,25 +63,60 @@
 </div>
 
 
-<div class="blog-box">
-    <h1>博客标题</h1>
-    <span class="blog-info"><span>2022-7-1</span>&nbsp;&nbsp;<span><img src="../img/browse.png">5</span></span>
-    <!-- 封面图 可有可不有 -->
-    <img src="../img/img_1.jpg" class="img-fluid mx-auto d-block" style="width: 60%; height: 60%; clear: both;">
+<div class="album-box">
+    <div id="album" class="carousel slide container" data-ride="carousel" data-interval="2000">
+ 
+        <!-- 指示符 -->
+        <ul class="carousel-indicators">
+          <li data-target="#album" data-slide-to="0" class="active"></li>
+          <li data-target="#album" data-slide-to="1"></li>
+          <li data-target="#album" data-slide-to="2"></li>
+        </ul>
+       
+        <!-- 轮播图片 -->
+        <div class="carousel-inner">
+          <div class="carousel-item active banner" style='background-image: url("../img/img_1.jpg");'>
+            <div class="carousel-caption">
+                <h3>第一张图片描述标题</h3>
+                <p>描述文字!</p>
+            </div>
+          </div>
+          <div class="carousel-item banner" style='background-image: url("../img/img_1.jpg");'>
+            <div class="carousel-caption">
+                <h3>第二张图片描述标题</h3>
+                <p>描述文字!</p>
+            </div>
+          </div>
+          <div class="carousel-item banner" style='background-image: url("../img/img_1.jpg");'>
+            <div class="carousel-caption">
+                <h3>第三张图片描述标题</h3>
+                <p>描述文字!</p>
+            </div>
+          </div>
+        </div>
+       
+        <!-- 左右切换按钮 -->
+        <a class="carousel-control-prev" href="#album" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#album" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+       
+    </div>
 
-    <p>博客内容<br> ipsum dolor sit amet consectetur adipisicing elit. Exercitationem facere nostrum quam nam! Nemo quas necessitatibus hic at neque aspernatur officia itaque, omnis modi quo velit molestiae. Rem, at enim. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis error odio tenetur? Laboriosam placeat omnis quia hic odit temporibus fugit ipsa, quaerat suscipit natus cupiditate impedit quidem necessitatibus eligendi cumque?
-    Tempora dicta laboriosam quas et. Mollitia sunt esse culpa consequuntur aperiam? Modi porro non eaque ullam eos architecto quisquam aliquam repellat sed cumque recusandae repellendus optio voluptatum deleniti, possimus ratione!
-    Tenetur dolore necessitatibus dolor voluptas incidunt sequi consequatur, quia molestiae nemo voluptates quasi deserunt blanditiis officia omnis odio! Aliquam eos recusandae alias rerum ducimus voluptate iure inventore nobis in itaque!
-    Dicta quia nemo eaque ex id incidunt aspernatur placeat deserunt ullam, delectus corporis magnam soluta quisquam corrupti repudiandae inventore, maxime, accusantium sed temporibus quo iusto eum consectetur! Tempore, voluptates dignissimos.
-    Eaque iste eius vero a excepturi iure quos aspernatur sint ut recusandae ea autem inventore assumenda impedit magni, hic quaerat exercitationem ipsa facilis veniam architecto dolores. Nam numquam animi soluta?</p>
+    <hr>
 
 </div>
+
+  
+
 
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
 <script src="../js/navbar.js"></script>
-
 
 </body>
 </html>
