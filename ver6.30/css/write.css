@@ -17,18 +17,28 @@
     margin: 20px auto 10px 30px;
 }
 
-.filebox{
-    width: 50%;
+.tag_group{
+    display: block;
+    float: left;
+    padding-left: 0px;
 }
 
-.chosen{
-    
-    width: 50%;
-    margin:10px 0;
+.cover_group{
+    display: block;
+    float: left;
+    position: relative;
+    bottom: 26px;
+    padding-right: 0px;
 }
 
-.chosen-container-single .chosen-single {
-    padding: 8px 0 5px 8px;
-    height: 40px;
-    background-color: rgb(255, 255, 255);
+.clear{
+    clear: both;
 }
+.btn_group{
+    margin-top: 20px;
+}
+
+
+
+
+
