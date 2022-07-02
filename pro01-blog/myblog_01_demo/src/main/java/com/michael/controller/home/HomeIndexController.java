@@ -39,7 +39,7 @@ public class HomeIndexController {
 
         User user = (User)session.getAttribute("user");
         if(user!=null&&user.getId()!=null) {
-            List<Blog> blogList = blogService.getByPage(user.getId(), p, 3, false);
+            List<Blog> blogList = blogService.getByPage(user.getId(), p, 3, false,null);
 
             pageCount = blogService.getCount(user.getId()) / 3 + 1;
 

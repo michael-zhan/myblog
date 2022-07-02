@@ -86,4 +86,6 @@ public interface TypeService {
      */
     PageInfo<Type> pageType(Integer pageIndex,Integer pageSize);
 
+    List<Type> getTypeList(List<Integer> typeIdList);
+
 }

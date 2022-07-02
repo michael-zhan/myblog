@@ -41,8 +41,9 @@ public class HomeAboutMeController {
      * @return
      */
     @RequestMapping("/aboutme/modify")
-    public String modifyInfo(User user){
+    public String modifyInfo(User user,HttpSession session){
         userService.updateUser(user);
+        session.setAttribute("user",user);
         return "personal";
     }
 }

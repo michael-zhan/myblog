@@ -22,7 +22,7 @@ import java.util.*;
 
 @Service
 @Slf4j
-@Transactional(propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class BlogServiceImpl implements BlogService {
 
     @Autowired(required = false)
@@ -67,6 +67,7 @@ public class BlogServiceImpl implements BlogService {
         }
         return count;
     }
+
     @Override
     public Integer countBlogView() {
         Integer count = 0;
@@ -107,7 +108,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     @Transactional(rollbackFor = Exception.class)
     public void updateBlogDetail(Blog blog) {
         blog.setUpdateTime(new Date());
@@ -125,19 +126,19 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void updateBlog(Blog blog) {
         blogMapper.update(blog);
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void deleteBlogBatch(List<Integer> ids) {
         blogMapper.deleteBatch(ids);
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void deleteBlog(Integer id) {
         blogMapper.deleteById(id);
         blogTagRefMapper.deleteByBlogId(id);
@@ -149,16 +150,16 @@ public class BlogServiceImpl implements BlogService {
         List<Blog> blogList = blogMapper.findAll(criteria);
         for (int i = 0; i < blogList.size(); i++) {
             //封装Type
-            if(blogList.get(i).getTypeId() != null){
+            if (blogList.get(i).getTypeId() != null) {
                 Type type = typeMapper.getTypeById(blogList.get(i).getTypeId());
                 blogList.get(i).setType(type);
             }
-            if(blogList.get(i).getId() != null){
+            if (blogList.get(i).getId() != null) {
                 List<Tag> tagList = blogTagRefMapper.listTagByBlogId(blogList.get(i).getId());
                 blogList.get(i).setTags(tagList);
                 blogList.get(i).init();
             }
-            if(blogList.get(i).getUserId() != null){
+            if (blogList.get(i).getUserId() != null) {
                 User user = userMapper.getUserById(blogList.get(i).getUserId());
                 blogList.get(i).setUser(user);
             }
@@ -167,20 +168,20 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Blog getBlogByPublishedAndId(Integer published,Integer postType, Integer id) {
+    public Blog getBlogByPublishedAndId(Integer published, Integer postType, Integer id) {
         System.out.println("===============getBlogByPublishedAndId执行一次============" + published + postType + id);
-        Blog blog = blogMapper.getBlogByPublishedAndId(published,postType, id);
+        Blog blog = blogMapper.getBlogByPublishedAndId(published, postType, id);
         if (blog != null) {
-            if(blog.getTypeId() != null){
+            if (blog.getTypeId() != null) {
                 Type type = typeMapper.getTypeById(blog.getTypeId());
                 blog.setType(type);
             }
-            if(blog.getId() != null){
+            if (blog.getId() != null) {
                 List<Tag> tagList = blogTagRefMapper.listTagByBlogId(blog.getId());
                 blog.setTags(tagList);
                 blog.init();
             }
-            if(blog.getUserId() != null){
+            if (blog.getUserId() != null) {
                 User user = userMapper.getUserById(blog.getUserId());
                 blog.setUser(user);
             }
@@ -197,13 +198,13 @@ public class BlogServiceImpl implements BlogService {
     @Override
     @Cacheable(value = "blog", key = "'afterBlog_published_' + #published + '_postType_' + #postType + '_id_' + #id")
     public Blog getAfterBlog(Integer published, Integer postType, Integer id) {
-        return blogMapper.getAfterBlog(published,postType,id);
+        return blogMapper.getAfterBlog(published, postType, id);
     }
 
     @Override
     @Cacheable(value = "blog", key = "'preBlog_published_' + #published + '_postType_' + #postType + '_id_' + #id")
     public Blog getPreBlog(Integer published, Integer postType, Integer id) {
-        return blogMapper.getPreBlog(published,postType,id);
+        return blogMapper.getPreBlog(published, postType, id);
     }
 
     @Override
@@ -217,7 +218,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void insertBlog(Blog blog) {
         //添加文章
         blog.setCreateTime(new Date());
@@ -234,7 +235,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void updateCommentCount(Integer blogId) {
         blogMapper.updateCommentCount(blogId);
     }
@@ -258,7 +259,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void resetCommentSize(Integer id) {
         blogMapper.updateCommentCount(id);
     }
@@ -271,18 +272,18 @@ public class BlogServiceImpl implements BlogService {
     @Override
     @Cacheable(value = "blog", key = "'blog_url_' + #url + '_postType_' + #postType")
     public Blog getBlogByUrl(String url, Integer postType) {
-        Blog blog =  blogMapper.getBlogByUrl(url, postType);
+        Blog blog = blogMapper.getBlogByUrl(url, postType);
         if (blog != null) {
-            if(blog.getTypeId() != null){
+            if (blog.getTypeId() != null) {
                 Type type = typeMapper.getTypeById(blog.getTypeId());
                 blog.setType(type);
             }
-            if(blog.getId() != null){
+            if (blog.getId() != null) {
                 List<Tag> tagList = blogTagRefMapper.listTagByBlogId(blog.getId());
                 blog.setTags(tagList);
                 blog.init();
             }
-            if(blog.getUserId() != null){
+            if (blog.getUserId() != null) {
                 User user = userMapper.getUserById(blog.getUserId());
                 blog.setUser(user);
             }
@@ -303,12 +304,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getAndConvert(Integer published, Integer postType, Integer id) {
-        Blog blog = this.getBlogByPublishedAndId(published,postType, id);
+        Blog blog = this.getBlogByPublishedAndId(published, postType, id);
         if (blog == null) {
             return null;
         }
         Blog b = new Blog();
-        BeanUtils.copyProperties(blog,b);
+        BeanUtils.copyProperties(blog, b);
 
         String content = b.getContent();
         b.setContent(MyUtils.markdownToHtmlExtensions(content));
@@ -317,13 +318,13 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void updateBlogView(Integer id, Integer views) {
         blogMapper.incrBlogViews(id, views);
     }
 
     @Override
-    @CacheEvict(value= "blog", allEntries=true)
+    @CacheEvict(value = "blog", allEntries = true)
     public void incrBlogLikes(Integer id) {
         blogMapper.incrBlogLikes(id);
     }
@@ -334,22 +335,41 @@ public class BlogServiceImpl implements BlogService {
         List<String> years = blogMapper.findGroupYear(userId);
         LinkedHashMap<String, List<Blog>> map = new LinkedHashMap<>();
         for (String year : years) {
-            map.put(year, blogMapper.findByYear(year,userId));
+            map.put(year, blogMapper.findByYear(year, userId));
         }
         return map;
     }
+
     @Override
-    public List<Blog> getByPage(Integer author, Integer page,Integer eachPageCount,boolean sign) {
-        Integer count=getCount(author);
-        Integer maxIndex=count/eachPageCount+1;
-        if(page<1||page>maxIndex){
+    public List<Blog> getByPage(Integer author, Integer page, Integer eachPageCount, boolean sign, Integer typeId) {
+        Integer count =null;
+        Integer maxIndex = null;
+
+        if(typeId!=null){
+            count=getCountLimitByTypeId(author,typeId);
+        }else {
+            count = getCount(author);
+        }
+        maxIndex = count / eachPageCount + 1;
+
+        if (page < 1 || page > maxIndex) {
             return null;
         }
-        if(sign==true) {
-            return blogMapper.selectWithLimit(author, (page - 1) * eachPageCount, eachPageCount);
+
+        if(typeId==null) {
+            if (sign == true) {
+                return blogMapper.selectWithPageLimit(author, (page - 1) * eachPageCount, eachPageCount);
+            } else {
+                Integer beginIndex = count - page * eachPageCount;
+                return blogMapper.selectWithPageLimitDesc(author, beginIndex, eachPageCount);
+            }
         }else{
-            Integer beginIndex=count-page*eachPageCount;
-            return blogMapper.selectWithLimitDesc(author,beginIndex,eachPageCount);
+            if (sign == true) {
+                return blogMapper.selectWithPageAndTypeLimit(author, (page - 1) * eachPageCount, eachPageCount,typeId);
+            } else {
+                Integer beginIndex = count - page * eachPageCount;
+                return blogMapper.selectWithPageAndTypeLimitDesc(author, beginIndex, eachPageCount,typeId);
+            }
         }
     }
 
@@ -359,26 +379,39 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public Integer getCountLimitByTypeId(Integer author, Integer typeId) {
+        return blogMapper.selectCountByAuthorAndTypeId(author,typeId);
+    }
+
+    @Override
     public Integer findAuthor(Integer id) {
         return blogMapper.selectAuthorById(id);
     }
 
     @Override
     public Blog getPrevOrNext(Integer blogId, boolean sign) {
-        if(getBlogByPublishedAndId(0,0,blogId)==null){
+        if (getBlogByPublishedAndId(0, 0, blogId) == null) {
             return null;
-        }else{
+        } else {
             Integer author = blogMapper.selectAuthorById(blogId);
-            Blog blog=null;
-            if(author!=null){
-                if(sign==true){
+            Blog blog = null;
+            if (author != null) {
+                if (sign == true) {
                     blog = blogMapper.selectNextById(author, blogId);
-                }else{
-                    blog=blogMapper.selectPrevById(author,blogId);
+                } else {
+                    blog = blogMapper.selectPrevById(author, blogId);
                 }
             }
             return blog;
         }
+    }
+
+    @Override
+    public List<Integer> getTypeIdList(Integer author) {
+        if (author != null) {
+            return blogMapper.selectTypeIdList(author);
+        }
+        return null;
     }
 
 }

@@ -3,6 +3,7 @@ package com.michael.controller.home;
 import com.michael.pojo.Blog;
 import com.michael.pojo.User;
 import com.michael.service.BlogService;
+import com.michael.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ public class HomeArchiveController {
 
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private TypeService typeService;
 
 
     /**进入归档界面
@@ -24,19 +27,27 @@ public class HomeArchiveController {
      * @param session
      * @return
      */
-    @RequestMapping(value={"/archive/{pageIndex}","/archive"})
-    public String archives(Model model, @PathVariable(required = false)String pageIndex, HttpSession session){
+    @RequestMapping(value={"/archive/{pageIndex}","/archive","/archive/{typeId}"})
+    public String archives(Model model, @PathVariable(required = false)String pageIndex, @PathVariable(required = false) Integer typeId,HttpSession session){
         if(pageIndex==null||pageIndex.equals("")){
             pageIndex="1";
         }
         Integer p=Integer.parseInt(pageIndex);
         Integer pageCount=1;
 
+        List<Blog> blogList=null;
         User user=(User)session.getAttribute("user");
         if(user!=null&&user.getId()!=null) {
-            List<Blog> blogList = blogService.getByPage(user.getId(), p, 5, false);
+            if(typeId!=null){
+                if(typeService.getTypeById(typeId)!=null){
+                    blogList=blogService.getByPage(user.getId(), p,5,false,typeId);
+                    pageCount=blogService.getCountLimitByTypeId(user.getId(),typeId)/5+1;
+                }
+            }else {
+                blogList = blogService.getByPage(user.getId(), p, 5, false,null);
+                pageCount = blogService.getCount(user.getId()) / 5 + 1;
+            }
 
-            pageCount = blogService.getCount(user.getId()) / 3 + 1;
 
             if (blogList != null) {
                 Blog blog1 = blogList.get(0);

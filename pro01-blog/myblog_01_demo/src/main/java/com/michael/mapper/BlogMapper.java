@@ -242,22 +242,40 @@ public interface BlogMapper {
     List<Blog> findByYear(String year,Integer userId);
 
     /**
-     * limit限制查询文章
+     * pagelimit限制查询文章
      * 正序
      * @param author
      * @param limit
      * @return
      */
-    List<Blog> selectWithLimit(Integer author,Integer limit,Integer eachPageCount);
+    List<Blog> selectWithPageLimit(Integer author,Integer limit,Integer eachPageCount);
 
     /**
-     * limit限制查询文章
+     * pagelimit限制查询文章
      * 倒序
      * @param author
      * @param limit
      * @return
      */
-    List<Blog> selectWithLimitDesc(Integer author,Integer limit,Integer eachPageCount);
+    List<Blog> selectWithPageLimitDesc(Integer author,Integer limit,Integer eachPageCount);
+
+    /**
+     * pageAndtypelimit限制查询文章
+     * 正序
+     * @param author
+     * @param limit
+     * @return
+     */
+    List<Blog> selectWithPageAndTypeLimit(Integer author,Integer limit,Integer eachPageCount,Integer typeId);
+
+    /**
+     * pageAndtypelimit限制查询文章
+     * 倒序
+     * @param author
+     * @param limit
+     * @return
+     */
+    List<Blog> selectWithPageAndTypeLimitDesc(Integer author,Integer limit,Integer eachPageCount,Integer typeId);
 
     /**
      * 根据作者返回文章总数
@@ -265,6 +283,14 @@ public interface BlogMapper {
      * @return
      */
     Integer selectCountByAuthor(Integer author);
+
+    /**
+     * 根据作者和type_id返回文章总数
+     * @param author
+     * @param typeId
+     * @return
+     */
+    Integer selectCountByAuthorAndTypeId(Integer author,Integer typeId);
 
     /**
      * 根据id返回作者
@@ -276,4 +302,6 @@ public interface BlogMapper {
     Blog selectPrevById(Integer author,Integer id);
 
     Blog selectNextById(Integer author,Integer id);
+
+    List<Integer> selectTypeIdList(Integer author);
 }

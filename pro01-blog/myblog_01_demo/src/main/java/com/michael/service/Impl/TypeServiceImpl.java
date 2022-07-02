@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -146,5 +147,17 @@ public class TypeServiceImpl implements TypeService {
             typeList.get(i).setBlogCount(count);
         }
         return new PageInfo<>(typeList, 5);
+    }
+
+    @Override
+    public List<Type> getTypeList(List<Integer> typeIdList) {
+        List<Type> typeList=new ArrayList<>();
+        for(Integer id:typeIdList){
+            Type type = getTypeById(id);
+            if(type!=null){
+                typeList.add(type);
+            }
+        }
+        return typeList;
     }
 }

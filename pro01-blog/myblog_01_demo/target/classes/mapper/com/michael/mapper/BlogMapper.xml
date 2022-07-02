@@ -459,17 +459,32 @@
     select * from t_blog b where DATE_FORMAT(b.updateTime,'%Y') = #{arg0} and b.user_id=#{arg1}
   </select>
 
-  <select id="selectWithLimit" resultMap="BaseResultMap">
+  <select id="selectWithPageLimit" resultMap="BaseResultMap">
     select *
     from t_blog
     where user_id=#{arg0}
       limit #{arg1},#{arg2}
   </select>
 
+  <select id="selectWithPageAndTypeLimit" resultMap="BaseResultMap">
+    select *
+    from t_blog
+    where user_id=#{arg0}
+    and type_id=#{arg3}
+    limit #{arg1},#{arg2}
+  </select>
+
   <select id="selectCountByAuthor" resultType="java.lang.Integer">
     select count(*)
     from t_blog
     where user_id=#{author}
+  </select>
+
+  <select id="selectCountByAuthorAndTypeId" resultType="java.lang.Integer">
+    select count(*)
+    from t_blog
+    where user_id=#{arg0}
+    and type_id=#{arg1}
   </select>
 
   <select id="selectAuthorById" resultType="java.lang.Integer">
@@ -492,11 +507,28 @@
     id &lt;=&gt; min(select id from t_blog where user_id=#{arg0} and id&gt;#{arg1})
   </select>
 
-  <select id="selectWithLimitDesc" resultMap="BaseResultMap">
+  <select id="selectWithPageLimitDesc" resultMap="BaseResultMap">
     select *
     from t_blog
     where user_id=#{arg0}
     order by id desc
     limit #{arg1},#{arg2}
   </select>
+
+  <select id="selectWithPageAndTypeLimitDesc" resultMap="BaseResultMap">
+    select *
+    from t_blog
+    where user_id=#{arg0}
+    and type_id=#{arg3}
+    order by id desc
+    limit #{arg1},#{arg2}
+  </select>
+
+  <select id="selectTypeIdList" resultType="java.lang.Integer">
+    select  distinct type_id
+    from t_blog
+    where user_id=#{author}
+  </select>
+
+
 </mapper>

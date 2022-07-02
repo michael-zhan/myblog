@@ -87,7 +87,7 @@ public class HomeFriendController {
     public String browseFriendRoom(@PathVariable Integer friendId,Model model) {
         User friend = userService.getUserById(friendId);
         if (friend != null) {
-            return "friendRoomIndex";
+            return "redirect:/friendRoomIndex";
         }
         return "redirect:/friend/index";
     }

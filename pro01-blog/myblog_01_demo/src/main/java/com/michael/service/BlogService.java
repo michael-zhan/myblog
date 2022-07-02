@@ -265,20 +265,29 @@ public interface BlogService {
     /**
      * 根据页码和每页的文章数查询文章
      * sign为true则正序，为false则倒序
+     * typeId为null则不限制
      * @param author
      * @param page
      * @param eachPageCount
      * @param sign
+     * @param typeId
      * @return
      */
-    List<Blog> getByPage(Integer author,Integer page,Integer eachPageCount,boolean sign);
+    List<Blog> getByPage(Integer author,Integer page,Integer eachPageCount,boolean sign,Integer typeId);
 
     /**
-     * 返回文章列表页数
+     * 返回文章数
      * @param author
      * @return
      */
     Integer getCount(Integer author);
+
+    /**
+     * 返回文章数
+     * @param author
+     * @return
+     */
+    Integer getCountLimitByTypeId(Integer author,Integer typeId);
 
     /**
      * 查询作者
@@ -292,4 +301,11 @@ public interface BlogService {
      * sign为true则下一篇，false则上一篇
      */
     Blog getPrevOrNext(Integer blogId,boolean sign);
+
+    /**
+     * 查询作者所有文章的type列表
+     */
+    List<Integer> getTypeIdList(Integer author);
+
+
 }
