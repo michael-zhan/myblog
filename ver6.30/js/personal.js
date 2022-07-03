@@ -26,15 +26,16 @@ $(document).ready(function(){
     });
 
     $(".copy-block a").click(function(){
-        $("#userInfo").attr("value",$("#info").text());
-        $("#userSignature").attr("value",$("#signature").text());
+        $("#userInfo").val($("#info").text());
+        $("#userSignature").val($("#signature").text());
+        $("#userName").val($("#name").text());
     });
 
     $(".changeBtn").click(function(){
         
-        $("#info").text($("#userInfo").attr("value"));
-        alert($("#userInfo").attr("value"));
-        $("#signature").text($("#userSignature").attr("value"));
+        $("#info").text($("#userInfo").val());
+        $("#signature").text($("#userSignature").val());
+        $("#name").text($("#userName").val());
     });
   });
   

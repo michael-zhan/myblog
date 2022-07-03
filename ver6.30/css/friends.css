@@ -7,6 +7,14 @@
 }
 
 .newfriend-box{
+  margin: 10px auto;
+  background-color: #ccc;
+  width: 70%;
+  border-radius: 25px;
+  padding-bottom: 10px;
+}
+
+.recommendfriend-box{
   margin: 10px auto 30px auto;
   background-color: #ccc;
   width: 70%;
@@ -47,4 +55,12 @@
   top: 10px;
   margin: 20px auto 10px 30px;
   color: dimgrey;
+}
+
+.searchbar{
+  width: 50%;
+  margin-left: 5%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  background-color: #ccc;
 }
