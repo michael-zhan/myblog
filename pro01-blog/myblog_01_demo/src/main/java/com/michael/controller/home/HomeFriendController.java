@@ -1,8 +1,12 @@
 package com.michael.controller.home;
 
 import com.michael.model.dto.ResultVo;
+import com.michael.model.enums.EachPageCount;
+import com.michael.pojo.Comment;
 import com.michael.pojo.Notice;
 import com.michael.pojo.User;
+import com.michael.service.BlogService;
+import com.michael.service.CommentService;
 import com.michael.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,23 +23,46 @@ public class HomeFriendController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private BlogService blogService;
 
     /**
      * 进入好友管理界面
      * @return
      */
-    @RequestMapping("/index")
-    public String index(Model model,HttpSession session){
+    @RequestMapping(value={"/index","/index/{friendPageIndex}/{noticePageIndex}"})
+    public String index(Model model,HttpSession session,
+                        @PathVariable(value = "friendPageIndex",required = false) String friendPageIndex,
+                        @PathVariable(value = "requestPageIndex",required = false) String noticePageIndex){
         User user=(User)session.getAttribute("user");
+        if(friendPageIndex==null)friendPageIndex="1";
+        if(noticePageIndex==null)noticePageIndex="1";
 
-        List<Notice> noticeList = userService.getNoticeList(user.getId());
-        List<User> userList=userService.getFriendList(user.getId());
+        List<Notice> noticeListAll =null;
+        List<User> friendListAll=null;
+        if(user!=null) {
+            noticeListAll=userService.getNoticeList(user.getId());
+            friendListAll=userService.getFriendList(user.getId());
+        }
 
-        model.addAttribute("userList",userList);
-        model.addAttribute("noticeList",noticeList);
+        Integer fCount=friendListAll.size()/ EachPageCount.EACH_PAGE_COUNT_FRIEND+1;
+        Integer nCount=noticeListAll.size()/EachPageCount.EACH_PAGE_COUNT_NOTICE+1;
+        Integer f=Integer.parseInt(friendPageIndex);
+        Integer n=Integer.parseInt(noticePageIndex);
 
+//        List<Notice> noticeList =null;
+//        List<User> friendList=null;
+
+
+        model.addAttribute("friendPageCount",fCount);
+        model.addAttribute("noticePageCount",nCount);
+        model.addAttribute("friendPageIndex",f);
+        model.addAttribute("noticePageIndex",n);
+        model.addAttribute("friendList",friendListAll);
+        model.addAttribute("noticeList",noticeListAll);
         return "friends";
-
     }
 
     /**
@@ -80,14 +107,14 @@ public class HomeFriendController {
     /**
      * 进入好友空间
      * @param friendId
-     * @param model
      * @return
      */
     @RequestMapping(value="/browseFriendRoom/{friendId}")
-    public String browseFriendRoom(@PathVariable Integer friendId,Model model) {
+    public String browseFriendRoom(@PathVariable Integer friendId,HttpSession session) {
         User friend = userService.getUserById(friendId);
         if (friend != null) {
-            return "redirect:/friendRoomIndex";
+            session.setAttribute("friend",friend);
+            return "redirect:/friendRoom";
         }
         return "redirect:/friend/index";
     }

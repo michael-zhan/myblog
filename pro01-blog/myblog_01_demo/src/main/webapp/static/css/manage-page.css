@@ -1,15 +1,35 @@
 .manage-box{
     margin: 100px auto;
     background-color: #ccc;
-    width: 60%;
+    width: 70%;
     border-radius: 25px;
     padding-bottom: 10px;
 }
+.table{
+    table-layout: fixed;
+    width: 90%;
+    margin: 30px auto 10px auto;
+}
   
-.t_title{
-    width: 30%;
+.t_title,.t_head{
+    width: 50%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden; 
-    display: inline-block;
 }
+.t_title:hover{
+    background-color: #bbb;
+    cursor: pointer;
+}
+
+.switch-page{
+    margin: 30px auto;
+  }
+  
+  .pagination a,.page-item{
+    background-color:rgba(0, 0, 0, 0);
+  }
+  
+  .pagination a:hover, .pagination .active {
+    background-color: #bbb;
+  }

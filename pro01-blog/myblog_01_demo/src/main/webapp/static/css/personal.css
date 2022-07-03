@@ -106,7 +106,7 @@ i {
 }
 .header .hello-h1 {
     display: block;
-    cursor: pointer;
+    /* cursor: pointer; */
     font-size: 2.2em;
     margin-bottom: 25px;
     font-weight: 700;
@@ -236,4 +236,11 @@ i {
     line-height: 1.7;
     font-weight: bold;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+.edit{
+    float: right;
+}
+.edit:hover{
+    cursor: pointer;
 }

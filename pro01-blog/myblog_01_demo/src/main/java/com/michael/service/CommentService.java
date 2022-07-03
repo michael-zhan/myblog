@@ -1,6 +1,7 @@
 package com.michael.service;
 
 import com.github.pagehelper.PageInfo;
+import com.michael.pojo.Blog;
 import com.michael.pojo.Comment;
 
 
@@ -36,4 +37,19 @@ public interface CommentService {
 
     // 查询最新评论
     List<Comment> getCommentLimit(Integer limit);
+
+    /**
+     * 根据页码和每页的留言数查询留言
+     * @param master
+     * @param page
+     * @param eachPageCount
+     */
+    List<Comment> getByPage(Integer master, Integer page, Integer eachPageCount);
+
+    /**
+     * 返回留言数
+     * @param master
+     * @return
+     */
+    Integer getCount(Integer master);
 }

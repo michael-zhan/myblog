@@ -1,103 +1,66 @@
-html, body {
-  font-family: sans-serif;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
-/* .blog-box{
-  margin: 100px auto;
+.friend-box{
+  margin: 100px auto 10px auto;
   background-color: #ccc;
-  width: 30%;
+  width: 70%;
   border-radius: 25px;
   padding-bottom: 10px;
-} */
-
-/* #friend-list { 
-  float: left;
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 300px;
-  height: 100%;
-  background: #EEE;
-  list-style-type: none;
-} */
-
-.friend {
-  width: 200x;
-  height: 60px;
-  background: #EEE;
-  border-bottom: 1px solid #DDD;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 20px;
 }
 
-/* .friend img {
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
-  border: 2px solid #AAA;
-  object-fit: cover;
-  margin-left: 5px;
-  margin-right: 10px;
-} */
-
-.friend .name {
-  font-size: 18px;
-}
-
-.friend.selected {
-  background: #a9aca9;
-  color: white;
-}
-
-.friend.selected img {
-  border-color: white;
-}
-
-.friend:not(.selected):hover {
-  background: #DDD;
-}
-
-.friend-box {
-  float: left;
-  margin: 100px auto;
-  background-color: rgba(0,0,0,0);
-  width: 20%;
+.newfriend-box{
+  margin: 10px auto;
+  background-color: #ccc;
+  width: 70%;
   border-radius: 25px;
-  padding: 20px;
+  padding-bottom: 10px;
 }
 
-
-
-
-/* 
-.friend img {
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
-  border: 2px solid #AAA;
-  object-fit: cover;
-  margin-left: 5px;
-  margin-right: 10px;
+.recommendfriend-box{
+  margin: 10px auto 30px auto;
+  background-color: #ccc;
+  width: 70%;
+  border-radius: 25px;
+  padding-bottom: 10px;
+}
+.table{
+  table-layout: fixed;
+  width: 90%;
+  margin: 10px auto;
 }
 
-.friend .name {
-  font-size: 18px;
+.t_title,.t_head{
+  width: 50%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+}
+.t_title:hover{
+  background-color: #bbb;
+  cursor: pointer;
 }
 
-.friend.selected {
-  background: #a9aca9;
-  color: white;
+.switch-page{
+  margin: 10px auto;
 }
 
-.friend.selected img {
-  border-color: white;
+.pagination a,.page-item{
+  background-color:rgba(0, 0, 0, 0);
 }
 
-.friend:not(.selected):hover {
-  background: #DDD;
-} */
+.pagination a:hover, .pagination .active {
+  background-color: #bbb;
+}
+
+.title{
+  position: relative;
+  top: 10px;
+  margin: 20px auto 10px 30px;
+  color: dimgrey;
+}
+
+.searchbar{
+  width: 50%;
+  margin-left: 5%;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  background-color: #ccc;
+}

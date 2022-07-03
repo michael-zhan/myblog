@@ -28,20 +28,21 @@ public class HomeArticleController {
 
 
 
-    /**
-     * 进入文章管理界面
-     * @param session
-     * @return
-     */
-    @RequestMapping("/manage")
-    public String index(HttpSession session){
-        User user=(User)session.getAttribute("user");
-        return "manage-page";
-    }
+//    /**
+//     * 进入文章管理界面
+//     * @param session
+//     * @return
+//     */
+//    @RequestMapping("/manage")
+//    public String index(HttpSession session){
+//        User user=(User)session.getAttribute("user");
+//        return "redirect:/manage/1";
+//    }
 
     /**
-     * 进入查看文章界面
+     * 进入文章详情界面
      * @param blogId
+     * @param sign 是否增加浏览数
      * @param model
      * @return
      */
@@ -68,27 +69,28 @@ public class HomeArticleController {
      */
     @RequestMapping(value = "/toadd")
     public String toAdd(){
-        return "edit";
+        return "write";
     }
 
     /**
      * 保存文章
-     * 这里有bug
      * @return
      */
     @RequestMapping("/save")
-    public String add(Blog blog,Model model){
+    public String add(Blog blog){
         if(blog!=null) {
             blogService.insertBlog(blog);
         }
-        Blog b=null;
-        if(blog.getId()!=null) {
-            b = blogService.getBlogByPublishedAndId(0, 0, blog.getId());
-            model.addAttribute("blog",b);
-        }else{
-            return null;
-        }
-        return "redirect:/article/"+b.getId().toString()+"/0";
+        return "redirect:/index";
+    }
+
+    /**
+     * 保存取消
+     * @return
+     */
+    @RequestMapping("/cancel")
+    public String cancel(){
+        return "redirect:/index";
     }
 
     /**
@@ -155,6 +157,7 @@ public class HomeArticleController {
 
     /**
      * 下一篇文章
+     * blogId为当前文章ID
      * @param blogId
      * @return
      */

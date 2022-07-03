@@ -14,7 +14,7 @@ public interface UserService {
      *
      * @return 用户列表
      */
-    List<User> listUser();
+    List<User> listUser(Integer userId);
 
     /**
      * 根据id查询用户信息

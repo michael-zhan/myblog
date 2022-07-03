@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
      * @return List<User>
      */
     @Override
-    public List<User> listUser() {
+    public List<User> listUser(Integer userId) {
         List<User> userList = userMapper.listUser();
         for (int i = 0; i < userList.size(); i++) {
             Integer blogCount = blogMapper.countBlogByUser(userList.get(i).getId());
@@ -124,11 +124,11 @@ public class UserServiceImpl implements UserService {
         for(Integer friendId:friendListStr){
             User friend=userMapper.getUserById(friendId);
             if(friend!=null){
+                Integer blogCount = blogMapper.countBlogByUser(friend.getId());
+                friend.setBlogCount(blogCount);
                 friendList.add(friend);
             }
         }
-
-
         return friendList;
     }
 

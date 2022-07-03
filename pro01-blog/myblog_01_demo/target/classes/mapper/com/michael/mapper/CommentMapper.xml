@@ -155,4 +155,18 @@
         </trim>
     </select>
 
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*)
+        from t_comment
+        where blog_id=#{master}
+    </select>
+
+    <select id="selectWithPageLimitDesc" resultMap="BaseResultMap">
+        select *
+        from t_comment
+        where blog_id=#{arg0}
+        order by id desc
+            limit #{arg1},#{arg2}
+    </select>
+
 </mapper>

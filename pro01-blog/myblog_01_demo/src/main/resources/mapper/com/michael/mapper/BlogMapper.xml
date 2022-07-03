@@ -340,7 +340,7 @@
   <select id="countBlogByUser" parameterType="Integer" resultType="Integer">
     SELECT COUNT(*)
     FROM
-    <include refid="tb"/>
+    t_blog
     WHERE user_id=#{id} AND published = 0 AND posttype = 0
   </select>
 

@@ -2,6 +2,7 @@ package com.michael.controller.admin;
 
 import com.michael.pojo.User;
 import com.michael.service.UserService;
+import com.michael.util.MD5Util;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,18 @@ public class LoginAndRegisterController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 进入登录界面
+     * @param model
+     * @return
+     */
     @RequestMapping("/tologin")
     public String index(Model model){
       return "login";
     }
 
     /**
-     * 进入注册界面
+     * 注册验证
      * @param user
      * @param code
      * @param session
@@ -40,13 +46,14 @@ public class LoginAndRegisterController {
        if(isLeaglStr(user.getUsername(),user.getPassword(),user.getEmail(),code)
                &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())
                &&userService.getUserByEmail(user.getEmail())==null) {
+           user.setPassword(MD5Util.getMd5(user.getPassword()));
            userService.insertUser(user);
        }
         return "login";
     }
 
     /**
-     * 进入登录界面
+     * 登录验证
      * @param username
      * @param password
      * @param session
@@ -59,7 +66,7 @@ public class LoginAndRegisterController {
         User user;
         if(username!=null&&password!=null) {
             user=userService.getUserByName(username);
-            if (user != null&&user.getPassword().equals(password)) {
+            if (user != null&&user.getPassword().equals(MD5Util.getMd5(password))) {
                 session.setAttribute("user",user);
                 return "redirect:/index";
             }

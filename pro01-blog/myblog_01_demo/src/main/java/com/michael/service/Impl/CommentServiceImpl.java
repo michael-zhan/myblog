@@ -70,7 +70,7 @@ public class CommentServiceImpl implements CommentService {
     public Comment insertComment(Comment comment) {
         comment.setCreateTime(new Date());
         commentMapper.insertComment(comment);
-        blogMapper.updateCommentCount(comment.getBlogId());
+//        blogMapper.updateCommentCount(comment.getBlogId());
 
         return comment;
     }
@@ -83,7 +83,7 @@ public class CommentServiceImpl implements CommentService {
             //1.删除评论
             commentMapper.deleteById(commentId);
             //2.修改文章的评论数量
-            blogMapper.updateCommentCount(comment.getBlogId());
+//            blogMapper.updateCommentCount(comment.getBlogId());
         }
     }
 
@@ -124,6 +124,22 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getCommentLimit(Integer limit) {
         return commentMapper.findLatestCommentByLimit(limit);
+    }
+
+    @Override
+    public List<Comment> getByPage(Integer master, Integer page, Integer eachPageCount) {
+        Integer count=getCount(master);
+        Integer maxIndex=count/eachPageCount+1;
+        if(count==null||count==0||page<1||page>maxIndex){
+            return null;
+        }
+        Integer beginIndex = count - page * eachPageCount;
+        return commentMapper.selectWithPageLimitDesc(master,beginIndex,eachPageCount);
+    }
+
+    @Override
+    public Integer getCount(Integer master) {
+        return commentMapper.selectCount(master);
     }
 
     /**

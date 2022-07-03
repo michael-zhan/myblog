@@ -1,0 +1,45 @@
+#writebox{
+    margin: 100px auto;
+    background-color: #ccc;
+    width: 70%;
+    border-radius: 25px;
+    padding-bottom: 10px;
+}
+
+#mdbox{
+    margin: 20px auto;
+    width: 90%;
+}
+
+#title{
+    position: relative;
+    top: 10px;
+    margin: 20px auto 10px 30px;
+    color: dimgrey;
+}
+
+.tag_group{
+    display: block;
+    float: left;
+    padding-left: 0px;
+}
+
+.cover_group{
+    display: block;
+    float: left;
+    position: relative;
+    bottom: 26px;
+    padding-right: 0px;
+}
+
+.clear{
+    clear: both;
+}
+.btn_group{
+    margin-top: 20px;
+}
+
+
+
+
+

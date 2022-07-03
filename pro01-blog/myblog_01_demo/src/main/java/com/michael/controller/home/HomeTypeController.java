@@ -23,13 +23,20 @@ public class HomeTypeController {
     private BlogService blogService;
 
 
-
+    /**
+     * 进入分类页面
+     * 显示全部分类
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("/type")
     public String typeIndex(HttpSession session, Model model){
         User user=(User)session.getAttribute("user");
+        List<Type> typeList=null;
         if(user!=null&&user.getId()!=null) {
             List<Integer> typeIdList = blogService.getTypeIdList(user.getId());
-            List<Type> typeList = typeService.getTypeList(typeIdList);
+            typeList = typeService.getTypeList(typeIdList);
 
             if (typeList != null) {
                 Type type1 = typeList.get(0);
@@ -69,9 +76,16 @@ public class HomeTypeController {
                 }
             }
         }
+
+        model.addAttribute("typeList",typeList);
         return "timeline";
     }
 
+    /**
+     * 查看某一类型的文章
+     * @param typeId
+     * @return
+     */
     @RequestMapping("/type/{typeId}")
     public String typeIndex(@PathVariable Integer typeId){
         return "redirect:/archive/"+typeId.toString();

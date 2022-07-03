@@ -91,4 +91,8 @@ public interface CommentMapper {
      * @return
      */
     List<Comment> selectByIds(@Param("ids") List<Integer> ids);
+
+    List<Comment> selectWithPageLimitDesc(Integer master,Integer beginIndex,Integer eachPageCount);
+
+    Integer selectCount(Integer master);
 }
