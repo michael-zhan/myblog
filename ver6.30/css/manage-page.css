@@ -1,35 +1,41 @@
-.manage-box{
-    margin: 100px auto;
-    background-color: #ccc;
-    width: 70%;
-    border-radius: 25px;
-    padding-bottom: 10px;
-}
-.table{
-    table-layout: fixed;
-    width: 90%;
-    margin: 30px auto 10px auto;
-}
-  
-.t_title,.t_head{
-    width: 50%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden; 
-}
-.t_title:hover{
-    background-color: #bbb;
-    cursor: pointer;
+.manage-box {
+  margin: 100px auto;
+  background-color: #ccc;
+  width: 70%;
+  border-radius: 25px;
+  padding-bottom: 10px;
 }
 
-.switch-page{
-    margin: 30px auto;
-  }
-  
-  .pagination a,.page-item{
-    background-color:rgba(0, 0, 0, 0);
-  }
-  
-  .pagination a:hover, .pagination .active {
-    background-color: #bbb;
-  }
+.table {
+  table-layout: fixed;
+  width: 90%;
+  margin: 30px auto 10px auto;
+}
+
+.t_title,
+.t_head {
+  width: 50%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.t_title:hover {
+  background-color: #bbb;
+  cursor: pointer;
+}
+
+.switch-page {
+  margin: 30px auto;
+}
+
+.pagination a,
+.page-item {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.pagination a:hover,
+.pagination .active {
+  background-color: #bbb;
+}
+
