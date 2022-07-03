@@ -73,8 +73,7 @@
   </update>
 
   <!--用户列表查询-->
-  <select id="listUser" parameterType="com.michael.pojo.User"
-          resultType="com.michael.pojo.User">
+  <select id="listUser" resultType="com.michael.pojo.User">
     SELECT
     <include refid="Base_Column_List"/>
     FROM

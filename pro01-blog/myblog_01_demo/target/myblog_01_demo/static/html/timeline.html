@@ -1,0 +1,158 @@
+<head xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <title>归档</title>
+    <script src="https://cdn.staticfile.org/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/timeline.css">
+
+</head>
+<body>
+
+<!--导航栏-->
+<div class="navigation-wrap bg-light start-header start-style">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-md navbar-light">
+
+                    <a class="navbar-brand" href="void(0)" target="_blank">hyzzz_blog</a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto py-4 py-md-0">
+                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link" href="./homepage.html">主页</a>
+                          </li>
+                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link" href="./tag.html">分类</a>
+                          </li>
+                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link" href="./timeline.html">归档</a>
+                          </li>
+                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link" href="./friends.html">好友</a>
+                          </li>
+                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="./manage-page.html">博客</a>
+                                <a class="dropdown-item" href="./manage-message.html">留言板</a>
+                                <a class="dropdown-item" href="./manage-album.html">相册</a>
+                            </div>
+                          </li>
+                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link" href="./write.html">发布</a>
+                          </li>
+                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                            <a class="nav-link dropdown-toggle" href="./personal.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="./personal.html">个人信息</a>
+                                    <a class="dropdown-item" href="./album_board.html">留言板/相册</a>
+                                    <a class="dropdown-item" href="./login.html">注销</a>
+                                </div>
+                          </li>
+                        </ul>
+                      </div>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--时间轴内容-->
+<div class="timeline-box">
+    <div class="doc-container m-padded-tb-massivex m-opacity">
+        <th:block >
+            <section class="timeline">
+                <ul>
+                    <li class="" th:each="blog : ${blogs}">
+                        <div>
+                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/01</time>
+                            <div class="scientist" >
+                                <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog.title}">文章标题1</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+    
+    
+                    <li class="" th:each="blog : ${blogs}">
+                        <div>
+                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/02</time>
+                            <div class="scientist" >
+                                <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog.title}">文章标题2</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+    
+                    <li class="" th:each="blog : ${blogs}">
+                        <div>
+                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/03</time>
+                            <div class="scientist" >
+                                <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog.title}">文章标题3</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="" th:each="blog : ${blogs}">
+                        <div>
+                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022/06/29</time>
+                            <div class="scientist" >
+                                <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog.title}">文章标题4</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="" th:each="blog : ${blogs}">
+                        <div>
+                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022/06/29</time>
+                            <div class="scientist" >
+                                <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog.title}">文章标题6</h3>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+    
+    
+    
+                </ul>
+            </section>
+        </th:block>
+    </div>
+    <div class="switch-page">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<script src="../css/navbar.css"></script>
+<script src="../js/timeline.js"></script>
+
+</body>
+</html>

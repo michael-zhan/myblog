@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>登录/注册</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	<link rel="stylesheet" href="../css/login.css">
+	<link rel="stylesheet" th:href="@{/static/css/login.css}">
 
 </head>
 <body>
@@ -12,12 +12,12 @@
 <div class="container right-panel-active">
 	<!-- Sign Up -->
 	<div class="container__form container--signup">
-		<form action="#" class="form" id="form1">
+		<form th:action="@{/register}" class="form" id="form1">
 			<h2 class="form__title">注册</h2>
-			<input type="text" id="tel1" placeholder="邮箱" class="input" />
+			<input name="email" type="text" id="tel1" placeholder="邮箱" class="input" />
 			<span id="telError" style="color: red;"></span>
-			<input id="userName" type="text" placeholder="用户名" class="input" />
-			<input type="password" placeholder="密码" class="input" id="pwd1"/>
+			<input name="username" id="userName" type="text" placeholder="用户名" class="input" />
+			<input name="password" type="password" placeholder="密码" class="input" id="pwd1"/>
 			<span id="pwdError" style="color: red;"></span>
 			<span><input type="text" id="code" placeholder="验证码" class="input"/>&nbsp;<img src="" alt="验证码"></span>
 			<input class="btn" id="btn1" type="submit" value="注册"></button>
@@ -26,10 +26,10 @@
 
 	<!-- Sign In -->
 	<div class="container__form container--signin">
-		<form action="#" class="form" id="form2">
+		<form th:action="@{/login}" class="form" id="form2">
 			<h2 class="form__title">登录</h2>
-			<input type="text" id="tel2" placeholder="邮箱" class="input" />
-			<input type="password" id="pwd2" placeholder="密码" class="input"/>
+			<input name="username" type="text" id="tel2" placeholder="邮箱" class="input" />
+			<input name="password" type="password" id="pwd2" placeholder="密码" class="input"/>
 			<span id="pwdWrong" style="color: red;"></span>
 			<input class="btn" id="btn2" type="submit" value="登录"></button>
 		</form>
@@ -48,7 +48,7 @@
 	</div>
 </div>
 <!-- partial -->
-  <script  src="../js/login.js"></script>
+  <script  th:src="@{/static/js/login.js}"></script>
 
 </body>
 </html>

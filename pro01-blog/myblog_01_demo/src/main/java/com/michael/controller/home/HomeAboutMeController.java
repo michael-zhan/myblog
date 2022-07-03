@@ -106,7 +106,7 @@ public class HomeAboutMeController {
         model.addAttribute("messagePageIndex",m);
         model.addAttribute("photoPageCount",photoPageCount);
         model.addAttribute("messagePageCount",messagePageCount);
-        return "personal";
+        return "album_board";
     }
 
     /**
@@ -115,9 +115,13 @@ public class HomeAboutMeController {
      * @return
      */
     @RequestMapping("/aboutme/modify")
-    public String modifyInfo(User user,HttpSession session){
-        userService.updateUser(user);
-        session.setAttribute("user",user);
+    public String modifyInfo(User user,HttpSession session) {
+        if (user != null) {
+            User u = (User) session.getAttribute("user");
+            user.setNickname(user.getNickname());
+            user.setDescription(user.getDescription());
+            session.setAttribute("user", u);
+        }
         return "personal";
     }
 

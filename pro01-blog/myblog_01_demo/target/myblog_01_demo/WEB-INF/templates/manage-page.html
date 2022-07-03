@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,9 +8,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/manage-page.css">
+    <link rel="stylesheet" th:href="@{/static/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
 
 </head>
 
@@ -30,7 +29,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="./homepage.html">主页</a>
+                                <a class="nav-link" href="homepage.html">主页</a>
                               </li>
                               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="nav-link" href="./tag.html">分类</a>
@@ -42,13 +41,23 @@
                                 <a class="nav-link" href="./friends.html">好友</a>
                               </li>
                               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="./manage-page.html">管理</a>
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="./manage-page.html">博客</a>
+                                    <a class="dropdown-item" href="./manage-message.html">留言板</a>
+                                    <a class="dropdown-item" href="./manage-album.html">相册</a>
+                                </div>
                               </li>
                               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="#">发布</a>
+                                <a class="nav-link" href="./write.html">发布</a>
                               </li>
                               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="nav-link" href="./personal.html">关于</a>
+                                <a class="nav-link dropdown-toggle" href="./personal.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="./personal.html">个人信息</a>
+                                    <a class="dropdown-item" href="./album_board.html">留言板/相册</a>
+                                    <a class="dropdown-item" href="./login.html">注销</a>
+                                </div>
                               </li>
                             </ul>
                           </div>
@@ -64,44 +73,40 @@
           <table class="table table-borderless">
               <thead>
                   <tr>
-                      <th></th>
-                      <th class="t_title">标题</th>
+                      <th class="t_head" >标题</th>
                       <th>发布日期</th>
                       <th>浏览量</th>
                       <th>操作</th>
                   </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td><input type="checkbox"></td>
-                      <td class="t_title"><span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga enim nesciunt nostrum adipisci minus saepe excepturi cum. Tenetur voluptatem repudiandae vel incidunt voluptates, doloremque dolore, aspernatur et harum eos dolorum?</span>
-                      <td>2022-7-1</td>
-                      <td>5</td>
+                  <tr th:each="blog : ${blogList}">
+                      <td class="t_title" th:text="${blog.title}"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident architecto vero consequatur sed expedita, quis similique molestiae perferendis iure doloremque rerum ducimus id facilis iusto rem reprehenderit et nihil perspiciatis.</span>
+                      <td th:text="${blog.updateTime}">2022-7-1</td>
+                      <td th:text="${blog.views}">5</td>
                       <td>
-                          <button type="button" class="btn btn-primary">编辑</button>
-                          <button type="button" class="btn btn-danger">删除</button>
+                          <button type="button" class="btn btn-primary"><a th:href="@{'/friend/edit/'+${blog.id}">编辑</a></button>
+                          <button type="button" class="btn btn-danger"><a th:href="@{'/friend/remove/'+${session.friend.id}">删除</a></button>
                       </td>
                   </tr>
-                  <tr>
-                      <td><input type="checkbox"></td>
-                      <td class="t_title">博客2</td>
-                      <td>2022-6-1</td>
-                      <td>4</td>
-                      <td>
-                          <button type="button" class="btn btn-primary">编辑</button>
-                          <button type="button" class="btn btn-danger">删除</button>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td><input type="checkbox"></td>
-                      <td>博客3</td>
-                      <td>2022-5-1</td>
-                      <td>6</td>
-                      <td>
-                          <button type="button" class="btn btn-primary">编辑</button>
-                          <button type="button" class="btn btn-danger">删除</button>
-                      </td>
-                  </tr>
+<!--                  <tr>-->
+<!--                      <td class="t_title">博客2</td>-->
+<!--                      <td>2022-6-1</td>-->
+<!--                      <td>4</td>-->
+<!--                      <td>-->
+<!--                          <button type="button" class="btn btn-primary">编辑</button>-->
+<!--                          <button type="button" class="btn btn-danger">删除</button>-->
+<!--                      </td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                      <td class="t_title">博客3</td>-->
+<!--                      <td>2022-5-1</td>-->
+<!--                      <td>6</td>-->
+<!--                      <td>-->
+<!--                          <button type="button" class="btn btn-primary">编辑</button>-->
+<!--                          <button type="button" class="btn btn-danger">删除</button>-->
+<!--                      </td>-->
+<!--                  </tr>-->
               </tbody>
           </table>
       </div>

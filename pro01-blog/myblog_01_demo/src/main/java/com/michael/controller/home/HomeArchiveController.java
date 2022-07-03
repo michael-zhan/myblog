@@ -52,10 +52,10 @@ public class HomeArchiveController {
             String servletPath = httpServletRequest.getServletPath();
             if(servletPath.startsWith("/archive")){
                 eachPageCount= EachPageCount.EACH_PAGE_COUNT_ARCHIVE;
-                returnStr="/manage-page";
+                returnStr="manage-page";
             }else{
                 eachPageCount=EachPageCount.EACH_PAGE_COUNT_MANAGE;
-                returnStr="/timeline";
+                returnStr="timeline";
             }
 
             if(typeId!=null){

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>博客详情页</title>
@@ -7,8 +7,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" th:href="@{/static/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/static/css/style.css}">
 
 </head>
 <body>
@@ -18,35 +18,45 @@
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="void(0)" target="_blank">hyzzz_blog</a>
+                    <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
-                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="./homepage.html">主页</a>
-                          </li>
-                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="./tag.html">分类</a>
-                          </li>
-                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="./timeline.html">归档</a>
-                          </li>
-                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="./friends.html">好友</a>
-                          </li>
-                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="./manage-page.html">管理</a>
-                          </li>
-                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="#">发布</a>
-                          </li>
-                          <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="nav-link" href="./personal.html">关于</a>
-                          </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" th:href="@{/index}">主页</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" th:href="@{/type}">分类</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" th:href="@{/archive}">归档</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" th:href="@{/friend/index}">好友</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" th:href="@{/manage}">博客</a>
+                                    <a class="dropdown-item" th:href="@{/message/index}">留言板</a>
+                                    <a class="dropdown-item" href="./manage-album.html">相册</a>
+                                </div>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" th:href="@{/article/toadd}">发布</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link dropdown-toggle" href="./personal.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" th:href="@{/aboutme/info}">个人信息</a>
+                                    <a class="dropdown-item" th:href="@{/aboutme/message}">留言板/相册</a>
+                                    <a class="dropdown-item" href="./login.html">注销</a>
+                                </div>
+                            </li>
                         </ul>
-                      </div>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -55,18 +65,23 @@
 
 
 <div class="blog-box">
-    <h1>博客标题</h1>
+    <h1 th:text="${/blog.title}">文章标题</h1>
+    <span class="blog-info"><span th:text="${blog.updateTime}">2022-7-1</span>&nbsp;&nbsp;<span><img th:src="@{/static/img/browse.png}">5</span></span>
     <!-- 封面图 可有可不有 -->
-    <img src="../img/img_1.jpg" class="img-fluid mx-auto d-block" style="width: 60%; height: 60%;">
+    <img th:src="@{/static/img/img_1.jpg}" class="img-fluid mx-auto d-block" style="width: 60%; height: 60%; clear: both;">
 
-    <p>博客内容<br> ipsum dolor sit amet consectetur adipisicing elit. Exercitationem facere nostrum quam nam! Nemo quas necessitatibus hic at neque aspernatur officia itaque, omnis modi quo velit molestiae. Rem, at enim.</p>
+    <p th:text="${blog.content}">博客内容<br> ipsum dolor sit amet consectetur adipisicing elit. Exercitationem facere nostrum quam nam! Nemo quas necessitatibus hic at neque aspernatur officia itaque, omnis modi quo velit molestiae. Rem, at enim. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis error odio tenetur? Laboriosam placeat omnis quia hic odit temporibus fugit ipsa, quaerat suscipit natus cupiditate impedit quidem necessitatibus eligendi cumque?
+    Tempora dicta laboriosam quas et. Mollitia sunt esse culpa consequuntur aperiam? Modi porro non eaque ullam eos architecto quisquam aliquam repellat sed cumque recusandae repellendus optio voluptatum deleniti, possimus ratione!
+    Tenetur dolore necessitatibus dolor voluptas incidunt sequi consequatur, quia molestiae nemo voluptates quasi deserunt blanditiis officia omnis odio! Aliquam eos recusandae alias rerum ducimus voluptate iure inventore nobis in itaque!
+    Dicta quia nemo eaque ex id incidunt aspernatur placeat deserunt ullam, delectus corporis magnam soluta quisquam corrupti repudiandae inventore, maxime, accusantium sed temporibus quo iusto eum consectetur! Tempore, voluptates dignissimos.
+    Eaque iste eius vero a excepturi iure quos aspernatur sint ut recusandae ea autem inventore assumenda impedit magni, hic quaerat exercitationem ipsa facilis veniam architecto dolores. Nam numquam animi soluta?</p>
 
 </div>
 
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
-<script src="../js/navbar.js"></script>
+<script th:src="@{/static/js/navbar.js}"></script>
 
 
 </body>

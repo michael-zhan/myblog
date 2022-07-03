@@ -118,13 +118,27 @@ public class HomeArticleController {
     public String edit(@PathVariable Integer blogId,HttpSession session,Model model){
         User user=(User)session.getAttribute("user");
         if(blogService.findAuthor(blogId).equals(user.getId())) {
-            Blog blog= blogService.getBlogByPublishedAndId(0, 0, blogId);
+//            Blog blog= blogService.getBlogByPublishedAndId(0, 0, blogId);
+            Blog blog=blogService.getAndConvert(0,0,blogId);
             model.addAttribute("blog",blog);
-            return "edit";
+            return "write";
         }else {
             Blog blog = blogService.getBlogByPublishedAndId(0,0,blogId);
             return "redirect:/article/"+blog.getId().toString()+"/0";
         }
+    }
+
+    /**
+     * 删除文章
+     * @param blogId
+     * @return
+     */
+    @RequestMapping("/remove/{blogId}")
+    public String remove(@PathVariable Integer blogId){
+        if(blogId!=null){
+            blogService.deleteBlog(blogId);
+        }
+        return "redirect:/manage";
     }
 
     /**

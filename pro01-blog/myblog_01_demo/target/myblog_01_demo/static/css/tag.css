@@ -41,3 +41,10 @@
 .pagination a:hover, .pagination .active {
   background-color: #bbb;
 }
+
+#listhead{
+  margin: 10px auto;
+  width: 80%;
+  padding: .75rem 1.25rem;
+  font-weight: bold;
+}

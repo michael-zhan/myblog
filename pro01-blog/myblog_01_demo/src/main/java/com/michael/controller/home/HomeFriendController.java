@@ -71,9 +71,9 @@ public class HomeFriendController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/add/{friendId}")
+    @RequestMapping(value = "/add")
     @ResponseBody
-    public ResultVo makeFriend(@PathVariable Integer friendId, HttpSession session){
+    public ResultVo makeFriend(@RequestParam("friendId") Integer friendId, HttpSession session){
         User user=(User)session.getAttribute("user");
 
         User friend=userService.getUserById(friendId);
@@ -98,8 +98,8 @@ public class HomeFriendController {
      * @param sign
      * @return
      */
-    @RequestMapping(value="/deal/{noticeId}/",method= RequestMethod.PUT)
-    public String dealRequest(@PathVariable("noticeId") Integer noticeId,@RequestParam("sign") Integer sign,Model model,HttpSession session){
+    @RequestMapping(value="/deal/{noticeId}/{sign}",method= RequestMethod.PUT)
+    public String dealRequest(@PathVariable("noticeId") Integer noticeId,@PathVariable("sign") Integer sign){
         userService.dealWithFriendRequest(noticeId,sign);
         return "redirect:/friend/index";
     }

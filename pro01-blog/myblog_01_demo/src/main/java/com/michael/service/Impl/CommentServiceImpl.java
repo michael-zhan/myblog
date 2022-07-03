@@ -133,7 +133,7 @@ public class CommentServiceImpl implements CommentService {
         if(count==null||count==0||page<1||page>maxIndex){
             return null;
         }
-        Integer beginIndex = count - page * eachPageCount;
+        Integer beginIndex = (page-1) * eachPageCount;
         return commentMapper.selectWithPageLimitDesc(master,beginIndex,eachPageCount);
     }
 

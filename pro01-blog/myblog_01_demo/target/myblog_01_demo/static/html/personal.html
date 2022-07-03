@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人详情</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/personal.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    
+
+</head>
+<body>
+<div class="navigation-wrap bg-light start-header start-style">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto py-4 py-md-0">
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" href="./homepage.html">主页</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" href="./tag.html">分类</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" href="./timeline.html">归档</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" href="./friends.html">好友</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="./manage-page.html">博客</a>
+                                    <a class="dropdown-item" href="./manage-message.html">留言板</a>
+                                    <a class="dropdown-item" href="./manage-album.html">相册</a>
+                                </div>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link" href="./write.html">发布</a>
+                            </li>
+                            <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                <a class="nav-link dropdown-toggle" href="./personal.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="./personal.html">个人信息</a>
+                                    <a class="dropdown-item" href="./album_board.html">留言板/相册</a>
+                                    <a class="dropdown-item" href="./login.html">注销</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="overlay"></div>
+<div class="page-wrap light-theme">
+
+    <div class="wrap-center">
+        <header class="header">
+            <div class="avatar">
+                <img src="../img/img_1.jpg">
+            </div>
+
+            <span class="name" id="name">beez </span>
+            <h1 class="hello-h1">资料卡片</h1>
+            <nav class="main-nav">
+                <span class="toggle-about"><i class="i-chevron-down"></i></span>
+            </nav>
+        </header>
+        <div class="about" id="about">
+            <div class="copy-block">
+                <h2>个人详情</h2>
+                <p id="info">个人详情展示</p>
+                <h2>个性签名</h2>
+                <p id="signature">个性签名展示</p>
+                <a data-toggle="modal" data-target="#myModal" class="edit">编辑</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+   
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="color: black;">修改信息</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+   
+        <!-- 模态框主体 -->
+        <div class="modal-body">
+            <span>昵称:</span><br>
+            <input type="text" id="userName"><br>
+            <span>头像:</span><img src="../img/img_1.jpg" style="height: 100px; width: 100px;border-radius: 100%;">&nbsp;
+            <input type="file"><br>
+            <span>个人详情:</span><br>
+            <input type="text" id="userInfo"><br>
+            <span>个性签名:</span><br>
+            <input type="text" id="userSignature">
+        </div>
+   
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary changeBtn" data-dismiss="modal">确定</button>
+        </div>
+   
+      </div>
+    </div>
+  </div>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<script src="../js/navbar.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/personal.js"></script>
+</body>
+</html>

@@ -78,7 +78,7 @@ public class HomeTypeController {
         }
 
         model.addAttribute("typeList",typeList);
-        return "timeline";
+        return "tag";
     }
 
     /**

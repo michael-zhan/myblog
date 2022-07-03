@@ -27,14 +27,12 @@ public class HomeMessageController {
      * @param model
      * @param messagePageIndex
      * @param session
-     * @param httpServletRequest
      * @return
      */
-    @RequestMapping(value = {"/index","/index/messagePageIndex"})
+    @RequestMapping(value = {"/index","/index/{messagePageIndex}"})
     public String message(Model model,
                           @PathVariable(required = false) String messagePageIndex,
-                          HttpSession session,
-                          HttpServletRequest httpServletRequest){
+                          HttpSession session){
         if(messagePageIndex==null||messagePageIndex.equals("")){
             messagePageIndex="1";
         }

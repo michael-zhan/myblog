@@ -360,15 +360,13 @@ public class BlogServiceImpl implements BlogService {
             if (sign == true) {
                 return blogMapper.selectWithPageLimit(author, (page - 1) * eachPageCount, eachPageCount);
             } else {
-                Integer beginIndex = count - page * eachPageCount;
-                return blogMapper.selectWithPageLimitDesc(author, beginIndex, eachPageCount);
+                return blogMapper.selectWithPageLimitDesc(author, (page - 1) * eachPageCount, eachPageCount);
             }
         }else{
             if (sign == true) {
                 return blogMapper.selectWithPageAndTypeLimit(author, (page - 1) * eachPageCount, eachPageCount,typeId);
             } else {
-                Integer beginIndex = count - page * eachPageCount;
-                return blogMapper.selectWithPageAndTypeLimitDesc(author, beginIndex, eachPageCount,typeId);
+                return blogMapper.selectWithPageAndTypeLimitDesc(author, (page - 1) * eachPageCount, eachPageCount,typeId);
             }
         }
     }
