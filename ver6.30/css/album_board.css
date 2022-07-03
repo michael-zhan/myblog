@@ -117,3 +117,8 @@
   .pagination a:hover, .pagination .active {
     background-color: #bbb;
   }
+
+  .message-edit{
+    width: 85%;
+    margin: 20px auto
+  }
