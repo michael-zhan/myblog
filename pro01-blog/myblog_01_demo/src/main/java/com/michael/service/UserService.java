@@ -89,10 +89,9 @@ public interface UserService {
 
     /**
      * 处理好友请求
-     * @param noticeId
      * @param sign
      */
-    void dealWithFriendRequest(Integer noticeId,Integer sign);
+    void dealWithFriendRequest(Integer userId,Integer senderId,Integer sign);
 
     /**
      * 删除好友

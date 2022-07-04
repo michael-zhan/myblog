@@ -39,6 +39,12 @@ public interface AttachmentMapper {
     List<Attachment> findAll(HashMap<String, Object> criteria);
 
     /**
+     * 根据用户id获取附件列表
+     */
+    List<Attachment> findByOrigin(HashMap<String, Object> criteria);
+
+
+    /**
      * 查询所有附件
      * @return
      */

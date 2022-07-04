@@ -30,7 +30,7 @@ public class HomeArchiveController {
      * @param session
      * @return
      */
-    @RequestMapping(value={"/archive","/archive/{pageIndex}","/archive/{typeId}","/archive/{typeId}/{pageIndex}",
+    @RequestMapping(value={"/archive","/archive/{pageIndex}","/archive/type/{typeId}","/archive/type/{typeId}/{pageIndex}",
             "/manage","/manage/{pageIndex}"})
     public String archives(Model model,
                            @PathVariable(value = "pageIndex",required = false)String pageIndex,
@@ -52,10 +52,10 @@ public class HomeArchiveController {
             String servletPath = httpServletRequest.getServletPath();
             if(servletPath.startsWith("/archive")){
                 eachPageCount= EachPageCount.EACH_PAGE_COUNT_ARCHIVE;
-                returnStr="manage-page";
+                returnStr="timeline";
             }else{
                 eachPageCount=EachPageCount.EACH_PAGE_COUNT_MANAGE;
-                returnStr="timeline";
+                returnStr="manage-page";
             }
 
             if(typeId!=null){
@@ -68,27 +68,27 @@ public class HomeArchiveController {
                 pageCount = blogService.getCount(user.getId()) / eachPageCount + 1;
             }
 
-            if (blogList != null) {
-                Blog blog1 = blogList.get(0);
-                model.addAttribute("blog1", blog1);
-                if (blogList.size() > 1) {
-                    Blog blog2 = blogList.get(1);
-                    model.addAttribute("blog2", blog2);
-
-                }
-                if (blogList.size() > 2) {
-                    Blog blog3 = blogList.get(2);
-                    model.addAttribute("blog3", blog3);
-                }
-                if (blogList.size() > 3) {
-                    Blog blog4 = blogList.get(3);
-                    model.addAttribute("blog4", blog4);
-                }
-                if (blogList.size() > 4) {
-                    Blog blog5 = blogList.get(4);
-                    model.addAttribute("blog5", blog5);
-                }
-            }
+//            if (blogList != null) {
+//                Blog blog1 = blogList.get(0);
+//                model.addAttribute("blog1", blog1);
+//                if (blogList.size() > 1) {
+//                    Blog blog2 = blogList.get(1);
+//                    model.addAttribute("blog2", blog2);
+//
+//                }
+//                if (blogList.size() > 2) {
+//                    Blog blog3 = blogList.get(2);
+//                    model.addAttribute("blog3", blog3);
+//                }
+//                if (blogList.size() > 3) {
+//                    Blog blog4 = blogList.get(3);
+//                    model.addAttribute("blog4", blog4);
+//                }
+//                if (blogList.size() > 4) {
+//                    Blog blog5 = blogList.get(4);
+//                    model.addAttribute("blog5", blog5);
+//                }
+//            }
         }
 //        session.setAttribute("pageIndex",p);
 //        session.setAttribute("pageCount",pageCount);

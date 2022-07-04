@@ -73,6 +73,17 @@
         </where>
     </select>
 
+    <select id="findByOrigin" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        <include refid="tb"/>
+        <where>
+            attachorigin = #{userId}
+            order by createtime asc
+        </where>
+    </select>
+
     <select id="listAttachment" resultType="com.michael.pojo.Attachment">
         SELECT
         <include refid="Base_Column_List"/>

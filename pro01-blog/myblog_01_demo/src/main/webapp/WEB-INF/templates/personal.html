@@ -71,7 +71,7 @@
                 <img th:src="@{/static/img/img_1.jpg}">
             </div>
 
-            <span class="name" id="name">beez </span>
+            <span class="name" id="name" th:text="${session.user.username}">beez </span>
             <h1 class="hello-h1">资料卡片</h1>
             <nav class="main-nav">
                 <span class="toggle-about"><i class="i-chevron-down"></i></span>
@@ -80,7 +80,7 @@
         <div class="about" id="about">
             <div class="copy-block">
                 <h2>个人详情</h2>
-                <p th:text="${session.user.nickname}" id="info">个人详情展示</p>
+                <p th:text="${session.user.username}" id="info">个人详情展示</p>
                 <h2>个性签名</h2>
                 <p th:text="${session.user.description}" id="signature">个性签名展示</p>
                 <a data-toggle="modal" data-target="#myModal" class="edit">编辑</a>
@@ -110,7 +110,7 @@
             <input type="text" id="userInfo"><br>
             <span>个性签名:</span><br>
             <input name="description" type="text" id="userSignature">
-            <input type="submit" value="确定">
+            <input type="submit" value="提交">
         </div>
 
           </form>

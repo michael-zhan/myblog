@@ -83,8 +83,8 @@
                       <td th:text="${blog.updateTime}">2022-7-1</td>
                       <td th:text="${blog.views}">5</td>
                       <td>
-                          <button type="button" class="btn btn-primary"><a th:href="@{'/friend/edit/'+${blog.id}">编辑</a></button>
-                          <button type="button" class="btn btn-danger"><a th:href="@{'/friend/remove/'+${blog.id}">删除</a></button>
+                          <button type="button" class="btn btn-primary"><a th:href="@{'/article/edit/'+${blog.id}}">编辑</a></button>
+                          <button type="button" class="btn btn-danger"><a th:href="@{'/article/remove/'+${blog.id}}">删除</a></button>
                       </td>
                   </tr>
 <!--                  <tr>-->
@@ -111,7 +111,7 @@
 
           <div class="switch-page">
               <ul class="pagination justify-content-center">
-                  <li class="page-item"><a class="page-link" th:href="@{/index/1}">首页</a></li>
+                  <li class="page-item"><a class="page-link" th:href="@{'/manage/'+1}">首页</a></li>
                   <li class="page-item active"><a class="page-link" th:href="@{'/manage/'+${pageIndex}}" th:text="${pageIndex}">1</a></li>
                   <li class="page-item"><a class="page-link" th:href="@{'/manage/'+${pageIndex+1}}" th:text="${pageIndex+1}">2</a></li>
                   <li class="page-item"><a class="page-link" th:href="@{'/manage/'+${pageIndex+2}}" th:text="${pageIndex+2}">3</a></li>

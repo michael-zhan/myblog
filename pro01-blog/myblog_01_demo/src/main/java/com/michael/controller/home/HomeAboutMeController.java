@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,12 +30,10 @@ public class HomeAboutMeController {
 
     /**
      * 进入关于个人信息界面
-     * @param session
      * @return
      */
     @RequestMapping("/aboutme/info")
-    public String index(HttpSession session){
-//        User user=(User)session.getAttribute("user");
+    public String index(){
         return "personal";
     }
 
@@ -111,20 +110,56 @@ public class HomeAboutMeController {
 
     /**
      * 保存修改的个人信息
-     * @param user
      * @return
      */
     @RequestMapping("/aboutme/modify")
-    public String modifyInfo(User user,HttpSession session) {
-        if (user != null) {
-            User u = (User) session.getAttribute("user");
-            user.setNickname(user.getNickname());
-            user.setDescription(user.getDescription());
-            session.setAttribute("user", u);
+    public String modifyInfo(@RequestParam("description") String description,@RequestParam("nickname")String nickname, HttpSession session) {
+        User user=(User)session.getAttribute("user");
+        if(nickname!=null&&!nickname.equals("")) {
+            user.setNickname(nickname);
         }
+        if(description!=null&&!description.equals("")){
+            user.setDescription(description);
+        }
+        userService.updateUser(user);
+        session.setAttribute("user",user);
         return "personal";
     }
 
+    /**
+     * 注销用户
+     * @param session
+     * @return
+     */
+    @RequestMapping("/aboutme/logout")
+    public String logout(HttpSession session){
+        session.setAttribute("user",null);
+        return "redirect:/tologin";
+    }
+
+    /**
+     * 锁空间
+     * @param session
+     * @return
+     */
+    @RequestMapping("/aboutme/lock")
+    public String lock(HttpSession session){
+        User user=(User)session.getAttribute("user");
+        user.setStatus(false);
+        userService.updateUser(user);
+        return "redirect:/index";
+    }
+
+    /**
+     * 解锁空间
+     */
+    @RequestMapping("/aboutme/unlock")
+    public String unlock(HttpSession session){
+        User user=(User)session.getAttribute("user");
+        user.setStatus(true);
+        userService.updateUser(user);
+        return "redirect:/index";
+    }
 }
 
 

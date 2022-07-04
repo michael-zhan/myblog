@@ -50,4 +50,6 @@ public interface NoticeMapper {
      * @return
      */
     List<Notice> selectByUserId(Integer userId);
+
+    Integer selectBySAndR(Integer senderId,Integer userId);
 }

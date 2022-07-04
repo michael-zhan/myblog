@@ -19,19 +19,37 @@
 			<input name="username" id="userName" type="text" placeholder="用户名" class="input" />
 			<input name="password" type="password" placeholder="密码" class="input" id="pwd1"/>
 			<span id="pwdError" style="color: red;"></span>
-			<span><input type="text" id="code" placeholder="验证码" class="input"/>&nbsp;<img src="" alt="验证码"></span>
+			<span><input name="code" type="text" id="code" placeholder="验证码" class="input"/>&nbsp;<img src="kaptcha.jpg" id="kaptchaImage" /></span>
 			<input class="btn" id="btn1" type="submit" value="注册"></button>
 		</form>
 	</div>
 
+<!--	&lt;!&ndash; Sign In &ndash;&gt;-->
+<!--	<div class="container__form container&#45;&#45;signin">-->
+<!--		<form th:action="@{/login}" class="form" id="form2">-->
+<!--			<h2 class="form__title">登录</h2>-->
+<!--			<input name="username" type="text" id="tel2" placeholder="邮箱" class="input" />-->
+<!--			<input name="password" type="password" id="pwd2" placeholder="密码" class="input"/>-->
+<!--			<span id="pwdWrong" style="color: red;"></span>-->
+<!--			<input class="btn" id="btn2" type="submit" value="登录"></button>-->
+<!--		</form>-->
+<!--	</div>-->
+
 	<!-- Sign In -->
 	<div class="container__form container--signin">
-		<form th:action="@{/login}" class="form" id="form2">
+		<form th:action="@{/loginVerify}" class="form" id="form2" method="post">
 			<h2 class="form__title">登录</h2>
-			<input name="username" type="text" id="tel2" placeholder="邮箱" class="input" />
-			<input name="password" type="password" id="pwd2" placeholder="密码" class="input"/>
+			<input name="username" type="text" id="tel2" placeholder="用户名"  th:value="${username}" required class="input" />
+			<input name="password" type="password" id="pwd2" placeholder="密码"  th:value="${password}" required class="input"/>
+			<div class="ui checkbox">
+				<input name="rememberme" type="checkbox" id="rememberme" th:attr="checked=${username != null && !#strings.isEmpty(username)}">
+				<label for="rememberme" > 记住密码</label>
+			</div>
 			<span id="pwdWrong" style="color: red;"></span>
-			<input class="btn" id="btn2" type="submit" value="登录"></button>
+			<!-- <a href="#" class="link">Forgot your password?</a> -->
+			<!--			<button class="btn" id="btn2">登录<tton>-->
+			<input type="submit" class="btn" id="btn2" value="登录"/>
+
 		</form>
 	</div>
 

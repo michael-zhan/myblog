@@ -76,4 +76,10 @@
     from t_notice
     where receiver=#{userId}
   </select>
+
+  <select id="selectBySAndR" resultType="java.lang.Integer">
+    select id
+    from t_notice
+    where sender=#{arg0} and receiver=#{arg1} or sender=#{arg1} and receiver=#{arg0}
+  </select>
 </mapper>

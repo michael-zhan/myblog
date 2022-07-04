@@ -7,7 +7,7 @@
   <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" th:href="@{/static/css/navbar.css}">
-    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+    <link rel="stylesheet" th:href="@{/static/css/friends.css}">
 
 </head>
 <body>
@@ -85,7 +85,7 @@
                 <td th:text="${friend.description}" class="t_title">Lorem ipsum dolor sit.</td>
                 <td th:text="${friend.blogCount}">5</td>
                 <td>
-                    <button type="button" class="btn btn-danger"><a th:href="@{'/friend/remove/'+${friend.id}">删除</a></button>
+                    <button type="button" class="btn btn-danger"><a th:href="@{'/friend/remove/'+${friend.id}}">删除</a></button>
                 </td>
             </tr>
 <!--            <tr>-->
@@ -110,11 +110,11 @@
 
     <div class="switch-page">
         <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" th:href="@{/friend/index/1}">首页</a></li>
-            <li class="page-item active"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex}}" th:text="${friendPageIndex}">1</a></li>
-            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex+1}}" th:text="${friendPageIndex+1}">2</a></li>
-            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex+2}}" th:text="${friendPageIndex+2}">3</a></li>
-            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageCount}}">尾页</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/1/'+${noticePageIndex}}">首页</a></li>
+            <li class="page-item active"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex}+'/'+${noticePageIndex}}" th:text="${friendPageIndex}">1</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex+1}+'/'+${noticePageIndex}}" th:text="${friendPageIndex+1}">2</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex+2}+'/'+${noticePageIndex}}" th:text="${friendPageIndex+2}">3</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageCount}+'/'+${noticePageIndex}}">尾页</a></li>
         </ul>
     </div>
 
@@ -135,13 +135,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="notice : ${noticeList}">
-                <td th:text="${notice.sender}">李国徽李国徽</td>
-                <td class="t_title">Lorem ipsum dolor sit.</td>
-                <td>5</td>
+            <tr th:each="sender : ${senderList}">
+                <td th:text="${sender.username}">李国徽李国徽</td>
+                <td th:text="${sender.description}" class="t_title">Lorem ipsum dolor sit.</td>
+                <td th:text="${sender.blogCount}">5</td>
                 <td>
-                  <button type="button" class="btn btn-info"><a th:href="@{/deal/noticeId/1}">接收</a></button>
-                  <button type="button" class="btn btn-secondary"><a th:href="@{/deal/noticeId/0}">忽略</a></button>
+                  <button type="button" class="btn btn-info"><a th:href="@{'/friend/deal/'+${sender.id}+'/1'}">接收</a></button>
+                  <button type="button" class="btn btn-secondary"><a th:href="@{'/friend/deal/'+${sender.id}+'/0'}">忽略</a></button>
                 </td>
             </tr>
 <!--            <tr>-->
@@ -169,11 +169,11 @@
 
     <div class="switch-page">
         <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" th:href="@{/friend/index/1}">首页</a></li>
-            <li class="page-item active"><a class="page-link" th:href="@{'/friend/index/'+${noticePageIndex}}" th:text="${noticePageIndex}">1</a></li>
-            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${noticePageIndex+1}}" th:text="${noticePageIndex+1}">2</a></li>
-            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${noticePageIndex+2}}" th:text="${noticePageIndex+2}">3</a></li>
-            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${pageCount}}">尾页</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex}+'/1'}">首页</a></li>
+            <li class="page-item active"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex}+'/'+${noticePageIndex}}" th:text="${noticePageIndex}">1</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex}+'/'+${noticePageIndex+1}}" th:text="${noticePageIndex+1}">2</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex}+'/'+${noticePageIndex+2}}" th:text="${noticePageIndex+2}">3</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/friend/index/'+${friendPageIndex}+'/'+${noticePageCount}}">尾页</a></li>
         </ul>
     </div>
 </div>
@@ -229,11 +229,12 @@
 <!--    </div>-->
 
       <div class="input-group searchbar">
-          <form>
-          <input type="text" name="friendId" class="form-control" placeholder="搜索好友昵称">
+          <form th:action="@{/friend/add}" method="post">
+          <input type="text" name="username" class="form-control" placeholder="搜索好友昵称">
           <div class="input-group-append">
         <span class="input-group-btn">
-          <button class="btn btn-default"><a th:href="@{/friend/add}"></a></button>
+<!--          <button class="btn btn-default"><a th:href="@{/friend/add}">添加</a></button>-->
+            <input type="submit" class="btn btn-default" value="添加">
         </span>
           </div>
           </form>
@@ -256,7 +257,7 @@
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
-<script th:src="../js/search.js"></script>
-<script src="../js/navbar.js"></script>
+<script th:src="@{static/js/search.js}"></script>
+<script th:src="@{/static/js/navbar.js}"></script>
 </body>
 </html>

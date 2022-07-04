@@ -42,7 +42,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" th:href="@{/manage}">博客</a>
                                 <a class="dropdown-item" th:href="@{/message/index}">留言板</a>
-                                <a class="dropdown-item" href="./manage-album.html">相册</a>
+                                <a class="dropdown-item" th:href="@{/manage-album}">相册</a>
                             </div>
                           </li>
                           <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -53,7 +53,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" th:href="@{/aboutme/info}">个人信息</a>
                                 <a class="dropdown-item" th:href="@{/aboutme/message}">留言板/相册</a>
-                                <a class="dropdown-item" href="./login.html">注销</a>
+                                <a class="dropdown-item" th:href="@{/aboutme/logout}">注销</a>
                             </div>
                           </li>
                         </ul>
@@ -67,7 +67,7 @@
 
 <div class="blog-box">
 
-    <div class="blog-container">
+    <div class="blog-container" th:each="blog :${blogList}">
 
         <div class="blog-header">
             <div class="blog-cover">
@@ -79,10 +79,10 @@
 
         <div class="blog-body">
             <div class="blog-title">
-                <h1><a th:href="@{'/article/'+${blog1.id}+'/1'}" th:text="${blog1.title}">带封面图博客</a></h1>
+                <h1><a th:href="@{'/article/'+${blog.id}+'/1'}" th:text="${blog.title}">带封面图博客</a></h1>
             </div>
             <div class="blog-summary">
-                <p th:text="${blogList..content}">ipsum dolor sit amet consectetur adipisicing elit. Porro ipsam quam rem adipisci in, doloribus quia minus nobis quidem ut reiciendis, tempora tenetur veniam labore doloremque eum quod animi nihil!</p>
+                <p th:text="${blog.content}">ipsum dolor sit amet consectetur adipisicing elit. Porro ipsam quam rem adipisci in, doloribus quia minus nobis quidem ut reiciendis, tempora tenetur veniam labore doloremque eum quod animi nihil!</p>
             </div>
             <div class="blog-tags">
                 <ul>
@@ -102,73 +102,73 @@
 
     </div>
 
-    <div class="blog-container">
+<!--    <div class="blog-container">-->
 
-        <div class="blog-header">
-            <div class="blog-author--no-cover">
-                <h3>huster</h3>
-            </div>
-        </div>
+<!--        <div class="blog-header">-->
+<!--            <div class="blog-author&#45;&#45;no-cover">-->
+<!--                <h3>huster</h3>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="blog-body">
-            <div class="blog-title">
-                <h1><a th:href="@{'/article/'+${blog2.id}+'/1'}" th:text="${blog2.title}">这篇博客没有封面图</a></h1>
-            </div>
-            <div class="blog-summary">
-                <p th:text="${blog2.content}"><br>ipsum dolor sit amet consectetur adipisicing elit. Officiis culpa fugiat similique consequatur nobis! Nisi molestiae ut quidem consequuntur assumenda! Itaque explicabo omnis doloribus saepe recusandae. A pariatur aspernatur architecto.</p>
-            </div>
-            <div class="blog-tags">
-                <ul>
-                    <li><a href="#">后端</a></li>
-                    <li><a href="#">软件工程</a></li>
-                    <li><a href="#">java</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr>
-        <div class="blog-footer">
-            <ul>
-                <li class="published-date">12天前</li>
-                <li class="browse"><a href="#"><img th:src="@{/static/img/browse.png}"><span>&nbsp4</span></a></li>
-                <li class="like"><a href="javascript:void(0)"><img th:src="@{/static/img/like.png}"><span>&nbsp1</span></a></li>
-            </ul>
-        </div>
+<!--        <div class="blog-body">-->
+<!--            <div class="blog-title">-->
+<!--                <h1><a th:href="@{'/article/'+${blog2.id}+'/1'}" th:text="${blog2.title}">这篇博客没有封面图</a></h1>-->
+<!--            </div>-->
+<!--            <div class="blog-summary">-->
+<!--                <p th:text="${blog2.content}"><br>ipsum dolor sit amet consectetur adipisicing elit. Officiis culpa fugiat similique consequatur nobis! Nisi molestiae ut quidem consequuntur assumenda! Itaque explicabo omnis doloribus saepe recusandae. A pariatur aspernatur architecto.</p>-->
+<!--            </div>-->
+<!--            <div class="blog-tags">-->
+<!--                <ul>-->
+<!--                    <li><a href="#">后端</a></li>-->
+<!--                    <li><a href="#">软件工程</a></li>-->
+<!--                    <li><a href="#">java</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr>-->
+<!--        <div class="blog-footer">-->
+<!--            <ul>-->
+<!--                <li class="published-date">12天前</li>-->
+<!--                <li class="browse"><a href="#"><img th:src="@{/static/img/browse.png}"><span>&nbsp4</span></a></li>-->
+<!--                <li class="like"><a href="javascript:void(0)"><img th:src="@{/static/img/like.png}"><span>&nbsp1</span></a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
 
-    </div>
+<!--    </div>-->
 
-    <div class="blog-container">
+<!--    <div class="blog-container">-->
 
-        <div class="blog-header">
-            <div class="blog-author--no-cover">
-                <h3>huster</h3>
-            </div>
-        </div>
+<!--        <div class="blog-header">-->
+<!--            <div class="blog-author&#45;&#45;no-cover">-->
+<!--                <h3>huster</h3>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div class="blog-body">
-            <div class="blog-title">
-                <h1><a th:href="@{'/article/'+${blog3.id}+'/1'}" th:text="${blog3.title}">这篇博客没有封面图</a></h1>
-            </div>
-            <div class="blog-summary">
-                <p th:text="${blog3.content}"><br>ipsum dolor sit amet consectetur adipisicing elit. Officiis culpa fugiat similique consequatur nobis! Nisi molestiae ut quidem consequuntur assumenda! Itaque explicabo omnis doloribus saepe recusandae. A pariatur aspernatur architecto.</p>
-            </div>
-            <div class="blog-tags">
-                <ul>
-                    <li><a href="#">后端</a></li>
-                    <li><a href="#">软件工程</a></li>
-                    <li><a href="#">java</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr>
-        <div class="blog-footer">
-            <ul>
-                <li class="published-date">12天前</li>
-                <li class="browse"><a href="#"><img th:src="@{/static/img/browse.png}"><span>&nbsp4</span></a></li>
-                <li class="like"><a href="javascript:void(0)"><img th:src="@{/static/img/like.png}"><span>&nbsp1</span></a></li>
-            </ul>
-        </div>
+<!--        <div class="blog-body">-->
+<!--            <div class="blog-title">-->
+<!--                <h1><a th:href="@{'/article/'+${blog3.id}+'/1'}" th:text="${blog3.title}">这篇博客没有封面图</a></h1>-->
+<!--            </div>-->
+<!--            <div class="blog-summary">-->
+<!--                <p th:text="${blog3.content}"><br>ipsum dolor sit amet consectetur adipisicing elit. Officiis culpa fugiat similique consequatur nobis! Nisi molestiae ut quidem consequuntur assumenda! Itaque explicabo omnis doloribus saepe recusandae. A pariatur aspernatur architecto.</p>-->
+<!--            </div>-->
+<!--            <div class="blog-tags">-->
+<!--                <ul>-->
+<!--                    <li><a href="#">后端</a></li>-->
+<!--                    <li><a href="#">软件工程</a></li>-->
+<!--                    <li><a href="#">java</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr>-->
+<!--        <div class="blog-footer">-->
+<!--            <ul>-->
+<!--                <li class="published-date">12天前</li>-->
+<!--                <li class="browse"><a href="#"><img th:src="@{/static/img/browse.png}"><span>&nbsp4</span></a></li>-->
+<!--                <li class="like"><a href="javascript:void(0)"><img th:src="@{/static/img/like.png}"><span>&nbsp1</span></a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
 
-    </div>
+<!--    </div>-->
 
 <!--    <div class="blog-container">-->
 

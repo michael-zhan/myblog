@@ -57,4 +57,12 @@ public class User implements Serializable {
         }
         return status;
     }
+
+    public Integer getBlogCount() {
+        return blogCount;
+    }
+
+    public void setBlogCount(Integer blogCount) {
+        this.blogCount = blogCount;
+    }
 }

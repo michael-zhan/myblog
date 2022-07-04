@@ -53,7 +53,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getUserById(Integer id) {
-        return userMapper.getUserById(id);
+        User u = userMapper.getUserById(id);
+        u.setBlogCount(blogMapper.selectCountByAuthor(u.getId()));
+        return u;
     }
 
     /**
@@ -103,7 +105,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getUserByName(String name) {
-        return userMapper.getUserByName(name);
+        User u = userMapper.getUserByName(name);
+        u.setBlogCount(blogMapper.selectCountByAuthor(u.getId()));
+        return u;
     }
 
     /**
@@ -122,10 +126,8 @@ public class UserServiceImpl implements UserService {
         List<User> friendList=new ArrayList<>();
 
         for(Integer friendId:friendListStr){
-            User friend=userMapper.getUserById(friendId);
+            User friend=getUserById(friendId);
             if(friend!=null){
-                Integer blogCount = blogMapper.countBlogByUser(friend.getId());
-                friend.setBlogCount(blogCount);
                 friendList.add(friend);
             }
         }
@@ -151,13 +153,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void dealWithFriendRequest(Integer noticeId,Integer sign) {
-        Notice notice = noticeMapper.selectByPrimaryKey(noticeId.longValue());
+    public void dealWithFriendRequest(Integer userId,Integer senderId,Integer sign) {
 
-        Integer sender = notice.getSender();
-        Integer receiver = notice.getReceiver();
-        if(sign==1){
-            Friendship friendship = new Friendship(null, sender, receiver);
+        Integer noticeId = noticeMapper.selectBySAndR(senderId, userId);
+        Integer i = friendshipMapper.selectByUserAndFriend(senderId, userId);
+        if(sign==1&&i==0){
+            Friendship friendship = new Friendship(null, senderId, userId);
             friendshipMapper.insert(friendship);
         }
 

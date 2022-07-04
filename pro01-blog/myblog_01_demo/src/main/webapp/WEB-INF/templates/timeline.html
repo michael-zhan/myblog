@@ -72,74 +72,65 @@
         <th:block >
             <section class="timeline">
                 <ul>
-                    <li class="" th:each="blog : ${blogs}">
+                    <li class="" th:each="blog : ${blogList}">
                         <div>
                             <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/01</time>
                             <div class="scientist" >
-                                <a href="#" target="_blank" th:href="@{'/article/'+${blog1.id}+'/1'}">
-                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog1.title}">文章标题1</h3>
+                                <a href="#" target="_blank" th:href="@{'/article/'+${blog.id}+'/1'}">
+                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog.title}">文章标题1</h3>
                                 </a>
                             </div>
                         </div>
                     </li>
     
     
-                    <li class="" th:each="blog : ${blogs}">
-                        <div>
-                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/02</time>
-                            <div class="scientist" >
-                                <a href="#" target="_blank" th:href="@{'/article/'+${blog2.id}+'/1'}">
-                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog2.title}">文章标题1</h3>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-    
-                    <li class="" th:each="blog : ${blogs}">
-                        <div>
-                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/03</time>
-                            <div class="scientist" >
-                                <a href="#" target="_blank" th:href="@{'/article/'+${blog3.id}+'/1'}">
-                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog3.title}">文章标题1</h3>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="" th:each="blog : ${blogs}">
-                        <div>
-                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022/06/29</time>
-                            <div class="scientist" >
-                                <a href="#" target="_blank" th:href="@{'/article/'+${blog4.id}+'/1'}">
-                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog4.title}">文章标题1</h3>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="" th:each="blog : ${blogs}">
-                        <div>
-                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022/06/29</time>
-                            <div class="scientist" >
-                                <a href="#" target="_blank" th:href="@{'/article/'+${blog5.id}+'/1'}">
-                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog5.title}">文章标题1</h3>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
+<!--                    <li class="" th:each="blog : ${blogs}">-->
+<!--                        <div>-->
+<!--                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/02</time>-->
+<!--                            <div class="scientist" >-->
+<!--                                <a href="#" target="_blank" th:href="@{'/article/'+${blog2.id}+'/1'}">-->
+<!--                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog2.title}">文章标题1</h3>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--    -->
+<!--                    <li class="" th:each="blog : ${blogs}">-->
+<!--                        <div>-->
+<!--                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020/01/03</time>-->
+<!--                            <div class="scientist" >-->
+<!--                                <a href="#" target="_blank" th:href="@{'/article/'+${blog3.id}+'/1'}">-->
+<!--                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog3.title}">文章标题1</h3>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="" th:each="blog : ${blogs}">-->
+<!--                        <div>-->
+<!--                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022/06/29</time>-->
+<!--                            <div class="scientist" >-->
+<!--                                <a href="#" target="_blank" th:href="@{'/article/'+${blog4.id}+'/1'}">-->
+<!--                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog4.title}">文章标题1</h3>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="" th:each="blog : ${blogs}">-->
+<!--                        <div>-->
+<!--                            <time th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022/06/29</time>-->
+<!--                            <div class="scientist" >-->
+<!--                                <a href="#" target="_blank" th:href="@{'/article/'+${blog5.id}+'/1'}">-->
+<!--                                    <h3 class="state" style="text-align:center;font-size: 16px;color: #000;" th:text="${blog5.title}">文章标题1</h3>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
     
     
     
                 </ul>
             </section>
         </th:block>
-    </div>
-    <div class="switch-page">
-        <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">上一页</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">下一页</a></li>
-        </ul>
     </div>
 
     <div class="switch-page">
@@ -158,7 +149,7 @@
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
-<script th:src="@{/static/css/navbar.css}"></script>
+<script th:src="@{/static/js/navbar.js}"></script>
 <script th:src="@{/static/js/timeline.js}"></script>
 
 </body>

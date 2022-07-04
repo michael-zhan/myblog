@@ -1,71 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <title>编辑博客</title>
   <script src="https://cdn.staticfile.org/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="../lib/editormd/css/editormd.css">
+  <link rel="stylesheet" th:href="@{/static/lib/editormd/css/editormd.css}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-  <link rel="stylesheet" href="../css/navbar.css">
-  <link rel="stylesheet" href="../css/write.css">
+  <link rel="stylesheet" th:href="@{/static/css/navbar.css}">
+  <link rel="stylesheet" th:href="@{/static/css/write.css}">
 
 </head>
 
 <body>
 
-  <div class="navigation-wrap bg-light start-header start-style">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand" href="void(0)" target="_blank">hyzzz_blog</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto py-4 py-md-0">
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a class="nav-link" href="homepage.html">主页</a>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a class="nav-link" href="./tag.html">分类</a>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a class="nav-link" href="./timeline.html">归档</a>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a class="nav-link" href="./friends.html">好友</a>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="./manage-page.html">博客</a>
-                                <a class="dropdown-item" href="./manage-message.html">留言板</a>
-                                <a class="dropdown-item" href="./manage-album.html">相册</a>
-                            </div>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a class="nav-link" href="./write.html">发布</a>
-                </li>
-                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a class="nav-link dropdown-toggle" href="./personal.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的</a>
-                      <div class="dropdown-menu">
-                          <a class="dropdown-item" href="./personal.html">个人信息</a>
-                          <a class="dropdown-item" href="./album_board.html">留言板/相册</a>
-                          <a class="dropdown-item" href="./login.html">注销</a>
-                      </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+<div class="navigation-wrap bg-light start-header start-style">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-md navbar-light">
+          <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto py-4 py-md-0">
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" th:href="@{/index}">主页</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" th:href="@{/type}">分类</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" th:href="@{/archive}">归档</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" th:href="@{/friend/index}">好友</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" th:href="@{/manage}">博客</a>
+                  <a class="dropdown-item" th:href="@{/message/index}">留言板</a>
+                  <a class="dropdown-item" href="./manage-album.html">相册</a>
+                </div>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" th:href="@{/article/toadd}">发布</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link dropdown-toggle" href="./personal.html" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" th:href="@{/aboutme/info}">个人信息</a>
+                  <a class="dropdown-item" th:href="@{/aboutme/message}">留言板/相册</a>
+                  <a class="dropdown-item" href="./login.html">注销</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
     </div>
   </div>
+</div>
 
+<form th:action="@{/article/toadd}" method="post">
   <div id="writebox">
     <div id="title">
       <h3>编辑博客</h3>
@@ -76,7 +76,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">标题</span>
         </div>
-        <input type="text" class="form-control" placeholder="请输入博客标题">
+        <input name="title" type="text" class="form-control" placeholder="请输入博客标题">
       </div>
       <div id="editormd">
         <textarea style="display:none;">
@@ -116,11 +116,13 @@
           </div>
         </div> 
 
-        <textarea class="form-control" rows="5" placeholder="文章描述" style="resize: none;"></textarea>
+        <textarea name="content" class="form-control" rows="5" placeholder="文章描述" style="resize: none;"></textarea>
         <div class="btn_group col-sm-12" style="text-align: right">
-          <button class="btn" type="submit" onclick=""><strong>返回</strong></button>
-          <button class="btn btn-info" onclick="" id="save-btn" type="submit"><strong>保存</strong></button>
-          <button class="btn btn-primary" onclick="" id="publish-btn" type="submit"><strong>发布</strong></button>
+<!--          <button class="btn" type="submit" onclick=""><strong>返回</strong></button>-->
+          <button class="btn"><a th:href="@{/index}">返回</a></button>
+<!--          <button class="btn btn-info" onclick="" id="save-btn" type="submit"><strong>保存</strong></button>-->
+<!--          <button class="btn btn-primary" onclick="" id="publish-btn" type="submit"><strong>发布</strong></button>-->
+          <input type="submit" class="btn btn-primary" value="发布">
         </div>
 
         <div class="clear"></div>
@@ -131,12 +133,13 @@
     </div>
   </div>
 
+</form>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
   <script src='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
-  <script src="../lib/editormd/editormd.js"></script>
-  <script src="../js/navbar.js"></script>
-  <script src="../js/write.js"></script>
+  <script th:src="@{/static/lib/editormd/editormd.js}"></script>
+  <script th:src="@{/static/js/navbar.js}"></script>
+  <script th:src="@{/static/js/write.js}"></script>
   <script type="text/javascript">
     var testEditor;
     $(function () {
@@ -144,8 +147,10 @@
         width: "100%",
         height: 640,
         syncScrolling: "single",
-        path: "../lib/editormd/lib/"
+        // path: "../lib/editormd/lib/"
+        path:"/myblog/lib/editormd/lib/"
       });
+
     });
   </script>
 

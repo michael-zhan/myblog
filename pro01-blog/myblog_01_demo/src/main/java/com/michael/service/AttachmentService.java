@@ -18,7 +18,7 @@ public interface AttachmentService {
      * @param request
      * @return
      */
-//    public Map<String, Object> attachUpload(MultipartFile file, HttpServletRequest request);
+    public Map<String, Object> attachUpload(MultipartFile file, HttpServletRequest request);
 
     /**
      * 添加附件

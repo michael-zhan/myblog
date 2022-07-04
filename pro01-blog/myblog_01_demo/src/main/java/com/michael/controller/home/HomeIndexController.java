@@ -53,18 +53,18 @@ public class HomeIndexController {
             blogList = blogService.getByPage(user.getId(), p, EachPageCount.EACH_PAGE_COUNT_INDEX, false,null);
             pageCount = blogService.getCount(user.getId()) / EachPageCount.EACH_PAGE_COUNT_INDEX + 1;
 
-            if (blogList != null) {
-                Blog blog1 = blogList.get(0);
-                model.addAttribute("blog1", blog1);
-                if (blogList.size() > 1) {
-                    Blog blog2 = blogList.get(1);
-                    model.addAttribute("blog2", blog2);
-                }
-                if (blogList.size() > 2) {
-                    Blog blog3 = blogList.get(2);
-                    model.addAttribute("blog3", blog3);
-                }
-            }
+//            if (blogList != null) {
+//                Blog blog1 = blogList.get(0);
+//                model.addAttribute("blog1", blog1);
+//                if (blogList.size() > 1) {
+//                    Blog blog2 = blogList.get(1);
+//                    model.addAttribute("blog2", blog2);
+//                }
+//                if (blogList.size() > 2) {
+//                    Blog blog3 = blogList.get(2);
+//                    model.addAttribute("blog3", blog3);
+//                }
+//            }
         }
 
 //        session.setAttribute("pageIndex",p);
