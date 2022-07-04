@@ -80,7 +80,7 @@
         <include refid="tb"/>
         <where>
             attachorigin = #{userId}
-            order by createtime asc
+            order by createtime desc
         </where>
     </select>
 

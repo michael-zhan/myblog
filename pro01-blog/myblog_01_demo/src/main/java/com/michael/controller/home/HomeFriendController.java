@@ -143,9 +143,10 @@ public class HomeFriendController {
         User friend = userService.getUserById(friendId);
         if (friend != null&&friend.getStatus()==true) {
             session.setAttribute("friend",friend);
+
             return "redirect:/friendRoom";
         }
-        return "redirect:/friend/index";
+        return "redirect:/";
     }
 
     /**

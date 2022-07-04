@@ -7,9 +7,11 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
     <link rel="stylesheet" th:href="@{/static/css/navbar.css}">
     <link rel="stylesheet" th:href="@{/static/css/style.css}">
-
+    <link rel="stylesheet" th:href="@{/static/css/homepage.css}">
 
 </head>
 <body>
@@ -19,7 +21,10 @@
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>
+                    <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>&nbsp;
+                    <a class="switch" id="switch"><i class="fa fa-moon-o" style="font-size: 24px"></i></a>&nbsp;
+                    <a class="switch"><i class="fa fa-eye" style="font-size: 24px"></i></a>
+                    <a class="switch"><i class="fa fa-eye-slash" style="font-size: 24px"></i></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -65,14 +70,32 @@
 </div>
 
 
-<div class="blog-box">
+<div class="blogs-box">
+    <div class="userinfo-box">
+        <div class="user_portrait">
+            <img th:src="${session.user.avatar}">
+        </div>
+
+        <div class="about-info">
+<!--            <div class="user-name">huster</div>-->
+            <div class="user-name"><span th:text="${session.user.username}"></span></div>
+            <div class="user-signature"><span th:text="${session.user.description}">freestyle</span></div>
+            <div class="about-icons">
+                <a th:href="@{/manage-album}">
+                    <li class="fa fa-image" style="font-size:1.5rem;color: black;"></li>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
 
     <div class="blog-container" th:each="blog :${blogList}">
 
         <div class="blog-header">
-            <div class="blog-cover">
+<!--            <div class="blog-cover">-->
+                <div style="text-align: center;"><img th:src="${blog.firstPicture}" class="img-fluid" style="margin-top: 20px;border-radius: 10px;">
                 <div class="blog-author">
-                    <h3>huster</h3>
+                    <h3></h3>
                 </div>
             </div>
         </div>
@@ -82,7 +105,7 @@
                 <h1><a th:href="@{'/article/'+${blog.id}+'/1'}" th:text="${blog.title}">带封面图博客</a></h1>
             </div>
             <div class="blog-summary">
-                <p th:text="${blog.content}">ipsum dolor sit amet consectetur adipisicing elit. Porro ipsam quam rem adipisci in, doloribus quia minus nobis quidem ut reiciendis, tempora tenetur veniam labore doloremque eum quod animi nihil!</p>
+                <p th:text="${blog.description}">ipsum dolor sit amet consectetur adipisicing elit. Porro ipsam quam rem adipisci in, doloribus quia minus nobis quidem ut reiciendis, tempora tenetur veniam labore doloremque eum quod animi nihil!</p>
             </div>
             <div class="blog-tags">
                 <ul>

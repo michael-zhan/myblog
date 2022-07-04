@@ -65,7 +65,11 @@ public class HomeArchiveController {
                 }
             }else {
                 blogList = blogService.getByPage(user.getId(), p, eachPageCount, false,null);
-                pageCount = blogService.getCount(user.getId()) / eachPageCount + 1;
+                if(blogService.getCount(user.getId()) % eachPageCount>0) {
+                    pageCount = blogService.getCount(user.getId()) / eachPageCount + 1;
+                }else{
+                    pageCount = blogService.getCount(user.getId()) / eachPageCount ;
+                }
             }
 
 //            if (blogList != null) {

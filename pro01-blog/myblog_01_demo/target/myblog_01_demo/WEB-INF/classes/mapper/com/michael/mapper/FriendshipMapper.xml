@@ -89,6 +89,6 @@
     -->
     select friend_id
     from t_friendship
-    where user_id=#{id}
+    where user_id=#{id} or friend_id=#{id}
   </select>
 </mapper>

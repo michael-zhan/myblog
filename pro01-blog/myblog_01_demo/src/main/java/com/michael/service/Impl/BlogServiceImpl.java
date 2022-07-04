@@ -350,7 +350,11 @@ public class BlogServiceImpl implements BlogService {
         }else {
             count = getCount(author);
         }
-        maxIndex = count / eachPageCount + 1;
+        if(count % eachPageCount>0){
+            maxIndex = count / eachPageCount + 1;
+        }else{
+            maxIndex=count/eachPageCount;
+        }
 
         if (count==null||count==0||page < 1 || page > maxIndex) {
             return null;

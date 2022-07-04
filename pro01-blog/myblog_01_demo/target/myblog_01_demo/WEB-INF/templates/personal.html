@@ -5,6 +5,8 @@
     <title>个人详情</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdn.staticfile.org/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
     <link rel="stylesheet" th:href="@{/static/css/style.css}">
     <link rel="stylesheet" th:href="@{/static/css/personal.css}">
     <link rel="stylesheet" th:href="@{/static/css/navbar.css}">
@@ -17,8 +19,10 @@
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>&nbsp;
+                    <a class="switch" id="switch"><i class="fa fa-moon-o" style="font-size: 24px"></i></a>&nbsp;
+                    <a class="switch"><i class="fa fa-eye" style="font-size: 24px"></i></a>
+                    <a class="switch"><i class="fa fa-eye-slash" style="font-size: 24px"></i></a>                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -40,7 +44,7 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" th:href="@{/manage}">博客</a>
                                     <a class="dropdown-item" th:href="@{/message/index}">留言板</a>
-                                    <a class="dropdown-item" href="./manage-album.html">相册</a>
+                                    <a class="dropdown-item" th:href="@{/manage-album}">相册</a>
                                 </div>
                             </li>
                             <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -51,7 +55,7 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" th:href="@{/aboutme/info}">个人信息</a>
                                     <a class="dropdown-item" th:href="@{/aboutme/message}">留言板/相册</a>
-                                    <a class="dropdown-item" href="./login.html">注销</a>
+                                    <a class="dropdown-item" th:href="@{/aboutme/logout}">注销</a>
                                 </div>
                             </li>
                         </ul>
@@ -68,7 +72,7 @@
     <div class="wrap-center">
         <header class="header">
             <div class="avatar">
-                <img th:src="@{/static/img/img_1.jpg}">
+                <img th:src="${session.user.avatar}">
             </div>
 
             <span class="name" id="name" th:text="${session.user.username}">beez </span>
@@ -99,13 +103,13 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
-          <form th:action="@{/aboutme/modify}" method="post">
+          <form th:action="@{/aboutme/modify}" method="post" enctype="multipart/form-data">
         <!-- 模态框主体 -->
         <div class="modal-body">
             <span>昵称:</span><br>
             <input name="nickname" type="text" id="userName"><br>
-            <span>头像:</span><img th:src="@{/static/img/img_1.jpg}" style="height: 100px; width: 100px;border-radius: 100%;">&nbsp;
-            <input type="file"><br>
+            <span>头像:</span><img th:src="${session.user.avatar}" style="height: 100px; width: 100px;border-radius: 100%;">&nbsp;
+            <input type="file" name="photo"><br>
             <span>个人详情:</span><br>
             <input type="text" id="userInfo"><br>
             <span>个性签名:</span><br>

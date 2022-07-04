@@ -77,6 +77,8 @@ public interface CommentMapper {
      */
     Comment getById(@Param("commentPublished") Integer commentPublished, @Param("id") Integer id);
 
+    Comment getByIdMyself(Integer id);
+
     /**
      * 获得子评论Id列表
      *

@@ -1,0 +1,43 @@
+.blogs-box{
+    margin: 150px auto;
+    background-color: #ccc;
+    width: 60%;
+    border-radius: 25px;
+    padding-bottom: 10px;
+}
+
+.userinfo-box{
+    height: 12rem;
+}
+.user_portrait{
+    position: relative;
+    bottom: 4rem;
+    margin: 0 auto;
+    width: 10rem;
+    height: 10rem;
+
+}
+
+.user_portrait img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.about-info{
+    position: relative;
+    bottom: 4rem;
+    clear: both;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.about-info div{
+    margin-bottom: 0.5rem;
+}
+.user-name{
+    font-size: 1.75rem;
+    font-weight: bold;
+}

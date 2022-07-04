@@ -90,7 +90,8 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/tologin"/>
+<!--            <mvc:exclude-mapping path="/tologin"/>-->
+            <mvc:exclude-mapping path="/login"/>
             <mvc:exclude-mapping path="/loginVerify"/>
 
             <mvc:exclude-mapping path="/css/**"/>

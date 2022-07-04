@@ -42,16 +42,24 @@ public class HomeIndexController {
         Integer pageCount=1;
 
         User user=null;
-        if(session.getAttribute("friend")!=null&&httpServletRequest.getServletPath().startsWith("/friendRoom")) {
+        String servletStr=httpServletRequest.getServletPath();
+        String returnStr=null;
+        if(session.getAttribute("friend")!=null&&servletStr.startsWith("/friendRoom")) {
             user = (User) session.getAttribute("friend");
+            returnStr="friendRoom";
         }else{
             user=(User)session.getAttribute("user");
+            returnStr="homepage";
         }
 
         List<Blog> blogList=null;
         if(user!=null&&user.getId()!=null) {
             blogList = blogService.getByPage(user.getId(), p, EachPageCount.EACH_PAGE_COUNT_INDEX, false,null);
-            pageCount = blogService.getCount(user.getId()) / EachPageCount.EACH_PAGE_COUNT_INDEX + 1;
+            if(blogService.getCount(user.getId()) % EachPageCount.EACH_PAGE_COUNT_INDEX >0) {
+                pageCount = blogService.getCount(user.getId()) / EachPageCount.EACH_PAGE_COUNT_INDEX + 1;
+            }else{
+                pageCount = blogService.getCount(user.getId()) / EachPageCount.EACH_PAGE_COUNT_INDEX ;
+            }
 
 //            if (blogList != null) {
 //                Blog blog1 = blogList.get(0);
@@ -72,6 +80,6 @@ public class HomeIndexController {
         model.addAttribute("blogList", blogList);
         model.addAttribute("pageIndex",p);
         model.addAttribute("pageCount",pageCount);
-        return "homepage";
+        return returnStr;
     }
 }

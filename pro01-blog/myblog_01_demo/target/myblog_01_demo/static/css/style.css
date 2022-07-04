@@ -42,7 +42,7 @@ body {
 
 .blog-author h3::before,
 .blog-author--no-cover h3::before {
-  background: url("../img/img_1.jpg");
+  /*background: url("../img/img_1.jpg");*/
   background-size: cover;
   border-radius: 50%;
   content: " ";

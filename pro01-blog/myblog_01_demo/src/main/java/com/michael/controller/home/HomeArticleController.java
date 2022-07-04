@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -72,17 +74,17 @@ public class HomeArticleController {
         return "write";
     }
 
-    /**
-     * 保存文章
-     * @return
-     */
-    @RequestMapping("/save")
-    public String add(Blog blog){
-        if(blog!=null) {
-            blogService.insertBlog(blog);
-        }
-        return "redirect:/index";
-    }
+//    /**
+//     * 保存文章
+//     * @return
+//     */
+//    @RequestMapping("/save")
+//    public String add(Blog blog){
+//        if(blog!=null) {
+//            blogService.insertBlog(blog);
+//        }
+//        return "redirect:/index";
+//    }
 
     /**
      * 保存取消
@@ -184,6 +186,18 @@ public class HomeArticleController {
             System.out.println("没有下一篇");
             return "redirect:/article/"+blogId.toString()+"/0";
         }
+    }
+    /**
+     * 保存文章
+     */
+    @RequestMapping(value="/toadd/save",method = RequestMethod.POST)
+    public String saveBlog(Blog blog , HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        blog.setPublished(0);
+        blog.setUserId(user.getId());
+        blog.setCreateTime(new Date());
+        blogService.insertBlog(blog);
+        return "write";
     }
 
 }

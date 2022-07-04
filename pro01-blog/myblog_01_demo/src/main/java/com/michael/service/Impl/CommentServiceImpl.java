@@ -78,7 +78,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @CacheEvict(value= "comment", allEntries=true)
     public void deleteComment(Integer commentId) {
-        Comment comment = commentMapper.getById(null, commentId);
+        Comment comment = getByIdMyself(commentId);
         if (comment != null) {
             //1.删除评论
             commentMapper.deleteById(commentId);
@@ -112,6 +112,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Comment getByIdMyself(Integer id) {
+        return commentMapper.getByIdMyself(id);
+    }
+
+    @Override
     public Integer countCommentByPass(Integer pass) {
         return commentMapper.countComment(pass);
     }
@@ -129,7 +134,12 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getByPage(Integer master, Integer page, Integer eachPageCount) {
         Integer count=getCount(master);
-        Integer maxIndex=count/eachPageCount+1;
+        Integer maxIndex;
+        if(count%eachPageCount>0){
+            maxIndex=count/eachPageCount+1;
+        }else{
+            maxIndex=count/eachPageCount;
+        }
         if(count==null||count==0||page<1||page>maxIndex){
             return null;
         }

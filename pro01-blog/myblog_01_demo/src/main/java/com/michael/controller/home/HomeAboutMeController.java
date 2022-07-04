@@ -1,24 +1,33 @@
 package com.michael.controller.home;
 
+import cn.hutool.core.date.DateUtil;
 import com.github.pagehelper.PageInfo;
 import com.michael.model.dto.ResultVo;
 import com.michael.model.enums.EachPageCount;
+import com.michael.pojo.Attachment;
 import com.michael.pojo.Blog;
 import com.michael.pojo.Comment;
 import com.michael.pojo.User;
+import com.michael.service.AttachmentService;
 import com.michael.service.CommentService;
 import com.michael.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @Controller
 public class HomeAboutMeController {
 
@@ -26,7 +35,8 @@ public class HomeAboutMeController {
     private UserService userService;
     @Autowired
     private CommentService commentService;
-
+    @Autowired
+    private AttachmentService attachmentService;
 
     /**
      * 进入关于个人信息界面
@@ -71,8 +81,12 @@ public class HomeAboutMeController {
         Integer eachPageCount= EachPageCount.EACH_PAGE_COUNT_MESSAGE;
         List<Comment> messageList=null;
         if(user!=null&&user.getId()!=null) {
-            messageList = commentService.getByPage(user.getId(), p, eachPageCount);
-            messagePageCount = commentService.getCount(user.getId()) / eachPageCount + 1;
+            messageList = commentService.getByPage(user.getId(), m, eachPageCount);
+            if(commentService.getCount(user.getId() % eachPageCount)>0){
+                messagePageCount = commentService.getCount(user.getId()) / eachPageCount + 1;
+            }else {
+                messagePageCount = commentService.getCount(user.getId()) / eachPageCount ;
+            }
 
             if (messageList != null) {
                 Comment message1 = messageList.get(0);
@@ -113,14 +127,57 @@ public class HomeAboutMeController {
      * @return
      */
     @RequestMapping("/aboutme/modify")
-    public String modifyInfo(@RequestParam("description") String description,@RequestParam("nickname")String nickname, HttpSession session) {
-        User user=(User)session.getAttribute("user");
+    public String modifyInfo(@RequestParam("description") String description, @RequestParam("nickname")String nickname,
+                             @RequestParam("photo") MultipartFile file, HttpServletRequest request) {
+        HttpSession session=request.getSession();
+        User user = (User) session.getAttribute("user");
         if(nickname!=null&&!nickname.equals("")) {
             user.setNickname(nickname);
         }
         if(description!=null&&!description.equals("")){
             user.setDescription(description);
         }
+
+        final Map<String, Object> result = new HashMap<>(3);
+        if (!file.isEmpty()) {
+            try {
+                final Map<String, Object> resultMap = attachmentService.attachUpload(file, request);
+                if (resultMap == null || resultMap.isEmpty()) {
+                    result.put("success", 0);
+                    result.put("message", "upload-failed");
+                }
+
+                //保存在数据库
+                Attachment attachment = new Attachment();
+                attachment.setAttachName((String) resultMap.get("fileName"));
+                attachment.setAttachPath((String) resultMap.get("filePath"));
+                attachment.setAttachSmallPath((String) resultMap.get("smallPath"));
+                attachment.setAttachType(file.getContentType());
+                attachment.setAttachSuffix((String) resultMap.get("suffix"));
+                attachment.setCreateTime(DateUtil.date());
+                attachment.setAttachSize((String) resultMap.get("size"));
+                attachment.setAttachWh((String) resultMap.get("wh"));
+                attachment.setRawSize((Long) resultMap.get("rowSize"));
+
+                user.setAvatar(attachment.getAttachSmallPath());
+
+                attachmentService.insert(attachment);
+                log.info("Upload file {} to {} successfully", resultMap.get("fileName"), resultMap.get("filePath"));
+                result.put("success", 1);
+                result.put("message", "upload-success");
+                result.put("url", attachment.getAttachPath());
+                result.put("filename", resultMap.get("filePath"));
+            } catch (Exception e) {
+                log.error("Upload file failed:{}", e.getMessage());
+                result.put("success", 0);
+                result.put("message", "upload-failed");
+            }
+        } else {
+            log.error("File cannot be empty!");
+        }
+
+
+
         userService.updateUser(user);
         session.setAttribute("user",user);
         return "personal";

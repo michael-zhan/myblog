@@ -60,8 +60,8 @@
 
     <delete id="deleteById" parameterType="java.lang.Integer">
         delete from
-        <include refid="tb"/>
-        where id = #{id,jdbcType=INTEGER}
+        t_comment
+        where id = #{id}
     </delete>
 
     <select id="countComment" resultType="Integer">
@@ -167,6 +167,14 @@
         where blog_id=#{arg0}
         order by id desc
             limit #{arg1},#{arg2}
+    </select>
+
+    <select id="getByIdMyself" resultType="com.michael.pojo.Comment">
+        SELECT *
+        FROM
+        t_comment
+        WHERE
+        id=#{id}
     </select>
 
 </mapper>

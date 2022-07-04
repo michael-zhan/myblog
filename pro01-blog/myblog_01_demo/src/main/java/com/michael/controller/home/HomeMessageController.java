@@ -46,7 +46,11 @@ public class HomeMessageController {
         List<Comment> messageList=null;
         if(user!=null&&user.getId()!=null) {
             messageList = commentService.getByPage(user.getId(), m, eachPageCount);
-            messagePageCount = commentService.getCount(user.getId()) / eachPageCount + 1;
+            if(commentService.getCount(user.getId()) % eachPageCount>0) {
+                messagePageCount = commentService.getCount(user.getId()) / eachPageCount + 1;
+            }else{
+                messagePageCount = commentService.getCount(user.getId()) / eachPageCount ;
+            }
 
             if (messageList != null) {
                 Comment message1 = messageList.get(0);
@@ -54,7 +58,6 @@ public class HomeMessageController {
                 if (messageList.size() > 1) {
                     Comment message2 = messageList.get(1);
                     model.addAttribute("message2", message2);
-
                 }
                 if (messageList.size() > 2) {
                     Comment message3 = messageList.get(2);
@@ -102,7 +105,7 @@ public class HomeMessageController {
      */
     @RequestMapping("/delete/{commentId}")
     public String delete(@PathVariable Integer commentId){
-        Comment comment = commentService.getById(0, 0, 0, commentId);
+        Comment comment = commentService.getByIdMyself(commentId);
         if(comment!=null){
             commentService.deleteComment(commentId);
         }

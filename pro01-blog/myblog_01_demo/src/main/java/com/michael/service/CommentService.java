@@ -27,7 +27,9 @@ public interface CommentService {
     PageInfo<Comment> getListCommentByBlogId(Integer blogPublished,Integer commentPublished, Integer postType,Integer pageIndex, Integer pageSize,Integer blogId);
 
     // 根据id获取评论
-    Comment getById(Integer blogPublished,Integer commentPublished, Integer postType, Integer id);
+    Comment getById(Integer blogPublished,Integer commentPublished, Integer postType,Integer id);
+
+    Comment getByIdMyself(Integer id);
 
     // 查找每种状态下的评论数
     Integer countCommentByPass(Integer pass);
