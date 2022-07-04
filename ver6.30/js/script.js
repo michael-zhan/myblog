@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     var flag = 0;
     $(".like").click(function(){

@@ -1,8 +1,27 @@
+function setTheme(){
+	if(localStorage.getItem("themeFlag")==null){
+		localStorage.setItem("themeFlag","day");
+	}else if(localStorage.getItem("themeFlag")=="day"){
+		$("body").removeClass("dark");
+	}else{
+		$("body").addClass("dark");
+	}
+}
+setTheme();
+function changeTheme(){
+	if(localStorage.getItem("themeFlag")=="day"){
+		$("body").addClass("dark");
+		localStorage.setItem("themeFlag","night");
+	}else{
+		$("body").removeClass("dark");
+		localStorage.setItem("themeFlag","day");
+	}
+}
 
-(function($) { "use strict";
 
 	$(function() {
 		var header = $(".start-style");
+		
 		$(window).scroll(function() {    
 			var scroll = $(window).scrollTop();
 		
@@ -11,6 +30,9 @@
 			} else {
 				header.removeClass("scroll-on").addClass('start-style');
 			}
+		});
+		$("#switch").click(function(){
+			changeTheme();
 		});
 	});		
 		
@@ -30,15 +52,5 @@
 	
 	//Switch light/dark
 	
-	$("#switch").on('click', function () {
-		if ($("body").hasClass("dark")) {
-			$("body").removeClass("dark");
-			$("#switch").removeClass("switched");
-		}
-		else {
-			$("body").addClass("dark");
-			$("#switch").addClass("switched");
-		}
-	});  
 	
-  })(jQuery);
+	 
