@@ -156,12 +156,14 @@ public class UserServiceImpl implements UserService {
     public void dealWithFriendRequest(Integer userId,Integer senderId,Integer sign) {
 
         Integer noticeId = noticeMapper.selectBySAndR(senderId, userId);
-        Integer i = friendshipMapper.selectByUserAndFriend(senderId, userId);
-        if(sign==1&&i==0){
-            Friendship friendship = new Friendship(null, senderId, userId);
-            friendshipMapper.insert(friendship);
+        Integer i1 = friendshipMapper.selectByUserAndFriend(userId,senderId);
+        Integer i2 = friendshipMapper.selectByUserAndFriend(senderId,userId);
+        if(sign==1&&i1==0&&i2==0){
+            Friendship friendship1 = new Friendship(null, senderId, userId);
+            Friendship friendship2 = new Friendship(null, userId,senderId);
+            friendshipMapper.insert(friendship1);
+            friendshipMapper.insert(friendship2);
         }
-
         noticeMapper.deleteByPrimaryKey(noticeId.longValue());
     }
 

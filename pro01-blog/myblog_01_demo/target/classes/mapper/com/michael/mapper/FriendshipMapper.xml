@@ -78,7 +78,7 @@
     -->
     select count(*)
     from t_friendship
-    where (user_id=#{arg0} and friend_id=#{arg1}) or (user_id=#{arg1} and friend_id=#{arg0})
+    where (user_id=#{arg0} and friend_id=#{arg1})
 
   </select>
   <select id="selectByUser" resultType="java.lang.Integer" >
@@ -89,6 +89,6 @@
     -->
     select friend_id
     from t_friendship
-    where user_id=#{id} or friend_id=#{id}
+    where user_id=#{id}
   </select>
 </mapper>

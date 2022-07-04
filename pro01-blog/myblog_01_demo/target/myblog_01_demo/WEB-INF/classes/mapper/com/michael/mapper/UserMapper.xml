@@ -96,14 +96,9 @@
 
   <!--根据用户名查用户-->
   <select id="getUserByName" parameterType="String" resultType="com.michael.pojo.User">
-    SELECT
-    <include refid="Base_Column_List"/>
-    FROM
-    <include refid="tb"/>
-    <where>
-      username=#{value}
-    </where>
-    limit 1
+    SELECT *
+    from t_user
+    where username=#{name}
   </select>
 
   <!--根据Email查用户-->
