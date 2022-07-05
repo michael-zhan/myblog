@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -10,4 +11,18 @@
 </div>
 welcome to myblog
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div th:object="${session.user}" >
+    <p th:text="*{nickname}">昵称</p>
+</div>
+welcome to myblog
+</body>
+>>>>>>> Stashed changes
 </html>
