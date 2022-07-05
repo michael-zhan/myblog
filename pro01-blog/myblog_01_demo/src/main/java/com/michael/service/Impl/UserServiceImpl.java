@@ -138,6 +138,10 @@ public class UserServiceImpl implements UserService {
     public Boolean sendMakeFriendRequest(Integer sender, Integer receiver) {
 
         Integer i = friendshipMapper.selectByUserAndFriend(sender, receiver);
+        Integer ii = noticeMapper.selectBySAndR(sender, receiver);
+        if(ii!=null&&ii>0){
+            return false;
+        }
         if(i==0) {
             Date d = new Date();
             Notice notice = new Notice(null, sender, receiver, false, d);

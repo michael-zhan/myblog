@@ -54,7 +54,8 @@ public class LoginAndRegisterController {
                &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())
                &&userService.getUserByEmail(user.getEmail())==null) {
            user.setPassword(MD5Util.getMd5(user.getPassword()));
-           user.setAvatar("https://zyk-xxx.oss-cn-hangzhou.aliyuncs.com//images/2022/7/20220705_085033_561_small.jpeg\n");
+           user.setAvatar("https://zyk-xxx.oss-cn-hangzhou.aliyuncs.com//images/2022/7/20220705_105347_138.jpg");
+           user.setStatus(true);
            userService.insertUser(user);
        }
         return "login";

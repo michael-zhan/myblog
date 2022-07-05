@@ -184,6 +184,7 @@ p{
 	transform: translate(0);
 	transition: all 300ms linear;
 	transition-delay: 1700ms;
+	word-break: break-all;
 }
 
 .nav-item .dropdown-menu {
@@ -340,4 +341,8 @@ body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 		background-color: transparent;
 		box-shadow: none;
 	}
+}
+
+.btn a{
+	color: inherit;
 }

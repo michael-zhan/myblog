@@ -33,3 +33,7 @@
   .pagination a:hover, .pagination .active {
     background-color: #bbb;
   }
+
+  .switch-page1{
+      text-align: center;
+  }

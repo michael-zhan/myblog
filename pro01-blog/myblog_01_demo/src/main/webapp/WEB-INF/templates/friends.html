@@ -19,8 +19,6 @@
                 <nav class="navbar navbar-expand-md navbar-light">
                     <a class="navbar-brand" href="javascript:void(0)" target="_blank">hyzzz_blog</a>&nbsp;
                     <a class="switch" id="switch"><i class="fa fa-moon-o" style="font-size: 24px"></i></a>&nbsp;
-                    <a class="switch"><i class="fa fa-eye" style="font-size: 24px"></i></a>
-                    <a class="switch"><i class="fa fa-eye-slash" style="font-size: 24px"></i></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -234,12 +232,13 @@
 
       <div class="input-group searchbar">
           <form th:action="@{/friend/add}" method="post">
-          <input type="text" name="username" class="form-control" placeholder="搜索好友昵称">
-          <div class="input-group-append">
-        <span class="input-group-btn">
+
+          <div class="input-group">
+              <input type="text" name="username" class="form-control" placeholder="搜索好友昵称">
+              <span class="input-group-btn">
 <!--          <button class="btn btn-default"><a th:href="@{/friend/add}">添加</a></button>-->
-            <input type="submit" class="btn btn-default" value="添加">
-        </span>
+                  <input type="submit" class="btn btn-default" value="添加">
+              </span>
           </div>
           </form>
       </div>
