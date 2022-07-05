@@ -185,3 +185,12 @@ body {
   margin-right: 15%;
   margin-bottom: 20px;
 }
+.detail-box{
+  width: 90%;
+  margin: 10px auto;
+}
+
+.detail-box img{
+  max-width: 70%;
+  margin: 10px auto;
+}

@@ -5,14 +5,25 @@
   <title>登录/注册</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" th:href="@{/static/css/login.css}">
-
+	<script type="text/javascript">
+		function func(){
+			if((pwdError.innerText == telError.innerText)&&(telElt.value!="")&&(pwdElt1.value!="")&&(userElt.value!="")){
+				// 做登录成功操作
+				alert("注册成功");
+				return true;
+			}else{
+				alert("不合法的输入");
+				return false;
+			}
+		}
+	</script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <div class="container right-panel-active">
 	<!-- Sign Up -->
 	<div class="container__form container--signup">
-		<form th:action="@{/register}" class="form" id="form1">
+		<form th:action="@{/register}" class="form" id="form1" method="post" onsubmit="return func()">
 			<h2 class="form__title">注册</h2>
 			<input name="email" type="text" id="tel1" placeholder="邮箱" class="input" />
 			<span id="telError" style="color: red;"></span>

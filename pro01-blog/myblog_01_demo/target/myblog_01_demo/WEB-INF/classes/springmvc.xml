@@ -91,6 +91,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
 <!--            <mvc:exclude-mapping path="/tologin"/>-->
+            <mvc:exclude-mapping path="/register"/>
             <mvc:exclude-mapping path="/login"/>
             <mvc:exclude-mapping path="/loginVerify"/>
 

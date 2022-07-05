@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.ParameterMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -47,12 +48,13 @@ public class LoginAndRegisterController {
      * @throws NoSuchAlgorithmException
      */
     @RequestMapping("/register")
-    public String register(User user,String code,HttpSession session) throws NoSuchAlgorithmException {
+    public String register(User user, @RequestParam("code") String code, HttpSession session) throws NoSuchAlgorithmException {
        String expectedCode = (String)session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
        if(isLeaglStr(user.getUsername(),user.getPassword(),user.getEmail(),code)
                &&code!=null&&expectedCode.toLowerCase().equals(code.toLowerCase())
                &&userService.getUserByEmail(user.getEmail())==null) {
            user.setPassword(MD5Util.getMd5(user.getPassword()));
+           user.setAvatar("https://zyk-xxx.oss-cn-hangzhou.aliyuncs.com//images/2022/7/20220705_085033_561_small.jpeg\n");
            userService.insertUser(user);
        }
         return "login";

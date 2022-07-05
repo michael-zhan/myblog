@@ -72,10 +72,13 @@ public class HomeAboutMeController {
         Integer messagePageCount=1;
 
         User user=null;
+        String returnStr;
         if(session.getAttribute("friend")!=null&&httpServletRequest.getServletPath().startsWith("/aboutfriend/message")){
             user=(User)session.getAttribute("friend");
+            returnStr="friend_album_board";
         }else{
             user = (User)session.getAttribute("user");
+            returnStr="album_board";
         }
 
         Integer eachPageCount= EachPageCount.EACH_PAGE_COUNT_MESSAGE;
@@ -119,7 +122,7 @@ public class HomeAboutMeController {
         model.addAttribute("messagePageIndex",m);
         model.addAttribute("photoPageCount",photoPageCount);
         model.addAttribute("messagePageCount",messagePageCount);
-        return "album_board";
+        return returnStr;
     }
 
     /**

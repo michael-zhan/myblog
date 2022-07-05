@@ -54,12 +54,5 @@ window.onload = function(){
 	}
 
 	// 新增：点登录按钮验证格式
-	signInBtn2.onclick = function(){
-		if((pwdError.innerText == telError.innerText)&&(telElt.value!="")&&(pwdElt1.value!="")&&(userElt.value!="")){
-			// 做登录成功操作
-			alert("好好好");
-		}else{
-			alert("不合法");
-		}
-	}
+
 }
