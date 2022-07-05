@@ -240,6 +240,12 @@ body.dark .navbar-brand{
 body.dark .fa-moon-o{
 	color: #fff;
 }
+body.dark .fa-eye{
+	color: #fff;
+}
+body.dark .fa-eye-slash{
+	color: #fff;
+}
 body.dark .bg-light {
 	background-color: #14151a !important;
 }

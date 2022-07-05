@@ -21,7 +21,15 @@ function changeTheme(){
 
 	$(function() {
 		var header = $(".start-style");
-		
+		$(".fa-eye-slash").hide();
+		$(".fa-eye-slash").click(function(){
+			$(".fa-eye-slash").hide();
+			$(".fa-eye").show();
+		});
+		$(".fa-eye").click(function(){
+			$(".fa-eye").hide();
+			$(".fa-eye-slash").show();
+		});
 		$(window).scroll(function() {    
 			var scroll = $(window).scrollTop();
 		
